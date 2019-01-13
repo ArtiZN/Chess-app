@@ -1,0 +1,30 @@
+.app-navbar {
+  background: #3f51b5;
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),
+              0 6px 10px 0 rgba(0,0,0,.14),
+              0 1px 18px 0 rgba(0,0,0,.12);
+}
+
+#navbarCollapse > ul:nth-child(1) > li.nav-item.dropdown.px-2 > button,
+#navbarCollapse > ul > li > a {
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  border: 0;
+}
+
+.h1, .h1:hover {
+  color: white;
+}
+
+nav > div.navbar-header > span:nth-child(2) > img {
+  margin-left: 5px;
+  height: 35px;
+  margin-bottom: 5px;
+}
+
+button:focus {
+  outline: none;
+  border: 0;
+}
