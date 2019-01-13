@@ -10,7 +10,7 @@ import { Chessground } from 'chessground';
 })
 export class ChessgroundComponent implements OnInit {
 
-  @ViewChild('ChessBoard')
+  @ViewChild('chessBoard')
   chessBoard: ElementRef;
 
   constructor() { }

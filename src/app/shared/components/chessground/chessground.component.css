@@ -1,47 +1,58 @@
-#chess-board {
-  background-image: url('../../../../assets/images/board/board.svg');
+.cg-board {
+  background-image: url('../../../../assets/images/board/wood-1024.jpg');
 }
 
-.merida .cg-board-wrap piece.pawn.white {
+.cg-board-wrap piece.pawn.white {
   background-image: url('../../../../assets/images/pieces/merida/wP.svg');
 }
-.merida .cg-board-wrap piece.bishop.white {
+
+.cg-board-wrap piece.bishop.white {
   background-image: url('../../../../assets/images/pieces/merida/wB.svg');
 }
-.merida .cg-board-wrap piece.knight.white {
+
+.cg-board-wrap piece.knight.white {
   background-image: url('../../../../assets/images/pieces/merida/wN.svg');
 }
-.merida .cg-board-wrap piece.rook.white {
+
+.cg-board-wrap piece.rook.white {
   background-image: url('../../../../assets/images/pieces/merida/wR.svg');
 }
-.merida .cg-board-wrap piece.queen.white {
+
+.cg-board-wrap piece.queen.white {
   background-image: url('../../../../assets/images/pieces/merida/wQ.svg');
 }
-.merida .cg-board-wrap piece.king.white {
+
+.cg-board-wrap piece.king.white {
   background-image: url('../../../../assets/images/pieces/merida/wK.svg');
 }
-.merida .cg-board-wrap piece.pawn.black {
+
+.cg-board-wrap piece.pawn.black {
   background-image: url('../../../../assets/images/pieces/merida/bP.svg');
 }
-.merida .cg-board-wrap piece.bishop.black {
+
+.cg-board-wrap piece.bishop.black {
   background-image: url('../../../../assets/images/pieces/merida/bB.svg');
 }
-.merida .cg-board-wrap piece.knight.black {
+
+.cg-board-wrap piece.knight.black {
   background-image: url('../../../../assets/images/pieces/merida/bN.svg');
 }
-.merida .cg-board-wrap piece.rook.black {
+
+.cg-board-wrap piece.rook.black {
   background-image: url('../../../../assets/images/pieces/merida/bR.svg');
 }
-.merida .cg-board-wrap piece.queen.black {
+
+.cg-board-wrap piece.queen.black {
   background-image: url('../../../../assets/images/pieces/merida/bQ.svg');
 }
-.merida .cg-board-wrap piece.king.black {
+
+.cg-board-wrap piece.king.black {
   background-image: url('../../../../assets/images/pieces/merida/bK.svg');
 }
 
 .cg-board-wrap {
-  width: 320px;
-  height: 320px;
+  width: 512px;
+  height: 512px;
   position: relative;
   display: block;
 }
