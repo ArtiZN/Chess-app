@@ -2,7 +2,8 @@
 
 <div class="chess-ui">
   <div class="chess-container">
-    <app-chessground></app-chessground>
+    <app-chessground
+      (cgMove)="cgMove($event)"></app-chessground>
 
     <app-moves-table></app-moves-table>
   </div>
