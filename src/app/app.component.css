@@ -1,0 +1,8 @@
+.chess-ui {
+  width: 1000px;
+  margin: 35px auto 35px;
+}
+
+.chess-container {
+  display: flex;
+}
