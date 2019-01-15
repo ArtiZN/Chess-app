@@ -16,10 +16,10 @@ export function playOtherSide(cg: Api, chess: Chess) {
   return (orig, dest) => {
     chess.move({from: orig, to: dest});
     cg.set({
-      turnColor: this.toColor(chess),
+      turnColor: toColor(chess),
       movable: {
-        color: this.toColor(chess),
-        dests: this.toDests(chess)
+        color: toColor(chess),
+        dests: toDests(chess)
       }
     });
   };
