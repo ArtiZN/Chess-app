@@ -3,6 +3,8 @@ import { Component, OnInit, ElementRef, ViewChild, ViewEncapsulation } from '@an
 import { Chessground } from 'chessground';
 import * as Chess from 'chess.js';
 
+import { toDests, playOtherSide } from '@core/utils/chess.utils';
+
 @Component({
   selector: 'app-chessground',
   templateUrl: './chessground.component.html',
@@ -17,17 +19,17 @@ export class ChessgroundComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // const chess = new Chess();
-    // const ground = Chessground(this.chessBoard.nativeElement, {
-    //   movable: {
-    //     color: 'white',
-    //     free: false,
-    //     dests: this.toDests(chess)
-    //   }
-    // });
+    const chess = new Chess();
+    const ground = Chessground(this.chessBoard.nativeElement, {
+      movable: {
+        color: 'white',
+        free: false,
+        dests: toDests(chess)
+      }
+    });
 
-    // ground.set({
-    //   movable: { events: { after: this.playOtherSide(ground, chess) } }
-    // });
+    ground.set({
+      movable: { events: { after: playOtherSide(ground, chess) } }
+    });
   }
 }
