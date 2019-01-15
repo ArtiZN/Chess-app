@@ -25,15 +25,12 @@ export class AppComponent {
   }
 
   updateData(move, color) {
-    const last: ChessMove = this.data[this.data.length - 1];
+    const last: ChessMove = _.last(this.data);
     if (last[color] !== undefined) {
-      const d = {
-        N: last.N + 1,
-        white: undefined,
-        black: undefined
-      };
-      d[color] = move;
-      this.data = [...this.data, d];
+      const row = {} as ChessMove;
+      row.N = last.N + 1;
+      row[color] = move;
+      this.data = [...this.data, row];
     } else {
       last[color] = move;
     }
