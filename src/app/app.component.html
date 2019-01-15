@@ -4,7 +4,7 @@
   <div class="chess-container">
     <app-chessground
       (cgMove)="cgMove($event)"></app-chessground>
-
-    <app-moves-table [dataSource]="data"></app-moves-table>
+    <app-moves-table
+      [data]="data"></app-moves-table>
   </div>
 </div>

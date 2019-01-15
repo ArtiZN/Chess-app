@@ -13,24 +13,29 @@ import { toColor } from '@core/utils/chess.utils';
 export class AppComponent {
 
   data: ChessMove[] = [{
-    N: 1
+    N: 1,
+    white: undefined,
+    black: undefined
   }];
 
   cgMove($event) {
     const move = _.last($event.history());
-    const color = toColor($event);
+    const color = ($event.turn() === 'w') ? 'black' : 'white';
+    this.updateData(move, color);
   }
 
   updateData(move, color) {
-    // let last = _.last(this.data);
-    // if (!last) {
-    //   if (last.hasOwnProperty(''))
-    // } else {
-    //   this.data.push({
-    //     N: 1,
-    //     white: move,
-    //     black: ''
-    //   });
-    // }
+    const last: ChessMove = this.data[this.data.length - 1];
+    if (last[color] !== undefined) {
+      const d = {
+        N: last.N + 1,
+        white: undefined,
+        black: undefined
+      };
+      d[color] = move;
+      this.data = [...this.data, d];
+    } else {
+      last[color] = move;
+    }
   }
 }

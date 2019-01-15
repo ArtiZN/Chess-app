@@ -11,10 +11,11 @@ export class MovesTableComponent implements OnInit {
   displayedColumns = ['N', 'white', 'black'];
 
   @Input()
-  dataSource: ChessMove[] = [];
+  data: ChessMove[];
 
   constructor() { }
 
   ngOnInit() {
+
   }
 }
