@@ -5,6 +5,6 @@
     <app-chessground
       (cgMove)="cgMove($event)"></app-chessground>
 
-    <app-moves-table></app-moves-table>
+    <app-moves-table [dataSource]="data"></app-moves-table>
   </div>
 </div>

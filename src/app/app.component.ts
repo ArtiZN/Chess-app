@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 import * as _ from 'lodash';
 
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
+import { toColor } from '@core/utils/chess.utils';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +12,25 @@ import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 })
 export class AppComponent {
 
-  @Input()
-  data: ChessMove[] = [];
+  data: ChessMove[] = [{
+    N: 1
+  }];
 
   cgMove($event) {
-    const move = _.last($event.pgn().split(' '));
+    const move = _.last($event.history());
+    const color = toColor($event);
+  }
+
+  updateData(move, color) {
+    // let last = _.last(this.data);
+    // if (!last) {
+    //   if (last.hasOwnProperty(''))
+    // } else {
+    //   this.data.push({
+    //     N: 1,
+    //     white: move,
+    //     black: ''
+    //   });
+    // }
   }
 }

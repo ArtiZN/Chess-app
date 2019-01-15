@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 
@@ -9,6 +9,8 @@ import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 })
 export class MovesTableComponent implements OnInit {
   displayedColumns = ['N', 'white', 'black'];
+
+  @Input()
   dataSource: ChessMove[] = [];
 
   constructor() { }
