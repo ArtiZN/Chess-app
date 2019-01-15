@@ -4,7 +4,7 @@ import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 
 const ELEMENT_DATA: ChessMove[] = [
   {
-    position: 1,
+    N: 1,
     white: 'e2',
     black: 'e4'
   },
@@ -16,7 +16,7 @@ const ELEMENT_DATA: ChessMove[] = [
   styleUrls: ['./moves-table.component.css']
 })
 export class MovesTableComponent implements OnInit {
-  displayedColumns = ['position', 'white', 'black'];
+  displayedColumns = ['N', 'white', 'black'];
   dataSource = ELEMENT_DATA;
   constructor() { }
 

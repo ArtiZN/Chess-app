@@ -1,5 +1,5 @@
 export interface ChessMove {
-  position: number;
+  N: number;
   white: string;
   black: string;
 }
