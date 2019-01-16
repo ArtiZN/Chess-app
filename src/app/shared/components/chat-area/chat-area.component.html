@@ -1,11 +1,10 @@
 <div class="chat-container">
   <mat-card class="chat-card">
     <mat-list class="chat-list">
-      <mat-list-item *ngFor="let message of messages">
+      <mat-list-item class="chat-list-item" *ngFor="let message of messages">
         <h4 mat-line>
             <b>{{ message.from.username }}</b>
         </h4>
-        <mat-divider></mat-divider>
         <p mat-line>
           <span>{{ message.content }}</span>
         </p>
