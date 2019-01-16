@@ -6,6 +6,7 @@ import { NgxAutoScrollModule } from 'ngx-auto-scroll';
 
 import { ChessgroundComponent } from './components/chessground/chessground.component';
 import { MovesTableComponent } from './components/moves-table/moves-table.component';
+import { ChatAreaComponent } from './components/chat-area/chat-area.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { MovesTableComponent } from './components/moves-table/moves-table.compon
   ],
   declarations: [
     ChessgroundComponent,
-    MovesTableComponent
+    MovesTableComponent,
+    ChatAreaComponent
   ]
 })
 export class SharedModule { }
