@@ -1,5 +1,16 @@
 .chat-container {
+  position: relative;
+  min-width: 240px;
   margin-right: 20px;
+}
+
+.chat-card {
+  height: 512px;
+}
+
+.chat-list {
+  height: 90%;
+  overflow: auto;
 }
 
 .chat-list-item {
@@ -10,6 +21,8 @@
 }
 
 .chat-footer-container {
+  position: absolute;
+  bottom: 5px;
   display: flex;
   justify-content: space-between;
 }
