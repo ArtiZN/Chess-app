@@ -16,7 +16,8 @@ import { ChatAreaComponent } from './components/chat-area/chat-area.component';
   ],
   exports: [
     ChessgroundComponent,
-    MovesTableComponent
+    MovesTableComponent,
+    ChatAreaComponent
   ],
   declarations: [
     ChessgroundComponent,
