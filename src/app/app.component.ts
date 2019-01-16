@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import * as _ from 'lodash';
 
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
-import { toColor } from '@core/utils/chess.utils';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +12,7 @@ import { toColor } from '@core/utils/chess.utils';
 export class AppComponent {
 
   data: ChessMove[] = [{
-    N: 1,
-    white: undefined,
-    black: undefined
+    N: 1
   }];
 
   cgMove($event) {
