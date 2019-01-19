@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Message } from '@core/interfaces/message.interfaces';
 import { Action } from '@core/enums/action.enums';
+import { ChatService } from '@core/services/chat/chat.service';
 
 @Component({
   selector: 'app-chat-area',
@@ -41,9 +42,11 @@ export class ChatAreaComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private chat: ChatService) { }
 
   ngOnInit() {
+    this.chat.messages.subscribe(msg => {
+      console.log(msg);
+    });
   }
-
 }
