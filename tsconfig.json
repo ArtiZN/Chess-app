@@ -23,6 +23,9 @@
       ],
       "@core/*" : [
         "app/core/*"
+      ],
+      "@environment": [
+        "environments/*"
       ]
     }
   }
