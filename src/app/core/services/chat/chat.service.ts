@@ -20,7 +20,7 @@ export class ChatService {
     );
   }
 
-  sendMsg(message) {
+  sendMessage(message) {
     this.messages.next(message);
   }
 }

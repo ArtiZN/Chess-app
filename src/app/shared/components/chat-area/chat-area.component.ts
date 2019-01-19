@@ -48,5 +48,14 @@ export class ChatAreaComponent implements OnInit {
     this.chat.messages.subscribe(msg => {
       console.log(msg);
     });
+
+    setTimeout(() => {
+      console.log('called send message');
+      this.sendMessage();
+    }, 3000);
+  }
+
+  sendMessage() {
+    this.chat.sendMessage('Test Message');
   }
 }
