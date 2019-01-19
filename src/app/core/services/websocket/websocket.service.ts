@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable, Subscriber } from 'rxjs';
-import { environment } from '@environments/environment';
+import { environment } from '@environment/environment';
 
 import * as io from 'socket.io-client';
 
@@ -13,7 +13,7 @@ export class WebsocketService {
 
   constructor() { }
 
-  connnect(): Subject<MessageEvent> {
+  connect(): Subject<MessageEvent> {
     this.socket = io(environment.ws_uri);
 
     const observable = new Observable((subscriber: Subscriber<{}>) => {
