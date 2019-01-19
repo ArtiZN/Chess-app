@@ -3,6 +3,7 @@ import { Subject, Observable, Subscriber } from 'rxjs';
 import { environment } from '@environment';
 
 import * as io from 'socket.io-client';
+import { SocketEvents } from '@core/enums/socket-events.enums';
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +15,18 @@ export class WebsocketService {
   constructor() { }
 
   connect(): Subject<MessageEvent> {
-    this.socket = new io.connect(environment.ws_uri, {
-      'reconnection': true,
-      'reconnectionDelay': 1000,
-      'reconnectionDelayMax' : 5000,
-      'reconnectionAttempts': 5
-    });
+    this.socket = new io.connect(environment.ws_uri, environment.socket_config);
 
-    this.socket.on('connect_error', function(err) {
+    this.socket.on(SocketEvents.CONNECT_ERROR, function(err) {
       console.log(err);
     });
 
-    this.socket.on('disconnect', function () {
+    this.socket.on(SocketEvents.DISCONNECT, function () {
       console.log('disconnect');
+    });
+
+    this.socket.on(SocketEvents.CONNECT, function() {
+      console.log('connect');
     });
 
     const observable = new Observable((subscriber: Subscriber<{}>) => {
