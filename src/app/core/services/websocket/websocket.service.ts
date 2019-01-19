@@ -14,7 +14,20 @@ export class WebsocketService {
   constructor() { }
 
   connect(): Subject<MessageEvent> {
-    this.socket = io(environment.ws_uri);
+    this.socket = new io.connect(environment.ws_uri, {
+      'reconnection': true,
+      'reconnectionDelay': 1000,
+      'reconnectionDelayMax' : 5000,
+      'reconnectionAttempts': 5
+    });
+
+    this.socket.on('connect_error', function(err) {
+      console.log(err);
+    });
+
+    this.socket.on('disconnect', function () {
+      console.log('disconnect');
+    });
 
     const observable = new Observable((subscriber: Subscriber<{}>) => {
       this.socket.on('message', (data) => {
