@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { HomeComponent } from './components/home/home.component';
   ],
   declarations: [
     NavigationComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ]
 })
 export class CoreModule { }
