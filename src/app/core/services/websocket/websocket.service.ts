@@ -10,28 +10,27 @@ import { SocketEvents } from '@core/enums/socket-events.enums';
 })
 export class WebsocketService {
 
-  private socket;
+  private socket: any;
 
   constructor() { }
 
   connect(): Subject<MessageEvent> {
     this.socket = new io.connect(environment.ws_uri, environment.socket_config);
 
-    this.socket.on(SocketEvents.CONNECT_ERROR, function(err) {
+    this.socket.on(SocketEvents.CONNECT_ERROR, err => {
       console.log(err);
     });
 
-    this.socket.on(SocketEvents.DISCONNECT, function () {
+    this.socket.on(SocketEvents.DISCONNECT, () => {
       console.log('disconnect');
     });
 
-    this.socket.on(SocketEvents.CONNECT, function() {
+    this.socket.on(SocketEvents.CONNECT, () => {
       console.log('connect');
     });
 
     const observable = new Observable((subscriber: Subscriber<{}>) => {
       this.socket.on('message', (data) => {
-        console.log('Received message from Websocket Server');
         subscriber.next(data);
       });
       return () => {
