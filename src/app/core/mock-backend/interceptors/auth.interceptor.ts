@@ -3,13 +3,13 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
+import { testUser } from './../constants/user.constants';
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const testUser = { id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' };
-
     return of(null).pipe(
       mergeMap(() => {
         if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
@@ -17,8 +17,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             const body = {
               id: testUser.id,
               username: testUser.username,
-              firstName: testUser.firstName,
-              lastName: testUser.lastName,
               token: 'fake-jwt-token'
             };
             return of(new HttpResponse({ status: 200, body }));
