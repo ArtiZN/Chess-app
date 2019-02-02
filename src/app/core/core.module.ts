@@ -2,6 +2,7 @@ import { MaterialModule } from './../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   imports: [
@@ -11,6 +12,6 @@ import { NavigationComponent } from './components/navigation/navigation.componen
   exports: [
     NavigationComponent
   ],
-  declarations: [NavigationComponent]
+  declarations: [NavigationComponent, HomeComponent]
 })
 export class CoreModule { }
