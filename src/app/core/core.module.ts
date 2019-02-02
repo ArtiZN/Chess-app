@@ -10,8 +10,12 @@ import { HomeComponent } from './components/home/home.component';
     MaterialModule
   ],
   exports: [
-    NavigationComponent
+    NavigationComponent,
+    HomeComponent
   ],
-  declarations: [NavigationComponent, HomeComponent]
+  declarations: [
+    NavigationComponent,
+    HomeComponent
+  ]
 })
 export class CoreModule { }
