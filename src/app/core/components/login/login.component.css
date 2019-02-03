@@ -8,6 +8,8 @@
 }
 
 .login-button {
+  display: flex;
+  justify-content: center;
   outline: none;
 }
 
@@ -17,4 +19,10 @@ mat-card-footer {
 
 mat-card-footer p {
   color: red;
+}
+
+.fields-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
 }

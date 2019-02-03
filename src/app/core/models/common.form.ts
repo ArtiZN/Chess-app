@@ -5,7 +5,7 @@ export class CommonFormControl extends FormControl {
   constructor(
     private label: string,
     private _type: string,
-    private modelProperty: string,
+    private _modelProperty: string,
     value: any,
     validator: any) {
       super(value, validator);
@@ -36,5 +36,9 @@ export class CommonFormControl extends FormControl {
 
   get type(): string {
     return this._type;
+  }
+
+  get modelProperty(): string {
+    return this._modelProperty;
   }
 }
