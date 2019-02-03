@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ErrorInterceptor } from './mock-backend/interceptors/error.interceptor';
 import { JwtInterceptor } from './mock-backend/interceptors/jwt.interceptor';
 import { fakeBackendProvider } from './mock-backend/interceptors/auth.interceptor';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { fakeBackendProvider } from './mock-backend/interceptors/auth.intercepto
   declarations: [
     NavigationComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    NotFoundComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
