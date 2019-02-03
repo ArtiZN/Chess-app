@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { NotifierModule } from 'angular-notifier';
+
 import { MaterialModule } from './../material/material.module';
 import { NavigationComponent } from '@core/components/navigation/navigation.component';
 import { HomeComponent } from '@core/components/home/home.component';
@@ -16,6 +18,7 @@ import { ChatService } from '@core/services/chat/chat.service';
 import { UserService } from '@core/mock-backend/services/user.service';
 import { AuthenticationService } from '@core/mock-backend/services/auth.service';
 import { WebsocketService } from '@core/services/websocket/websocket.service';
+import { notifierConfig } from '@core/constants/notifier.constants';
 
 @NgModule({
   imports: [
@@ -23,6 +26,7 @@ import { WebsocketService } from '@core/services/websocket/websocket.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NotifierModule.withConfig(notifierConfig),
     MaterialModule
   ],
   exports: [

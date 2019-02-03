@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "../node_modules/angular-notifier/styles/core.css";
+@import "../node_modules/angular-notifier/styles/themes/theme-material.css";
+@import "../node_modules/angular-notifier/styles/types/type-default.css";
+@import "../node_modules/angular-notifier/styles/types/type-error.css";
+@import "../node_modules/angular-notifier/styles/types/type-info.css";
+@import "../node_modules/angular-notifier/styles/types/type-success.css";
+@import "../node_modules/angular-notifier/styles/types/type-warning.css";
+
 ::-webkit-scrollbar {
     width: 10px;
 }
