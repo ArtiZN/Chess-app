@@ -20,12 +20,12 @@ import { userProviderFactory } from './app-user-provider.factory';
   ],
   providers: [
     AppUserService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: userProviderFactory,
-      deps: [ AppUserService ],
-      multi: true
-    },
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: userProviderFactory,
+    //   deps: [ AppUserService ],
+    //   multi: true
+    // },
   ],
   bootstrap: [AppComponent]
 })

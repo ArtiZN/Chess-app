@@ -4,13 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MaterialModule } from './../material/material.module';
-import { NavigationComponent } from './components/navigation/navigation.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { ErrorInterceptor } from './mock-backend/interceptors/error.interceptor';
-import { JwtInterceptor } from './mock-backend/interceptors/jwt.interceptor';
-import { fakeBackendProvider } from './mock-backend/interceptors/auth.interceptor';
-import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NavigationComponent } from '@core/components/navigation/navigation.component';
+import { HomeComponent } from '@core/components/home/home.component';
+import { LoginComponent } from '@core/components/login/login.component';
+import { ErrorInterceptor } from '@core/mock-backend/interceptors/error.interceptor';
+import { JwtInterceptor } from '@core/mock-backend/interceptors/jwt.interceptor';
+import { fakeBackendProvider } from '@core/mock-backend/interceptors/auth.interceptor';
+import { NotFoundComponent } from '@core/components/not-found/not-found.component';
+import { MessageService } from '@core/services/message/message.service';
+import { ChatService } from '@core/services/chat/chat.service';
+import { UserService } from '@core/mock-backend/services/user.service';
+import { AuthenticationService } from '@core/mock-backend/services/auth.service';
+import { WebsocketService } from '@core/services/websocket/websocket.service';
 
 @NgModule({
   imports: [
@@ -31,6 +36,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     NotFoundComponent
   ],
   providers: [
+    ChatService,
+    MessageService,
+    WebsocketService,
+    UserService,
+    AuthenticationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider

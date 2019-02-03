@@ -5,9 +5,7 @@ import { environment } from '@environment';
 import * as io from 'socket.io-client';
 import { SocketEvents } from '@core/enums/socket-events.enums';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class WebsocketService {
 
   private socket: any;
