@@ -1,24 +1,28 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { User } from '@core/interfaces/user.interfaces';
+import { Injectable, Injector } from '@angular/core';
 
 import { AuthenticationService } from '@core/mock-backend/services/auth.service';
+import { UserService } from '@core/mock-backend/services/user.service';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class AppUserService {
 
   constructor(
-    // private router: Router,
-   private authService: AuthenticationService
-    ) {
-  }
+    private injector: Injector,
+    private authService: AuthenticationService,
+    private userService: UserService) { }
 
   load() {
     return new Promise((resolve, reject) => {
-      // setTimeout(() => {
+      const user: User = JSON.parse(localStorage.getItem('currentUser'));
+      if (localStorage.getItem('currentUser')) {
+        this.userService.updateUser(user);
+      } else {
         this.authService.logout();
-        resolve(true);
-      // }, 2000);
+        this.injector.get(Router).navigate(['/login']);
+      }
+      resolve(true);
     });
   }
 }

@@ -3,7 +3,7 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
-import { testUser } from './../constants/user.constants';
+import { testUser } from '@core/mock-backend/constants/user.constants';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
