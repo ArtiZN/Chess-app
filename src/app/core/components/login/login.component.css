@@ -1,0 +1,20 @@
+.login-card {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.login-container {
+  margin-top: 80px;
+}
+
+.login-button {
+  outline: none;
+}
+
+mat-card-footer {
+  margin: 0;
+}
+
+mat-card-footer p {
+  color: red;
+}
