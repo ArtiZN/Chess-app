@@ -10,6 +10,7 @@ import { ChatAreaComponent } from './components/chat-area/chat-area.component';
 import { CheakerPawnComponent } from './components/cheaker-pawn/cheaker-pawn.component';
 import { CheakerKingComponent } from './components/cheaker-king/cheaker-king.component';
 import { SpaceComponent } from './components/space/space.component';
+import { CheakersGameBoardComponent } from './components/cheakers-game-board/cheakers-game-board.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { SpaceComponent } from './components/space/space.component';
     ChatAreaComponent,
     CheakerPawnComponent,
     CheakerKingComponent,
-    SpaceComponent
+    SpaceComponent,
+    CheakersGameBoardComponent
   ]
 })
 export class SharedModule { }
