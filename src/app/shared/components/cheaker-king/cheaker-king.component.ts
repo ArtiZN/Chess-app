@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { King } from '@shared/classes/piece';
 
 @Component({
   selector: 'app-cheaker-king',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cheaker-king.component.css']
 })
 export class CheakerKingComponent implements OnInit {
+
+  @Input() king: King;
 
   constructor() { }
 
