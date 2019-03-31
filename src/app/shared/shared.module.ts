@@ -9,6 +9,7 @@ import { MovesTableComponent } from './components/moves-table/moves-table.compon
 import { ChatAreaComponent } from './components/chat-area/chat-area.component';
 import { CheakerPawnComponent } from './components/cheaker-pawn/cheaker-pawn.component';
 import { CheakerKingComponent } from './components/cheaker-king/cheaker-king.component';
+import { SpaceComponent } from './components/space/space.component';
 
 @NgModule({
   imports: [
@@ -19,14 +20,19 @@ import { CheakerKingComponent } from './components/cheaker-king/cheaker-king.com
   exports: [
     ChessgroundComponent,
     MovesTableComponent,
-    ChatAreaComponent
+    ChatAreaComponent,
+
+    CheakerPawnComponent,
+    CheakerKingComponent,
+    SpaceComponent
   ],
   declarations: [
     ChessgroundComponent,
     MovesTableComponent,
     ChatAreaComponent,
     CheakerPawnComponent,
-    CheakerKingComponent
+    CheakerKingComponent,
+    SpaceComponent
   ]
 })
 export class SharedModule { }

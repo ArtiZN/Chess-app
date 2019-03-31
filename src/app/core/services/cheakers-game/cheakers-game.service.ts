@@ -5,7 +5,9 @@ import { Piece, Pawn, King } from '@shared/classes/piece';
 import { Space } from '@shared/classes/space';
 import { CheckerBoard } from '@shared/classes/cheakers-board';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CheakersGameService {
 
   public board: any;
