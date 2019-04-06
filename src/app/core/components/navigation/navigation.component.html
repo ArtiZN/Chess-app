@@ -17,8 +17,7 @@
         <li class="nav-item px-2">
           <button mat-button [matMenuTriggerFor]="menu">Games</button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>Chess</button>
-            <button mat-menu-item>Cheakers</button>
+            <button *ngFor="let item of menuItems" mat-menu-item (click)="gameMenuSelectHandler(item)">{{ item }}</button>
           </mat-menu>
         </li>
       </ul>
