@@ -7,10 +7,10 @@
     (click)="gameService.clickAPiece(space.piece)"
     class="style=width: 100%; height: 100%">
     	<div *ngIf="space.piece.type ==='pawn'">
-	    	<pawn [pawn]="space.piece"></pawn>
+	    	<app-cheaker-pawn [pawn]="space.piece"></app-cheaker-pawn>
     	</div>
     	<div *ngIf="space.piece.type ==='king'">
-	    	<king [king]="space.piece"></king>
+	    	<app-cheaker-king [king]="space.piece"></app-cheaker-king>
     	</div>
 		</div>
 		<div *ngIf="space.playable && !space.piece"

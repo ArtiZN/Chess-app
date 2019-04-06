@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 import * as _ from 'lodash';
 
-import { ChessMove } from '@core/interfaces/chess-move.interfaces';
+// import { ChessMove } from '@core/interfaces/chess-move.interfaces';
+import { CheakersGameService } from '@core/services/cheakers-game/cheakers-game.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  data: ChessMove[] = [{
+  /* data: ChessMove[] = [{
     N: 1
   }];
 
@@ -31,5 +32,32 @@ export class AppComponent {
     } else {
       last[color] = move;
     }
+  } */
+
+  isWinner = false;
+  winner: string = null;
+  isWinner$: Observable<string>;
+  _resetGame: BehaviorSubject<boolean>;
+
+  constructor(
+    private service: CheakersGameService
+  ) {}
+
+  ngOnInit() {
+    this.isWinner$ = this.service.isWinnerObs;
+    this.isWinner$.subscribe(w => {
+      if (w !== 'none') {
+        this.isWinner = true;
+        this.winner = w;
+      } else {
+        this.isWinner = false;
+        this.winner = 'none';
+        }
+      });
+    this._resetGame = this.service.resetGameBeh;
+  }
+
+  onReset() {
+    this._resetGame.next(true);
   }
 }

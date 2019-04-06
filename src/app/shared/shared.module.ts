@@ -25,12 +25,14 @@ import { CheakersGameBoardComponent } from './components/cheakers-game-board/che
 
     CheakerPawnComponent,
     CheakerKingComponent,
-    SpaceComponent
+    SpaceComponent,
+    CheakersGameBoardComponent
   ],
   declarations: [
     ChessgroundComponent,
     MovesTableComponent,
     ChatAreaComponent,
+
     CheakerPawnComponent,
     CheakerKingComponent,
     SpaceComponent,

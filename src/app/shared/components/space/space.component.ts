@@ -12,7 +12,7 @@ export class SpaceComponent implements OnInit {
 
   @Input() space: Space;
 
-  constructor(private gameService: CheakersGameService) { }
+  constructor(public gameService: CheakersGameService) { }
 
   ngOnInit() {
   }

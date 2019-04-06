@@ -15,6 +15,11 @@
         <li class="nav-item dropdown px-2">
         </li>
         <li class="nav-item px-2">
+          <button mat-button [matMenuTriggerFor]="menu">Games</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Chess</button>
+            <button mat-menu-item>Cheakers</button>
+          </mat-menu>
         </li>
       </ul>
 

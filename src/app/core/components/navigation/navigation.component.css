@@ -6,7 +6,8 @@
 }
 
 #navbarCollapse > ul:nth-child(1) > li.nav-item.dropdown.px-2 > button,
-#navbarCollapse > ul > li > a {
+#navbarCollapse > ul > li > a,
+#navbarCollapse > ul > li > button {
   color: #fff;
   cursor: pointer;
   font-size: 14px;
