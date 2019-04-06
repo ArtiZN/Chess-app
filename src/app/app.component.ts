@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import * as _ from 'lodash';
 
 // import { ChessMove } from '@core/interfaces/chess-move.interfaces';
@@ -11,7 +12,7 @@ import { GameSelectionService } from '@core/services/game-selection/game-selecti
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
   /* data: ChessMove[] = [{
     N: 1
@@ -35,14 +36,17 @@ export class AppComponent implements OnInit {
     }
   } */
 
-  isWinner = false;
-  winner: string = null;
-  isWinner$: Observable<string>;
-  _resetGame: BehaviorSubject<boolean>;
+  // isWinner = false;
+  // winner: string = null;
+  // isWinner$: Observable<string>;
+  // _resetGame: BehaviorSubject<boolean>;
+
+  private $gameSubscription: Subscription;
 
   constructor(
-    private service: CheakersGameService,
-    private gameService: GameSelectionService
+    // private service: CheakersGameService,
+    private gameService: GameSelectionService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -58,12 +62,16 @@ export class AppComponent implements OnInit {
     //   });
     // this._resetGame = this.service.resetGameBeh;
 
-    this.gameService.gameSelected.subscribe(game => {
-      console.log('from app: ', game);
+    this.$gameSubscription = this.gameService.gameSelected.subscribe(game => {
+      this.router.navigate([game]);
     });
   }
 
-  onReset() {
-    this._resetGame.next(true);
+  ngOnDestroy() {
+    this.$gameSubscription.unsubscribe();
   }
+
+  // onReset() {
+  //   this._resetGame.next(true);
+  // }
 }
