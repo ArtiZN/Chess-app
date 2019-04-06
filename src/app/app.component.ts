@@ -20,7 +20,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.$gameSubscription = this.gameService.gameSelected.subscribe(game => {
-      this.router.navigate([game]);
+      if (game && game != null) {
+        this.router.navigate([game]);
+      }
     });
   }
 

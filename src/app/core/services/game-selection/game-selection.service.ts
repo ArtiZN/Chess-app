@@ -5,7 +5,7 @@ import { gameMenuItems } from '@core/constants/game-menu.constants';
 
 @Injectable()
 export class GameSelectionService {
-  private $gameSelected = new BehaviorSubject(gameMenuItems[0]);
+  private $gameSelected = new BehaviorSubject(null);
   gameSelected = this.$gameSelected.asObservable();
 
   constructor() { }

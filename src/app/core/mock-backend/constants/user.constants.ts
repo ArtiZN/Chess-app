@@ -1,5 +1,5 @@
 export const testUser = {
   id: 1,
-  username: 'admin',
+  username: 'Mama mia',
   password: 'admin'
 };
