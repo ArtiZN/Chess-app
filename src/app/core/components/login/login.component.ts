@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = new LogInFormGroup();
-    document.body.style.backgroundColor = '#f6f6f6';
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
