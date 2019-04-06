@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, BehaviorSubject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import * as _ from 'lodash';
 
 // import { ChessMove } from '@core/interfaces/chess-move.interfaces';
-import { CheakersGameService } from '@core/services/cheakers-game/cheakers-game.service';
 import { GameSelectionService } from '@core/services/game-selection/game-selection.service';
 
 @Component({
@@ -36,32 +35,14 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   } */
 
-  // isWinner = false;
-  // winner: string = null;
-  // isWinner$: Observable<string>;
-  // _resetGame: BehaviorSubject<boolean>;
-
   private $gameSubscription: Subscription;
 
   constructor(
-    // private service: CheakersGameService,
     private gameService: GameSelectionService,
     private router: Router
   ) {}
 
   ngOnInit() {
-    // this.isWinner$ = this.service.isWinnerObs;
-    // this.isWinner$.subscribe(w => {
-    //   if (w !== 'none') {
-    //     this.isWinner = true;
-    //     this.winner = w;
-    //   } else {
-    //     this.isWinner = false;
-    //     this.winner = 'none';
-    //     }
-    //   });
-    // this._resetGame = this.service.resetGameBeh;
-
     this.$gameSubscription = this.gameService.gameSelected.subscribe(game => {
       this.router.navigate([game]);
     });
@@ -70,8 +51,4 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.$gameSubscription.unsubscribe();
   }
-
-  // onReset() {
-  //   this._resetGame.next(true);
-  // }
 }

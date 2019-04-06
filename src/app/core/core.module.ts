@@ -22,6 +22,7 @@ import { notifierConfig } from '@core/constants/notifier.constants';
 import { GameSelectionService } from '@core/services/game-selection/game-selection.service';
 import { CheakersGameComponent } from '@core/components/cheakers-game/cheakers-game.component';
 import { ChessGameComponent } from '@core/components/chess-game/chess-game.component';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { ChessGameComponent } from '@core/components/chess-game/chess-game.compo
     ReactiveFormsModule,
     HttpClientModule,
     NotifierModule.withConfig(notifierConfig),
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
   exports: [
     NavigationComponent,
