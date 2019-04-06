@@ -1,13 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
 
   constructor(
-    private http: HttpClient) { }
+    private injector: Injector,
+    private http: HttpClient
+  ) { }
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(`http://localhost:4200/users/authenticate`, { username, password })
@@ -23,5 +26,6 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    this.injector.get(Router).navigate(['/login']);
   }
 }
