@@ -19,6 +19,9 @@ import { UserService } from '@core/mock-backend/services/user.service';
 import { AuthenticationService } from '@core/mock-backend/services/auth.service';
 import { WebsocketService } from '@core/services/websocket/websocket.service';
 import { notifierConfig } from '@core/constants/notifier.constants';
+import { GameSelectionService } from '@core/services/game-selection/game-selection.service';
+import { CheakersGameComponent } from './components/cheakers-game/cheakers-game.component';
+import { ChessGameComponent } from './components/chess-game/chess-game.component';
 
 @NgModule({
   imports: [
@@ -37,12 +40,15 @@ import { notifierConfig } from '@core/constants/notifier.constants';
     NavigationComponent,
     HomeComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CheakersGameComponent,
+    ChessGameComponent
   ],
   providers: [
     ChatService,
     MessageService,
     WebsocketService,
+    GameSelectionService,
     UserService,
     AuthenticationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
