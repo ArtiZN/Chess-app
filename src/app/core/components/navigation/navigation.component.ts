@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { gameMenuItems } from '@core/constants/game-menu.constants';
+import { GameSelectionService } from '@core/services/game-selection/game-selection.service';
 
 @Component({
   selector: 'app-navigation',
@@ -10,12 +11,14 @@ import { gameMenuItems } from '@core/constants/game-menu.constants';
 export class NavigationComponent implements OnInit {
   menuItems: string[] = gameMenuItems;
 
-  constructor() { }
+  constructor(
+    private gameService: GameSelectionService
+  ) { }
 
   ngOnInit() {
   }
 
   gameMenuSelectHandler(gameType: string) {
-    console.log(gameType);
+    this.gameService.changeGame(gameType);
   }
 }

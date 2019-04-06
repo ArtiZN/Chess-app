@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 
 // import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 import { CheakersGameService } from '@core/services/cheakers-game/cheakers-game.service';
+import { GameSelectionService } from '@core/services/game-selection/game-selection.service';
 
 @Component({
   selector: 'app-root',
@@ -40,21 +41,26 @@ export class AppComponent implements OnInit {
   _resetGame: BehaviorSubject<boolean>;
 
   constructor(
-    private service: CheakersGameService
+    private service: CheakersGameService,
+    private gameService: GameSelectionService
   ) {}
 
   ngOnInit() {
-    this.isWinner$ = this.service.isWinnerObs;
-    this.isWinner$.subscribe(w => {
-      if (w !== 'none') {
-        this.isWinner = true;
-        this.winner = w;
-      } else {
-        this.isWinner = false;
-        this.winner = 'none';
-        }
-      });
-    this._resetGame = this.service.resetGameBeh;
+    // this.isWinner$ = this.service.isWinnerObs;
+    // this.isWinner$.subscribe(w => {
+    //   if (w !== 'none') {
+    //     this.isWinner = true;
+    //     this.winner = w;
+    //   } else {
+    //     this.isWinner = false;
+    //     this.winner = 'none';
+    //     }
+    //   });
+    // this._resetGame = this.service.resetGameBeh;
+
+    this.gameService.gameSelected.subscribe(game => {
+      console.log('from app: ', game);
+    });
   }
 
   onReset() {

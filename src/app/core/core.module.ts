@@ -20,8 +20,8 @@ import { AuthenticationService } from '@core/mock-backend/services/auth.service'
 import { WebsocketService } from '@core/services/websocket/websocket.service';
 import { notifierConfig } from '@core/constants/notifier.constants';
 import { GameSelectionService } from '@core/services/game-selection/game-selection.service';
-import { CheakersGameComponent } from './components/cheakers-game/cheakers-game.component';
-import { ChessGameComponent } from './components/chess-game/chess-game.component';
+import { CheakersGameComponent } from '@core/components/cheakers-game/cheakers-game.component';
+import { ChessGameComponent } from '@core/components/chess-game/chess-game.component';
 
 @NgModule({
   imports: [
@@ -34,7 +34,10 @@ import { ChessGameComponent } from './components/chess-game/chess-game.component
   ],
   exports: [
     NavigationComponent,
-    HomeComponent
+    HomeComponent,
+
+    CheakersGameComponent,
+    ChessGameComponent
   ],
   declarations: [
     NavigationComponent,
