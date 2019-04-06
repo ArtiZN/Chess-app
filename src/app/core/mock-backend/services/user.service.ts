@@ -18,4 +18,8 @@ export class UserService {
   updateUser(user: User): void {
     this.user$.next(user);
   }
+
+  getUser(): User {
+    return this.user$.value;
+  }
 }
