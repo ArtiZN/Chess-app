@@ -14,7 +14,9 @@ export class WebsocketService {
     this.socket = new io.connect(environment.ws_uri, environment.socket_config);
   }
 
-  constructor() { }
+  constructor() {
+    this.connect();
+   }
 
   // connect(): Subject<MessageEvent> {
   //   this.socket = new io.connect(environment.ws_uri, environment.socket_config);
@@ -49,5 +51,15 @@ export class WebsocketService {
   //   return Subject.create(observer, observable);
   // }
 
+  emitEvent(event: string, data: any) {
+    this.socket.emit(event, data);
+  }
 
+  getMessages = () => {
+    return Observable.create((observer) => {
+        this.socket.on('gameCreated', (message) => {
+            observer.next(message);
+        });
+    });
+  }
 }

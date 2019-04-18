@@ -18,7 +18,7 @@ io.on(socketEvents.socketEvents_I.connection, socket => {
     console.log('use is disconnected');
   });
 
-  socket.on(socketEvents.createGame, () => {
+  socket.on(socketEvents.socketEvents_I.createGame, () => {
     socket.emit(socketEvents.socketEvents_O.gameCreated, {
       message: 'game was created/ server.js'
     });

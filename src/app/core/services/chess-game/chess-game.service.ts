@@ -9,5 +9,11 @@ export class ChessGameService {
 
   initGame(){
     console.log('init game');
+
+    this.wsService.emitEvent('createGame', 'dsdsdsdsdsd');
+
+    this.wsService.getMessages().subscribe(m => {
+      console.log('from server', m);
+    });
   }
 }
