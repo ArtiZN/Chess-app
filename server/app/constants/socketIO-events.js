@@ -1,6 +1,6 @@
 'use strict';
 
-const socketEvents = Object.freeze({
+const socketEvents_I = Object.freeze({
   connection: 'connection',
   disconnect: 'disconnect',
   createGame: 'createGame',
@@ -8,6 +8,11 @@ const socketEvents = Object.freeze({
   makeMove: 'makeMove'
 });
 
+const socketEvents_O = Object.freeze({
+  gameCreated: 'gameCreated'
+});
+
 module.exports = {
-  socketEvents
+  socketEvents_I,
+  socketEvents_O
 };
