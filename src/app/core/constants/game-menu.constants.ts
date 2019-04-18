@@ -1,4 +1,4 @@
 export const gameMenuItems: string[] = [
-  'cheakers',
+  'checkers',
   'chess'
 ];

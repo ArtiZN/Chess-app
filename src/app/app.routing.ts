@@ -8,11 +8,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: '/cheakers', pathMatch: 'full'
+    path: '', redirectTo: '/checkers', pathMatch: 'full'
   }, {
     path: 'login', component: LoginComponent
   }, {
-    path: 'cheakers', component: CheakersGameComponent, canActivate: [AuthGuardService]
+    path: 'checkers', component: CheakersGameComponent, canActivate: [AuthGuardService]
   }, {
     path: 'chess', component: ChessGameComponent, canActivate: [AuthGuardService]
   }, {
