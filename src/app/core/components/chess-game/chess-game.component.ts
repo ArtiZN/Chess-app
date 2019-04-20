@@ -3,6 +3,8 @@ import * as _ from 'lodash';
 
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
+import { UserService } from '@core/mock-backend/services/user.service';
+import { User } from '@core/interfaces/user.interfaces';
 
 @Component({
   selector: 'app-chess-game',
@@ -14,10 +16,12 @@ export class ChessGameComponent implements OnInit {
   data: ChessMove[] = [{ N: 1 }];
 
   constructor(
-    private chessService: ChessGameService) { }
+    private chessService: ChessGameService,
+    private userService: UserService) { }
 
   ngOnInit() {
-    this.chessService.initGame();
+    const user: User = this.userService.getUser();
+    this.chessService.initGame(user);
   }
 
   cgMove($event) {

@@ -20,9 +20,9 @@ io.on(socketEvents.socketEvents_I.connection, socket => {
     console.log('user is disconnected');
   });
 
-  socket.on(socketEvents.socketEvents_I.createGame, (data) => {
-    console.log(data);
-    users.addUser(data.user);
+  socket.on(socketEvents.socketEvents_I.createGame, (user) => {
+    console.log(user);
+    users.addUser(user);
 
     socket.emit(socketEvents.socketEvents_O.gameCreated, {
       message: 'game was created/ server.js'
@@ -41,7 +41,7 @@ const port = process.env.PORT || 3000;
 server.listen(port, () => {
   console.log(`Chess-app server is up on port ${port}`);
 
-  setInterval(() => {
+  /* setInterval(() => {
     console.log(users);
-  }, 1000);
+  }, 1000); */
 });
