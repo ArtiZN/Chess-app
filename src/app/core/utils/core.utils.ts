@@ -17,7 +17,10 @@ export const isIncludes = (arr: Array<string | number | boolean>, e: string | nu
 };
 
 export const getFirst = (arr: Array<any>) => {
-  return arr[0];
+  if (arr[0] !== undefined) {
+    return arr[0];
+  }
+  return arr;
 };
 
 export const appendToObj = (obj: object, prop: string, value: any) => {

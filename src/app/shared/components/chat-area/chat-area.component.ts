@@ -16,7 +16,7 @@ export class ChatAreaComponent implements OnInit {
       from: {
         id: '123qwe',
         username: 'User2',
-        avatar: 'avatar2'
+        password: 'avatar2'
       },
       content: 'message 2 content',
       action: Action.JOINED,
@@ -25,7 +25,7 @@ export class ChatAreaComponent implements OnInit {
       from: {
         id: '123asd',
         username: 'User1',
-        avatar: 'avatar1'
+        password: 'avatar1'
       },
       content: 'message 1 content',
       action: Action.JOINED,
@@ -34,7 +34,7 @@ export class ChatAreaComponent implements OnInit {
       from: {
         id: '123zxc',
         username: 'User3',
-        avatar: 'avatar3'
+        password: 'avatar3'
       },
       content: 'message 3 content',
       action: Action.JOINED,

@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
       this.authService.login(username, password)
         .subscribe((user: User) => {
           this.userService.updateUser(user);
-          console.log(user);
           this.router.navigate([this.returnUrl]);
         }, err => {
           this.notifier.notify('error', err);
