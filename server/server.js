@@ -42,7 +42,16 @@ const port = process.env.PORT || 3000;
 server.listen(port, () => {
   console.log(`Chess-app server is up on port ${port}`);
 
-  /* setInterval(() => {
-
-  }, 1000); */
+  setInterval(() => {
+    const pair = users.getPair();
+    if (pair !== [] && pair.length === 2) {
+      const user1 = users.getUser(pair[0]);
+      const user2 = users.getUser(pair[1]);
+      const gameId = uuidv4();
+      pair.forEach(element => {
+        io.sockets.connected[element].emit(socketEvents.socketEvents_O.gameCreated, { gameId });
+      });
+      console.log(gameId);
+    }
+  }, 2000);
 });

@@ -76,4 +76,11 @@ describe('Users Class Testing', () => {
     const pair = users.getPair();
     expect(pair).toEqual(users.users.slice(0, 2).map(u => u.id));
   });
+
+  it('should return empty array', () => {
+    users.removeUser('1');
+    users.removeUser('2');
+    const pair = users.getPair();
+    expect(pair).toEqual([]);
+  });
 });
