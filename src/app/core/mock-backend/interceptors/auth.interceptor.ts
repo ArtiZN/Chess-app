@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpRequest,
+  HttpResponse,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+  HTTP_INTERCEPTORS
+} from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 import { testUsers } from '@core/mock-backend/constants/user.constants';
-
-import { getOne, pluck, isEmpty, isIncludes } from '@core/utils/core.utils';
+import { pluckArray, isIncludes, getFirst, appendToObj } from '@core/utils/core.utils';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -15,10 +21,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     return of(null).pipe(
       mergeMap(() => {
         if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
-          if (isIncludes(getOne(testUsers, 'username'), request.body.username) &&
-              isIncludes(getOne(testUsers, 'password'), request.body.password)) {
-            const body = testUsers.filter(u => u.username === request.body.username && u.password === request.body.password)[0];
-            body['token'] = 'fake-jwt-token';
+          const username = request.body.username;
+          const password = request.body.password;
+
+          if (isIncludes(pluckArray(testUsers, 'username'), username) &&
+              isIncludes(pluckArray(testUsers, 'password'), password)) {
+            const body = appendToObj(getFirst(testUsers.filter(u => u.username === username && u.password === password)),
+              'token', 'fake-jwt-token');
             return of(new HttpResponse({ status: 200, body }));
           } else {
             return throwError({ error: { message: 'Username or password is incorrect' } });
