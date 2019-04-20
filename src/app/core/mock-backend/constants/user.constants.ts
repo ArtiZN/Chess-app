@@ -4,7 +4,7 @@ export const testUsers = [{
     password: 'admin'
   }, {
     id: 2,
-    username: 'Picki bambuki',
+    username: 'Chicki bambuki',
     password: 'admin'
   }
 ];
