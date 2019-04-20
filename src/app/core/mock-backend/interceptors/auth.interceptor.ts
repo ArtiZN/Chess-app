@@ -15,17 +15,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     return of(null).pipe(
       mergeMap(() => {
         if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
-          /* if (request.body.username === testUser.username && request.body.password === testUser.password) {
-            const body = {
-              id: testUser.id,
-              username: testUser.username,
-              token: 'fake-jwt-token'
-            };
-            return of(new HttpResponse({ status: 200, body }));
-          } else {
-            return throwError({ error: { message: 'Username or password is incorrect' } });
-          } */
-
           if (isIncludes(getOne(testUsers, 'username'), request.body.username) &&
               isIncludes(getOne(testUsers, 'password'), request.body.password)) {
             const body = testUsers.filter(u => u.username === request.body.username && u.password === request.body.password)[0];
@@ -34,8 +23,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           } else {
             return throwError({ error: { message: 'Username or password is incorrect' } });
           }
-        }
-        if (request.url.endsWith('/users') && request.method === 'GET') {
+        } else if (request.url.endsWith('/users') && request.method === 'GET') {
           if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
             return of(new HttpResponse({ status: 200, body: testUsers }));
           } else {
