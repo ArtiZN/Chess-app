@@ -6,10 +6,12 @@ const http = require('http');
 const path = require('path');
 
 const socketEvents = require('./app/constants/socketIO-events');
+const { Users } = require('./app/utils/users');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
+const users = new Users();
 
 io.on(socketEvents.socketEvents_I.connection, socket => {
   console.log('new user connected');
@@ -20,6 +22,8 @@ io.on(socketEvents.socketEvents_I.connection, socket => {
 
   socket.on(socketEvents.socketEvents_I.createGame, (data) => {
     console.log(data);
+    users.addUser(data.user);
+
     socket.emit(socketEvents.socketEvents_O.gameCreated, {
       message: 'game was created/ server.js'
     });
@@ -36,4 +40,8 @@ const port = process.env.PORT || 3000;
 
 server.listen(port, () => {
   console.log(`Chess-app server is up on port ${port}`);
+
+  setInterval(() => {
+    console.log(users);
+  }, 1000);
 });
