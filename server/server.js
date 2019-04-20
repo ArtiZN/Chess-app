@@ -7,9 +7,9 @@ const path = require('path');
 
 const socketEvents = require('./app/constants/socketIO-events');
 
-let app = express();
-let server = http.createServer(app);
-let io = socketIO(server);
+const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
 
 io.on(socketEvents.socketEvents_I.connection, socket => {
   console.log('new user connected');
@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-let port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 server.listen(port, () => {
   console.log(`Chess-app server is up on port ${port}`);
