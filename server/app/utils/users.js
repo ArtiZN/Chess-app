@@ -17,7 +17,7 @@ class Users {
     return _.first(this.users.filter(u => u.id === id));
   }
 
-  getUsersList(room) {
+  getUserList(room) {
     return this.users.filter(u => u.room === room);
   }
 
@@ -28,3 +28,7 @@ class Users {
     return user;
   }
 }
+
+module.exports = {
+  Users
+};
