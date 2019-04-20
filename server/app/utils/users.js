@@ -17,6 +17,13 @@ class Users {
     return _.first(this.users.filter(u => u.id === id));
   }
 
+  getPair() {
+    if (this.users.length >= 2) {
+      return this.users.slice(0, 2).map(u => u.id);
+    }
+    return [];
+  }
+
   getUserList(room) {
     return this.users.filter(u => u.room === room);
   }

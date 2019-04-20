@@ -2,6 +2,7 @@
 
 const express = require('express');
 const socketIO = require('socket.io');
+const uuidv4 = require('uuid/v4');
 const http = require('http');
 const path = require('path');
 
@@ -21,12 +22,12 @@ io.on(socketEvents.socketEvents_I.connection, socket => {
   });
 
   socket.on(socketEvents.socketEvents_I.createGame, (user) => {
-    console.log(user);
-    users.addUser(user);
+    users.removeUser(socket.id);
+    users.addUser(socket.id, user.username, user.room);
 
-    socket.emit(socketEvents.socketEvents_O.gameCreated, {
+    /* socket.emit(socketEvents.socketEvents_O.gameCreated, {
       message: 'game was created/ server.js'
-    });
+    }); */
   });
 });
 
@@ -42,6 +43,6 @@ server.listen(port, () => {
   console.log(`Chess-app server is up on port ${port}`);
 
   /* setInterval(() => {
-    console.log(users);
+
   }, 1000); */
 });
