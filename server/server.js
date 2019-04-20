@@ -15,10 +15,11 @@ io.on(socketEvents.socketEvents_I.connection, socket => {
   console.log('new user connected');
 
   socket.on(socketEvents.socketEvents_I.disconnect, () => {
-    console.log('use is disconnected');
+    console.log('user is disconnected');
   });
 
-  socket.on(socketEvents.socketEvents_I.createGame, () => {
+  socket.on(socketEvents.socketEvents_I.createGame, (data) => {
+    console.log(data);
     socket.emit(socketEvents.socketEvents_O.gameCreated, {
       message: 'game was created/ server.js'
     });
