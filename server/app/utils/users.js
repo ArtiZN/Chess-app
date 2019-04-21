@@ -8,9 +8,9 @@ class Users {
     this.users = [];
   }
 
-  addUser(id, name, room) {
-    this.users.push({ id, name, room });
-    return { id, name, room };
+  addUser(id, name, room, inGame = false, gameId = '') {
+    this.users.push({ id, name, room, inGame, gameId });
+    return { id, name, room, inGame, gameId };
   }
 
   getUser(id) {
