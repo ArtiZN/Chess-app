@@ -13,6 +13,14 @@ class Users {
     return { id, name, room, inGame, gameId };
   }
 
+  updateUser(id, obj) {
+    const index = this.users.findIndex(u => u.id === id);
+    if (index > -1) {
+      return Object.assign(this.users[index], obj);
+    }
+    return {};
+  }
+
   getUser(id) {
     return _.first(this.users.filter(u => u.id === id));
   }

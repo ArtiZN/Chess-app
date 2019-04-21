@@ -83,4 +83,23 @@ describe('Users Class Testing', () => {
     const pair = users.getPair();
     expect(pair).toEqual([]);
   });
+
+  it('should update user', () => {
+    const updateObj = {
+      name: 'new name',
+      room: 'new room'
+    };
+    const updated = users.updateUser('1', updateObj);
+    expect(updated).toEqual(Object.assign({ id: '1' }, updateObj));
+    expect(users.getUser('1')).toEqual(Object.assign({ id: '1' }, updateObj));
+  });
+
+  it('should not update user', () => {
+    const updateObj = {
+      name: 'new name',
+      room: 'new room'
+    };
+    const updated = users.updateUser('111', updateObj);
+    expect(updated).toEqual({});
+  });
 });
