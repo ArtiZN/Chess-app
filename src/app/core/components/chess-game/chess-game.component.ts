@@ -21,11 +21,11 @@ export class ChessGameComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const user: User = this.userService.getUser();
-    this.chessService.initGame(user);
+    // this.chessService.initGame(user);
   }
 
   ngOnDestroy() {
-    this.chessService.destroyGame();
+    // this.chessService.destroyGame();
   }
 
   cgMove($event) {
@@ -33,7 +33,7 @@ export class ChessGameComponent implements OnInit, OnDestroy {
     const color = ($event.turn() === 'w') ? 'black' : 'white';
     this.updateData(move, color);
 
-    this.chessService.emitEvent('makeMove', { color, move });
+    // this.chessService.emitEvent('makeMove', { color, move });
   }
 
   updateData(move, color) {
