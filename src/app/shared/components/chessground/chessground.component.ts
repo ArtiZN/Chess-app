@@ -5,12 +5,13 @@ import {
   ViewChild,
   ViewEncapsulation,
   Output,
-  EventEmitter } from '@angular/core';
+  EventEmitter
+} from '@angular/core';
 
 import { Chessground } from 'chessground';
 import * as Chess from 'chess.js';
 
-import { toDests, playOtherSide } from '@core/utils/chess.utils';
+import { toDests, playOtherSide, aiPlay } from '@core/utils/chess.utils';
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 
 @Component({
@@ -32,10 +33,12 @@ export class ChessgroundComponent implements OnInit {
   ngOnInit() {
     const chess = new Chess();
     const cg = Chessground(this.chessBoard.nativeElement, {
+      orientation: 'white',
       movable: {
         color: 'white',
         free: false,
         dests: toDests(chess, this.cgMove),
+        showDests: true,
       }
     });
 
@@ -43,6 +46,7 @@ export class ChessgroundComponent implements OnInit {
       movable: {
         events: {
           after: playOtherSide(cg, chess, this.cgMove)
+          // after: aiPlay(cg, chess, 1000, false)
         }
       }
     });
