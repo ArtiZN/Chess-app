@@ -17,6 +17,10 @@ export class ChessGameService {
     });
   }
 
+  emitEvent(event: string, data: any) {
+    this.wsService.emitEvent(event, data);
+  }
+
   destroyGame() {
     this.wsService.closeConnection();
   }

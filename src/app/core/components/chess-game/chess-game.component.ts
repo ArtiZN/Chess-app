@@ -32,6 +32,8 @@ export class ChessGameComponent implements OnInit, OnDestroy {
     const move = _.last($event.history());
     const color = ($event.turn() === 'w') ? 'black' : 'white';
     this.updateData(move, color);
+    // console.log($event.turn(), $event.history());
+    this.chessService.emitEvent('makeMove', { color, move });
   }
 
   updateData(move, color) {

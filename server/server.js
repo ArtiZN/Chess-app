@@ -12,6 +12,7 @@ const { Users } = require('./app/utils/users');
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
+const port = process.env.PORT || 3000;
 const users = new Users();
 
 io.on(socketEvents.socketEvents_I.connection, socket => {
@@ -22,9 +23,13 @@ io.on(socketEvents.socketEvents_I.connection, socket => {
     if (user) console.log('user is disconnected');
   });
 
-  socket.on(socketEvents.socketEvents_I.createGame, (user) => {
+  socket.on(socketEvents.socketEvents_I.createGame, user => {
     users.removeUser(socket.id);
     users.addUser(socket.id, user.username, user.room);
+  });
+
+  socket.on(socketEvents.socketEvents_I.makeMove, move => {
+    console.log('Move from client ', move);
   });
 });
 
@@ -33,8 +38,6 @@ app.use(express.static(path.join(__dirname, './public')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
-
-const port = process.env.PORT || 3000;
 
 server.listen(port, () => {
   console.log(`Chess-app server is up on port ${port}`);
@@ -51,10 +54,8 @@ server.listen(port, () => {
           users.updateUser(socketId, { inGame: true, gameId });
         });
         pair.forEach((socketId, index) => {
-          io.to(socketId).emit(socketEvents.socketEvents_O.gameCreated, { gameId, isWhite: index });
+          io.to(socketId).emit(socketEvents.socketEvents_O.gameCreated, { gameId, color: index == 0 ? 'white' : 'black' });
         });
-        console.log(gameId);
-        console.log(users);
       }
     }
   }, 2000);
