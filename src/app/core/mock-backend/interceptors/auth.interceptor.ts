@@ -1,9 +1,27 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
+import {
+  HttpRequest,
+  HttpResponse,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+  HTTP_INTERCEPTORS
+} from '@angular/common/http';
+import {
+  delay,
+  mergeMap,
+  materialize,
+  dematerialize
+} from 'rxjs/operators';
 
-import { testUser } from '@core/mock-backend/constants/user.constants';
+import { testUsers } from '@core/mock-backend/constants/user.constants';
+import {
+  pluckArray,
+  isIncludes,
+  getFirst,
+  appendToObj
+} from '@core/utils/core.utils';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -13,20 +31,23 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     return of(null).pipe(
       mergeMap(() => {
         if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
-          if (request.body.username === testUser.username && request.body.password === testUser.password) {
-            const body = {
-              id: testUser.id,
-              username: testUser.username,
-              token: 'fake-jwt-token'
-            };
+          const username = request.body.username;
+          const password = request.body.password;
+
+          if (isIncludes(pluckArray(testUsers, 'username'), username) &&
+              isIncludes(pluckArray(testUsers, 'password'), password)) {
+            const body = appendToObj(
+              getFirst(testUsers.filter(u => u.username === username && u.password === password)),
+              'token',
+              'fake-jwt-token'
+            );
             return of(new HttpResponse({ status: 200, body }));
           } else {
             return throwError({ error: { message: 'Username or password is incorrect' } });
           }
-        }
-        if (request.url.endsWith('/users') && request.method === 'GET') {
+        } else if (request.url.endsWith('/users') && request.method === 'GET') {
           if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-            return of(new HttpResponse({ status: 200, body: [testUser] }));
+            return of(new HttpResponse({ status: 200, body: testUsers }));
           } else {
             return throwError({ error: { message: 'Unauthorised' } });
           }

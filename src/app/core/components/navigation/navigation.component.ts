@@ -30,7 +30,6 @@ export class NavigationComponent implements OnInit {
   }
 
   logoutHandler() {
-    // console.log('logout clicked');
     this.authService.logout();
   }
 }

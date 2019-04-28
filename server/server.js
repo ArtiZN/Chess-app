@@ -2,23 +2,38 @@
 
 const express = require('express');
 const socketIO = require('socket.io');
+const uuidv4 = require('uuid/v4');
 const http = require('http');
 const path = require('path');
 
-let app = express();
-let server = http.createServer(app);
-let io = socketIO(server);
+const socketEvents = require('./app/constants/socketIO-events');
+const { Users } = require('./app/utils/users');
 
-io.on('connection', socket => {
+const app = express();
+const server = http.createServer(app);
+const io = socketIO(server);
+const port = process.env.PORT || 3000;
+const users = new Users();
+
+io.on(socketEvents.socketEvents_I.connection, socket => {
   console.log('new user connected');
 
-  socket.on('disconnect', () => {
-    console.log('use is disconnected');
+  socket.on(socketEvents.socketEvents_I.disconnect, () => {
+    const user = users.removeUser(socket.id);
+    if (user) console.log('user is disconnected');
   });
 
-  socket.on('message', (message) => {
-    console.log("Message Received: " + message);
-    io.emit('message', { type:'new-message', text: message });
+  socket.on(socketEvents.socketEvents_I.createGame, user => {
+    users.removeUser(socket.id);
+    users.addUser(socket.id, user.username, user.room);
+  });
+
+  socket.on(socketEvents.socketEvents_I.makeMove, move => {
+    console.log('Move from client ', move);
+    if (move.room)
+      socket.to(move.room).emit(socketEvents.socketEvents_O.moveMade, move);
+    else
+      console.log('no room provided');
   });
 });
 
@@ -28,8 +43,24 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-let port = process.env.PORT || 3000;
-
 server.listen(port, () => {
   console.log(`Chess-app server is up on port ${port}`);
+
+  setInterval(() => {
+    const pair = users.getPair();
+    if (pair && pair.length === 2) {
+      const user1 = users.getUser(pair[0]);
+      const user2 = users.getUser(pair[1]);
+      if (!user1.inGame && !user2.inGame) {
+        const gameId = uuidv4();
+        pair.forEach((socketId, index) => {
+          io.sockets.connected[socketId].join(gameId);
+          users.updateUser(socketId, { inGame: true, gameId });
+        });
+        pair.forEach((socketId, index) => {
+          io.to(socketId).emit(socketEvents.socketEvents_O.gameCreated, { gameId, color: index == 0 ? 'white' : 'black' });
+        });
+      }
+    }
+  }, 2000);
 });

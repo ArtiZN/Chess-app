@@ -10,38 +10,36 @@ export class WebsocketService {
 
   private socket: any;
 
-  constructor() { }
-
-  connect(): Subject<MessageEvent> {
+  private connect() {
     this.socket = new io.connect(environment.ws_uri, environment.socket_config);
-
-    this.socket.on(SocketEvents.CONNECT_ERROR, err => {
-      console.log(err);
-    });
-
-    this.socket.on(SocketEvents.DISCONNECT, () => {
-      console.log('disconnect');
-    });
-
-    this.socket.on(SocketEvents.CONNECT, () => {
-      console.log('connect');
-    });
-
-    const observable = new Observable((subscriber: Subscriber<{}>) => {
-      this.socket.on('message', (data) => {
-        subscriber.next(data);
-      });
-      return () => {
-        this.socket.disconnect();
-      };
-    });
-
-    const observer = {
-        next: (data: Object) => {
-            this.socket.emit('message', JSON.stringify(data));
-        },
-    };
-
-    return Subject.create(observer, observable);
   }
+
+  private disconnect() {
+    this.socket.close();
+  }
+
+  constructor() {}
+
+  emitEvent(event: string, data: any) {
+    this.socket.emit(event, data);
+  }
+
+  getMessages = () => {
+    return Observable.create((observer) => {
+      this.socket.on('gameCreated', (message) => {
+        observer.next(message);
+      });
+    });
+  }
+
+  getMoveMessages = () => {
+    return Observable.create((observer) => {
+      this.socket.on('moveMade', (message) => {
+        observer.next(message);
+      });
+    });
+  }
+
+  closeConnection() { this.disconnect(); }
+  openConnection() { this.connect(); }
 }

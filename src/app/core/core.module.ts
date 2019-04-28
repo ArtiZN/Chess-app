@@ -20,6 +20,7 @@ import { AuthenticationService } from '@core/mock-backend/services/auth.service'
 import { WebsocketService } from '@core/services/websocket/websocket.service';
 import { notifierConfig } from '@core/constants/notifier.constants';
 import { GameSelectionService } from '@core/services/game-selection/game-selection.service';
+import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 import { CheakersGameComponent } from '@core/components/cheakers-game/cheakers-game.component';
 import { ChessGameComponent } from '@core/components/chess-game/chess-game.component';
 import { SharedModule } from '@shared/shared.module';
@@ -54,6 +55,7 @@ import { SharedModule } from '@shared/shared.module';
     MessageService,
     WebsocketService,
     GameSelectionService,
+    ChessGameService,
     UserService,
     AuthenticationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
