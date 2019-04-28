@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as _ from 'lodash';
 
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
@@ -11,7 +11,7 @@ import { User } from '@core/interfaces/user.interfaces';
   templateUrl: './chess-game.component.html',
   styleUrls: ['./chess-game.component.css']
 })
-export class ChessGameComponent implements OnInit {
+export class ChessGameComponent implements OnInit, OnDestroy {
 
   data: ChessMove[] = [{ N: 1 }];
 
@@ -22,6 +22,10 @@ export class ChessGameComponent implements OnInit {
   ngOnInit() {
     const user: User = this.userService.getUser();
     this.chessService.initGame(user);
+  }
+
+  ngOnDestroy() {
+    this.chessService.destroyGame();
   }
 
   cgMove($event) {

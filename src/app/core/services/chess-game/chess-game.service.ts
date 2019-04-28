@@ -9,9 +9,15 @@ export class ChessGameService {
   constructor(private wsService: WebsocketService) { }
 
   initGame(user: User) {
+    this.wsService.openConnection();
+
     this.wsService.emitEvent('createGame', user);
     this.wsService.getMessages().subscribe(m => {
       console.log('from server', m);
     });
+  }
+
+  destroyGame() {
+    this.wsService.closeConnection();
   }
 }

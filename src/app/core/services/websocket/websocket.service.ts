@@ -19,7 +19,7 @@ export class WebsocketService {
   }
 
   constructor() {
-    this.connect();
+    // this.connect();
   }
 
   emitEvent(event: string, data: any) {
@@ -34,8 +34,11 @@ export class WebsocketService {
     });
   }
 
-  endConnection() {
-    console.log('web socket service');
+  closeConnection() {
     this.disconnect();
+  }
+
+  openConnection() {
+    this.connect();
   }
 }
