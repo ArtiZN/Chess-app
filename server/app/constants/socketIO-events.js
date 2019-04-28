@@ -9,7 +9,8 @@ const socketEvents_I = Object.freeze({
 });
 
 const socketEvents_O = Object.freeze({
-  gameCreated: 'gameCreated'
+  gameCreated: 'gameCreated',
+  moveMade: 'moveMade'
 });
 
 module.exports = {

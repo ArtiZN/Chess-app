@@ -26,9 +26,17 @@ export class WebsocketService {
 
   getMessages = () => {
     return Observable.create((observer) => {
-        this.socket.on('gameCreated', (message) => {
-            observer.next(message);
-        });
+      this.socket.on('gameCreated', (message) => {
+        observer.next(message);
+      });
+    });
+  }
+
+  getMoveMessages = () => {
+    return Observable.create((observer) => {
+      this.socket.on('moveMade', (message) => {
+        observer.next(message);
+      });
     });
   }
 

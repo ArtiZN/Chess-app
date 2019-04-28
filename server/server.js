@@ -30,6 +30,10 @@ io.on(socketEvents.socketEvents_I.connection, socket => {
 
   socket.on(socketEvents.socketEvents_I.makeMove, move => {
     console.log('Move from client ', move);
+    if (move.room)
+      socket.to(move.room).emit(socketEvents.socketEvents_O.moveMade, move);
+    else
+      console.log('no room provided');
   });
 });
 
