@@ -1,3 +1,4 @@
+import { WebsocketService } from '@core/services/websocket/websocket.service';
 import { Component, OnInit } from '@angular/core';
 
 import { gameMenuItems } from '@core/constants/game-menu.constants';
@@ -16,6 +17,7 @@ export class NavigationComponent implements OnInit {
   user: User = null;
 
   constructor(
+    private webSocket: WebsocketService,
     private gameService: GameSelectionService,
     private authService: AuthenticationService,
     private userService: UserService
@@ -30,7 +32,7 @@ export class NavigationComponent implements OnInit {
   }
 
   logoutHandler() {
-    // console.log('logout clicked');
+    this.webSocket.endConnection();
     this.authService.logout();
   }
 }

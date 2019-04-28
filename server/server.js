@@ -18,16 +18,13 @@ io.on(socketEvents.socketEvents_I.connection, socket => {
   console.log('new user connected');
 
   socket.on(socketEvents.socketEvents_I.disconnect, () => {
-    console.log('user is disconnected');
+    const user = users.removeUser(socket.id);
+    if (user) console.log('user is disconnected');
   });
 
   socket.on(socketEvents.socketEvents_I.createGame, (user) => {
     users.removeUser(socket.id);
     users.addUser(socket.id, user.username, user.room);
-
-    /* socket.emit(socketEvents.socketEvents_O.gameCreated, {
-      message: 'game was created/ server.js'
-    }); */
   });
 });
 

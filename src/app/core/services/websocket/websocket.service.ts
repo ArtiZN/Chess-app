@@ -14,6 +14,10 @@ export class WebsocketService {
     this.socket = new io.connect(environment.ws_uri, environment.socket_config);
   }
 
+  private disconnect() {
+    this.socket.close();
+  }
+
   constructor() {
     this.connect();
   }
@@ -28,5 +32,10 @@ export class WebsocketService {
             observer.next(message);
         });
     });
+  }
+
+  endConnection() {
+    console.log('web socket service');
+    this.disconnect();
   }
 }
