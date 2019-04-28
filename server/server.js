@@ -49,11 +49,15 @@ server.listen(port, () => {
       const user2 = users.getUser(pair[1]);
       if (!user1.inGame && !user2.inGame) {
         const gameId = uuidv4();
-        pair.forEach(socketId => {
-          io.sockets.connected[socketId].emit(socketEvents.socketEvents_O.gameCreated, { gameId });
+        pair.forEach((socketId, index) => {
+          io.sockets.connected[socketId].join(gameId);
           users.updateUser(socketId, { inGame: true, gameId });
         });
+        pair.forEach((socketId, index) => {
+          io.to(socketId).emit(socketEvents.socketEvents_O.gameCreated, { gameId, isWhite: index });
+        });
         console.log(gameId);
+        console.log(users);
       }
     }
   }, 2000);
