@@ -187,3 +187,7 @@
 .cg-board-wrap coords.ranks coord {
   transform: translateY(39%);
 }
+
+.cg-board square.check {
+  background: radial-gradient(ellipse at center,rgba(255,0,0,1) 0%,rgba(231,0,0,1) 25%,rgba(169,0,0,0) 89%,rgba(158,0,0,0) 100%);
+}
