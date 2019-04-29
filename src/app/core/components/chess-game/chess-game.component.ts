@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
+import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 
 @Component({
   selector: 'app-chess-game',
@@ -12,7 +13,7 @@ export class ChessGameComponent implements OnInit {
 
   data: ChessMove[] = [{ N: 1 }];
 
-  constructor() { }
+  constructor(private chessService: ChessGameService) { }
 
   ngOnInit() {
   }
@@ -23,7 +24,8 @@ export class ChessGameComponent implements OnInit {
     this.updateData(move, color); */
     this.updateData($event);
 
-    // this.chessService.emitEvent('makeMove', $event);
+    console.log('-------------------------');
+    this.chessService.emitEvent('makeMove', $event);
   }
 
   updateData({ to, turn }) {

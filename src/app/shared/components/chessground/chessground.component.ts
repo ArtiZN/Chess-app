@@ -13,7 +13,7 @@ import { Chessground } from 'chessground';
 import { Config } from 'chessground/config';
 import * as Chess from 'chess.js';
 
-import { toDests, playOtherSide, aiPlay } from '@core/utils/chess.utils';
+import { toDests, playOtherSide, aiPlay, opPlay } from '@core/utils/chess.utils';
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 
@@ -24,6 +24,9 @@ import { ChessGameService } from '@core/services/chess-game/chess-game.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ChessgroundComponent implements OnInit, OnDestroy {
+
+  chess = null;
+  cg = null;
 
   @ViewChild('chessBoard')
   chessBoard: ElementRef;
@@ -36,11 +39,14 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.chessService.initGame();
+
     this.chessService.moves.subscribe(move => {
-      console.log('moves from server ', move);
+      console.log('move from server ', move);
+      this.chess.move({ from: move.from, to: move.to });
+      this.cg.move(move.from, move.to);
     });
 
-    const chess = new Chess();
+    this.chess = new Chess();
     const conf: Config  = {
       orientation: 'white',
       highlight: {
@@ -54,7 +60,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       movable: {
         color: 'white',
         free: false,
-        dests: toDests(chess),
+        dests: toDests(this.chess),
         showDests: true,
       },
       drawable: {
@@ -62,13 +68,14 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
         visible: true
       }
     };
-    const cg = Chessground(this.chessBoard.nativeElement, conf);
+    this.cg = Chessground(this.chessBoard.nativeElement, conf);
 
-    cg.set({
+    this.cg.set({
       movable: {
         events: {
-          after: playOtherSide(cg, chess, this.cgMove)
+          // after: playOtherSide(cg, chess, this.cgMove)
           // after: aiPlay(cg, chess, 1000, false)
+          after: opPlay(this.cg, this.chess, this.cgMove)
         }
       }
     });
@@ -76,5 +83,9 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.chessService.destroyGame();
+  }
+
+  makeMove(cg, chess) {
+
   }
 }
