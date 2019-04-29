@@ -5,7 +5,8 @@ import {
   ViewChild,
   ViewEncapsulation,
   Output,
-  EventEmitter
+  EventEmitter,
+  OnDestroy
 } from '@angular/core';
 
 import { Chessground } from 'chessground';
@@ -14,6 +15,7 @@ import * as Chess from 'chess.js';
 
 import { toDests, playOtherSide, aiPlay } from '@core/utils/chess.utils';
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
+import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 
 @Component({
   selector: 'app-chessground',
@@ -21,7 +23,7 @@ import { ChessMove } from '@core/interfaces/chess-move.interfaces';
   styleUrls: ['./chessground.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ChessgroundComponent implements OnInit {
+export class ChessgroundComponent implements OnInit, OnDestroy {
 
   @ViewChild('chessBoard')
   chessBoard: ElementRef;
@@ -29,9 +31,15 @@ export class ChessgroundComponent implements OnInit {
   @Output()
   cgMove = new EventEmitter<ChessMove>();
 
-  constructor() { }
+  constructor(
+    private chessService: ChessGameService) { }
 
   ngOnInit() {
+    this.chessService.initGame();
+    this.chessService.moves.subscribe(move => {
+      console.log('moves from server ', move);
+    });
+
     const chess = new Chess();
     const conf: Config  = {
       orientation: 'white',
@@ -66,7 +74,7 @@ export class ChessgroundComponent implements OnInit {
     });
   }
 
-  makeMove(chess) {
-    console.log(chess);
+  ngOnDestroy() {
+    this.chessService.destroyGame();
   }
 }

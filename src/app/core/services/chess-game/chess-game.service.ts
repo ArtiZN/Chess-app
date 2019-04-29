@@ -2,26 +2,25 @@ import { Injectable } from '@angular/core';
 
 import { WebsocketService } from '@core/services/websocket/websocket.service';
 import { User } from '@core/interfaces/user.interfaces';
+import { UserService } from '@core/mock-backend/services/user.service';
 
 @Injectable()
 export class ChessGameService {
 
   gameId: any = null;
 
-  constructor(private wsService: WebsocketService) { }
+  constructor(
+    private wsService: WebsocketService,
+    private userService: UserService) { }
 
-  initGame(user: User) {
+  initGame() {
     this.wsService.openConnection();
 
-    this.wsService.emitEvent('createGame', user);
+    this.wsService.emitEvent('createGame', this.userService.getUser());
     this.wsService.getMessages().subscribe(m => {
       console.log('from server', m);
       this.gameId = m.gameId;
     });
-
-    /* this.wsService.getMoveMessages().subscribe(move => {
-      console.log('moves from server ', move);
-    }); */
   }
 
   get moves() {

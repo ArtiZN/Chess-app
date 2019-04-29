@@ -57,15 +57,15 @@ export function aiPlay(cg: Api, chess: Chess, delay: number, firstMove: boolean)
 export function opPlay(cg: Api, chess: Chess, move) {
   return (orig, dest) => {
     chess.move({from: orig, to: dest});
-    chess.move(move.san);
-    cg.move(move.from, move.to);
-    cg.set({
-      turnColor: toColor(chess),
-      movable: {
-        color: toColor(chess),
-        dests: toDests(chess)
-      }
-    });
-    cg.playPremove();
+    // chess.move(move.san);
+    // cg.move(move.from, move.to);
+    // cg.set({
+    //   turnColor: toColor(chess),
+    //   movable: {
+    //     color: toColor(chess),
+    //     dests: toDests(chess)
+    //   }
+    // });
+    // cg.playPremove();
   };
 }
