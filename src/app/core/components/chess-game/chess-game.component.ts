@@ -21,22 +21,34 @@ export class ChessGameComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const user: User = this.userService.getUser();
-    // this.chessService.initGame(user);
+    this.chessService.initGame(user);
+    this.chessService.moves.subscribe(move => {
+      console.log('moves from server ', move);
+    });
   }
 
   ngOnDestroy() {
-    // this.chessService.destroyGame();
+    this.chessService.destroyGame();
   }
 
   cgMove($event) {
-    const move = _.last($event.history());
+    /* const move = _.last($event.history());
     const color = ($event.turn() === 'w') ? 'black' : 'white';
-    this.updateData(move, color);
+    this.updateData(move, color); */
+    this.updateData($event.to, $event.color === 'w' ? 'black' : 'white');
+
+    // console.log($event.moves({square: 'e2', verbose: true}));
+    /* $event.SQUARES.forEach(s => {
+      const ms = $event.moves({square: s, verbose: true});
+      if (ms.length) {
+        console.log(ms.map(m => m.to))
+      }
+    }); */
 
     // this.chessService.emitEvent('makeMove', { color, move });
   }
 
-  updateData(move, color) {
+  updateData(move: string, color: string) {
     const last: ChessMove = _.last(this.data);
     if (last[color] !== undefined) {
       const row = {} as ChessMove;

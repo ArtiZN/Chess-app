@@ -11,8 +11,6 @@ export class ChessGameService {
   constructor(private wsService: WebsocketService) { }
 
   initGame(user: User) {
-
-
     this.wsService.openConnection();
 
     this.wsService.emitEvent('createGame', user);
@@ -21,9 +19,13 @@ export class ChessGameService {
       this.gameId = m.gameId;
     });
 
-    this.wsService.getMoveMessages().subscribe(move => {
+    /* this.wsService.getMoveMessages().subscribe(move => {
       console.log('moves from server ', move);
-    });
+    }); */
+  }
+
+  get moves() {
+    return this.wsService.getMoveMessages();
   }
 
   emitEvent(event: string, data: any) {

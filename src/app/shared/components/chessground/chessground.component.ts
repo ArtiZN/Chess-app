@@ -46,7 +46,7 @@ export class ChessgroundComponent implements OnInit {
       movable: {
         color: 'white',
         free: false,
-        dests: toDests(chess, this.cgMove),
+        dests: toDests(chess),
         showDests: true,
       },
       drawable: {
