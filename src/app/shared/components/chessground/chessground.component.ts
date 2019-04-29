@@ -14,7 +14,7 @@ import { Config } from 'chessground/config';
 import { Color } from 'chessground/types';
 import * as Chess from 'chess.js';
 
-import { toDests, playOtherSide, aiPlay, opPlay } from '@core/utils/chess.utils';
+import { toColor, toDests, playOtherSide, aiPlay, opPlay } from '@core/utils/chess.utils';
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 
@@ -48,6 +48,14 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       console.log('move from server ', move);
       this.chess.move({ from: move.from, to: move.to });
       this.cg.move(move.from, move.to);
+
+      this.cg.set({
+        turnColor: toColor(this.chess),
+        movable: {
+          color: toColor(this.chess),
+          dests: toDests(this.chess)
+        }
+      });
     });
 
     this.chessService.messages.subscribe(message => {
