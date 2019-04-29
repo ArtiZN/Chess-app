@@ -35,28 +35,21 @@ export class ChessGameComponent implements OnInit, OnDestroy {
     /* const move = _.last($event.history());
     const color = ($event.turn() === 'w') ? 'black' : 'white';
     this.updateData(move, color); */
-    this.updateData($event.to, $event.color === 'w' ? 'black' : 'white');
+    this.updateData($event);
 
-    // console.log($event.moves({square: 'e2', verbose: true}));
-    /* $event.SQUARES.forEach(s => {
-      const ms = $event.moves({square: s, verbose: true});
-      if (ms.length) {
-        console.log(ms.map(m => m.to))
-      }
-    }); */
-
-    // this.chessService.emitEvent('makeMove', { color, move });
+    this.chessService.emitEvent('makeMove', $event);
   }
 
-  updateData(move: string, color: string) {
+  updateData({ to, turn }) {
     const last: ChessMove = _.last(this.data);
+    const color = turn === 'w' ? 'black' : 'white';
     if (last[color] !== undefined) {
       const row = {} as ChessMove;
       row.N = last.N + 1;
-      row[color] = move;
+      row[color] = to;
       this.data = [...this.data, row];
     } else {
-      last[color] = move;
+      last[color] = to;
     }
   }
 }

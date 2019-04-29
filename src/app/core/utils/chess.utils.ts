@@ -28,7 +28,7 @@ export function playOtherSide(cg: Api, chess: Chess, cgMove = null) {
       }
     });
     if (cgMove) {
-      cgMove.emit({from: orig, to: dest, color: chess.turn() });
+      cgMove.emit({from: orig, to: dest, turn: chess.turn() });
     }
   };
 }
