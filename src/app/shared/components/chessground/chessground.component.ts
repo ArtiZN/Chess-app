@@ -11,6 +11,7 @@ import {
 
 import { Chessground } from 'chessground';
 import { Config } from 'chessground/config';
+import { Color } from 'chessground/types';
 import * as Chess from 'chess.js';
 
 import { toDests, playOtherSide, aiPlay, opPlay } from '@core/utils/chess.utils';
@@ -27,6 +28,9 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
 
   chess = null;
   cg = null;
+
+  orientation: Color;
+  gameId = null;
 
   @ViewChild('chessBoard')
   chessBoard: ElementRef;
@@ -46,39 +50,79 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       this.cg.move(move.from, move.to);
     });
 
-    this.chess = new Chess();
-    const conf: Config  = {
-      orientation: 'white',
-      highlight: {
-        lastMove: true,
-        check: true
-      },
-      animation: {
-        enabled: true,
-        duration: 200
-      },
-      movable: {
-        color: 'white',
-        free: false,
-        dests: toDests(this.chess),
-        showDests: true,
-      },
-      drawable: {
-        enabled: true,
-        visible: true
-      }
-    };
-    this.cg = Chessground(this.chessBoard.nativeElement, conf);
+    this.chessService.messages.subscribe(message => {
+      this.chessService.gameID = message.gameId;
 
-    this.cg.set({
-      movable: {
-        events: {
-          // after: playOtherSide(cg, chess, this.cgMove)
-          // after: aiPlay(cg, chess, 1000, false)
-          after: opPlay(this.cg, this.chess, this.cgMove)
+      this.gameId = message.gameId;
+      this.orientation = message.color;
+
+      this.chess = new Chess();
+      const conf: Config  = {
+        orientation: this.orientation,
+        highlight: {
+          lastMove: true,
+          check: true
+        },
+        animation: {
+          enabled: true,
+          duration: 200
+        },
+        movable: {
+          color: 'white',
+          free: false,
+          dests: toDests(this.chess),
+          showDests: true,
+        },
+        drawable: {
+          enabled: true,
+          visible: true
         }
-      }
+      };
+      this.cg = Chessground(this.chessBoard.nativeElement, conf);
+      this.cg.set({
+        movable: {
+          events: {
+            // after: playOtherSide(cg, chess, this.cgMove)
+            // after: aiPlay(cg, chess, 1000, false)
+            after: opPlay(this.cg, this.chess, this.cgMove)
+          }
+        }
+      });
     });
+
+    // this.chess = new Chess();
+    // const conf: Config  = {
+    //   orientation: 'white',
+    //   highlight: {
+    //     lastMove: true,
+    //     check: true
+    //   },
+    //   animation: {
+    //     enabled: true,
+    //     duration: 200
+    //   },
+    //   movable: {
+    //     color: 'white',
+    //     free: false,
+    //     dests: toDests(this.chess),
+    //     showDests: true,
+    //   },
+    //   drawable: {
+    //     enabled: true,
+    //     visible: true
+    //   }
+    // };
+    // this.cg = Chessground(this.chessBoard.nativeElement, conf);
+
+    // this.cg.set({
+    //   movable: {
+    //     events: {
+    //       // after: playOtherSide(cg, chess, this.cgMove)
+    //       // after: aiPlay(cg, chess, 1000, false)
+    //       after: opPlay(this.cg, this.chess, this.cgMove)
+    //     }
+    //   }
+    // });
   }
 
   ngOnDestroy() {

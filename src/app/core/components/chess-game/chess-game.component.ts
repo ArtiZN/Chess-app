@@ -25,7 +25,7 @@ export class ChessGameComponent implements OnInit {
     this.updateData($event);
 
     console.log('-------------------------');
-    this.chessService.emitEvent('makeMove', $event);
+    this.chessService.emitEvent('makeMove', Object.assign($event, { room: this.chessService.gameID }));
   }
 
   updateData({ to, turn }) {

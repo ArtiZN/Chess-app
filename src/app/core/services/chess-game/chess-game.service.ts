@@ -17,14 +17,22 @@ export class ChessGameService {
     this.wsService.openConnection();
 
     this.wsService.emitEvent('createGame', this.userService.getUser());
-    this.wsService.getMessages().subscribe(m => {
+    /* this.wsService.getMessages().subscribe(m => {
       console.log('from server', m);
       this.gameId = m.gameId;
-    });
+    }); */
   }
 
   get moves() {
     return this.wsService.getMoveMessages();
+  }
+
+  get messages() {
+    return this.wsService.getMessages();
+  }
+
+  set gameID(id) {
+    this.gameId = id;
   }
 
   emitEvent(event: string, data: any) {
