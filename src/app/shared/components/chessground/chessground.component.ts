@@ -8,6 +8,7 @@ import {
   EventEmitter,
   OnDestroy
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { Chessground } from 'chessground';
 import { Color } from 'chessground/types';
@@ -26,6 +27,9 @@ import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 })
 export class ChessgroundComponent implements OnInit, OnDestroy {
 
+  movesSubscription: Subscription;
+  gameSubscription: Subscription;
+
   chess: Chess = new Chess();
   cg: Api = null;
 
@@ -43,7 +47,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.chessService.initGame();
 
-    this.chessService.moves.subscribe(move => {
+    this.movesSubscription = this.chessService.moves.subscribe(move => {
       console.log('move from server ', move);
       this.chess.move({ from: move.from, to: move.to });
       this.cg.move(move.from, move.to);
@@ -56,7 +60,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       });
     });
 
-    this.chessService.messages.subscribe(message => {
+    this.gameSubscription = this.chessService.messages.subscribe(message => {
       this.chessService.gameID = message.gameId;
 
       this.gameId = message.gameId;
@@ -77,5 +81,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.chessService.destroyGame();
+    this.movesSubscription.unsubscribe();
+    this.gameSubscription.unsubscribe();
   }
 }
