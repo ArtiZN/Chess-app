@@ -68,16 +68,12 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
     this.chessService.initSocket();
 
     this.movesSubscription = this.chessService.moves.subscribe((move: MoveConfig) => {
-      console.log('move from server ', move);
       this.makeMove(move);
     });
-
     this.gameSubscription = this.chessService.messages.subscribe((message: GameConfig) => {
-      console.log('create game ', message);
       this.chessService.gameID = message.gameId;
       this.gameId = message.gameId;
       this.orientation = message.color;
-
       this.initChessground();
     });
   }

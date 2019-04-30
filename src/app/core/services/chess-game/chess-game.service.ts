@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { WebsocketService } from '@core/services/websocket/websocket.service';
-import { User } from '@core/interfaces/user.interfaces';
 import { UserService } from '@core/mock-backend/services/user.service';
 
 @Injectable()
