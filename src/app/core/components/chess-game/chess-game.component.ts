@@ -22,7 +22,7 @@ export class ChessGameComponent implements OnInit {
 
   cgMove($event: MoveConfig) {
     this.updateData($event);
-    this.chessService.emitEvent('makeMove', Object.assign($event, { room: this.chessService.gameID }));
+    this.chessService.emitEvent('makeMove', Object.assign($event, { room: this.chessService.gameId }));
   }
 
   updateData({ to, turn }: { to: Key, turn: string }) {

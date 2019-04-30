@@ -24,6 +24,7 @@ import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 import { CheakersGameComponent } from '@core/components/cheakers-game/cheakers-game.component';
 import { ChessGameComponent } from '@core/components/chess-game/chess-game.component';
 import { SharedModule } from '@shared/shared.module';
+import { FindGameComponent } from './components/find-game/find-game.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { SharedModule } from '@shared/shared.module';
     LoginComponent,
     NotFoundComponent,
     CheakersGameComponent,
-    ChessGameComponent
+    ChessGameComponent,
+    FindGameComponent
   ],
   providers: [
     ChatService,
