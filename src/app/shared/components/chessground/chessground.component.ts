@@ -11,7 +11,7 @@ import {
 import { Subscription } from 'rxjs';
 
 import { Chessground } from 'chessground';
-import { Color } from 'chessground/types';
+import { Color, Key } from 'chessground/types';
 import { Api } from 'chessground/api';
 import * as Chess from 'chess.js';
 
@@ -21,6 +21,7 @@ import {
   opPlay,
   defConfig
 } from '@core/utils/chess.utils';
+import { MoveConfig, GameConfig } from '@core/interfaces/socketIO.interfaces';
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 
@@ -60,17 +61,18 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
     });
   }
 
-  constructor(private chessService: ChessGameService) { }
+  constructor(
+    private chessService: ChessGameService) { }
 
   ngOnInit() {
     this.chessService.initSocket();
 
-    this.movesSubscription = this.chessService.moves.subscribe(move => {
+    this.movesSubscription = this.chessService.moves.subscribe((move: MoveConfig) => {
       console.log('move from server ', move);
       this.makeMove(move);
     });
 
-    this.gameSubscription = this.chessService.messages.subscribe(message => {
+    this.gameSubscription = this.chessService.messages.subscribe((message: GameConfig) => {
       console.log('create game ', message);
       this.chessService.gameID = message.gameId;
       this.gameId = message.gameId;
@@ -86,7 +88,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
     this.gameSubscription.unsubscribe();
   }
 
-  makeMove({ from, to }) {
+  makeMove({ from, to }: { from: Key, to: Key }) {
     this.chess.move({ from, to });
     this.cg.move(from, to);
     this.cg.set({
