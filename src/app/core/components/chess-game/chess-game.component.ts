@@ -19,12 +19,7 @@ export class ChessGameComponent implements OnInit {
   }
 
   cgMove($event) {
-    /* const move = _.last($event.history());
-    const color = ($event.turn() === 'w') ? 'black' : 'white';
-    this.updateData(move, color); */
     this.updateData($event);
-
-    console.log('-------------------------');
     this.chessService.emitEvent('makeMove', Object.assign($event, { room: this.chessService.gameID }));
   }
 

@@ -12,6 +12,7 @@ import {
 import { Chessground } from 'chessground';
 import { Config } from 'chessground/config';
 import { Color } from 'chessground/types';
+import { Api } from 'chessground/api';
 import * as Chess from 'chess.js';
 
 import { toColor, toDests, playOtherSide, aiPlay, opPlay } from '@core/utils/chess.utils';
@@ -26,11 +27,11 @@ import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 })
 export class ChessgroundComponent implements OnInit, OnDestroy {
 
-  chess = null;
-  cg = null;
+  chess: Chess = new Chess();
+  cg: Api = null;
 
   orientation: Color;
-  gameId = null;
+  gameId: string = null;
 
   @ViewChild('chessBoard')
   chessBoard: ElementRef;
@@ -38,8 +39,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
   @Output()
   cgMove = new EventEmitter<ChessMove>();
 
-  constructor(
-    private chessService: ChessGameService) { }
+  constructor(private chessService: ChessGameService) { }
 
   ngOnInit() {
     this.chessService.initGame();
@@ -48,7 +48,6 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       console.log('move from server ', move);
       this.chess.move({ from: move.from, to: move.to });
       this.cg.move(move.from, move.to);
-
       this.cg.set({
         turnColor: toColor(this.chess),
         movable: {
@@ -64,7 +63,6 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       this.gameId = message.gameId;
       this.orientation = message.color;
 
-      this.chess = new Chess();
       const conf: Config  = {
         orientation: this.orientation,
         highlight: {
@@ -97,47 +95,9 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
         }
       });
     });
-
-    // this.chess = new Chess();
-    // const conf: Config  = {
-    //   orientation: 'white',
-    //   highlight: {
-    //     lastMove: true,
-    //     check: true
-    //   },
-    //   animation: {
-    //     enabled: true,
-    //     duration: 200
-    //   },
-    //   movable: {
-    //     color: 'white',
-    //     free: false,
-    //     dests: toDests(this.chess),
-    //     showDests: true,
-    //   },
-    //   drawable: {
-    //     enabled: true,
-    //     visible: true
-    //   }
-    // };
-    // this.cg = Chessground(this.chessBoard.nativeElement, conf);
-
-    // this.cg.set({
-    //   movable: {
-    //     events: {
-    //       // after: playOtherSide(cg, chess, this.cgMove)
-    //       // after: aiPlay(cg, chess, 1000, false)
-    //       after: opPlay(this.cg, this.chess, this.cgMove)
-    //     }
-    //   }
-    // });
   }
 
   ngOnDestroy() {
     this.chessService.destroyGame();
-  }
-
-  makeMove(cg, chess) {
-
   }
 }
