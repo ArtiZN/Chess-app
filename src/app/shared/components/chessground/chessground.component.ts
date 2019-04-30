@@ -10,12 +10,11 @@ import {
 } from '@angular/core';
 
 import { Chessground } from 'chessground';
-import { Config } from 'chessground/config';
 import { Color } from 'chessground/types';
 import { Api } from 'chessground/api';
 import * as Chess from 'chess.js';
 
-import { toColor, toDests, playOtherSide, aiPlay, opPlay } from '@core/utils/chess.utils';
+import { toColor, toDests, playOtherSide, aiPlay, opPlay, defConfig } from '@core/utils/chess.utils';
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 
@@ -63,28 +62,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       this.gameId = message.gameId;
       this.orientation = message.color;
 
-      const conf: Config  = {
-        orientation: this.orientation,
-        highlight: {
-          lastMove: true,
-          check: true
-        },
-        animation: {
-          enabled: true,
-          duration: 200
-        },
-        movable: {
-          color: 'white',
-          free: false,
-          dests: toDests(this.chess),
-          showDests: true,
-        },
-        drawable: {
-          enabled: true,
-          visible: true
-        }
-      };
-      this.cg = Chessground(this.chessBoard.nativeElement, conf);
+      this.cg = Chessground(this.chessBoard.nativeElement, defConfig(this.chess, this.orientation));
       this.cg.set({
         movable: {
           events: {

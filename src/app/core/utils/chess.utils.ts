@@ -1,5 +1,31 @@
-import { Api } from 'chessground/api';
 import * as Chess from 'chess.js';
+import { Api } from 'chessground/api';
+import { Config } from 'chessground/config';
+import { Color } from 'chessground/types';
+
+export function defConfig(chess: Chess, orien: Color): Config {
+  return {
+    orientation: orien,
+    highlight: {
+      lastMove: true,
+      check: true
+    },
+    animation: {
+      enabled: true,
+      duration: 200
+    },
+    movable: {
+      color: 'white',
+      free: false,
+      dests: toDests(chess),
+      showDests: true,
+    },
+    drawable: {
+      enabled: true,
+      visible: true
+    }
+  };
+}
 
 export function toDests(chess: Chess) {
   const dests = {};
