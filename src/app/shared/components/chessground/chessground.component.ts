@@ -71,7 +71,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       this.makeMove(move);
     });
     this.gameSubscription = this.chessService.messages.subscribe((message: GameConfig) => {
-      this.chessService.gameID = message.gameId;
+      this.chessService.gameId = message.gameId;
       this.gameId = message.gameId;
       this.orientation = message.color;
       this.initChessground();

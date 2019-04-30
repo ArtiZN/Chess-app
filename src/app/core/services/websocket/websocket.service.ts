@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable, Subscriber } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '@environment';
 
 import * as io from 'socket.io-client';
-import { SocketEvents } from '@core/enums/socket-events.enums';
+
+import { GameConfig, MoveConfig } from '@core/interfaces/socketIO.interfaces';
 
 @Injectable()
 export class WebsocketService {
@@ -24,18 +25,18 @@ export class WebsocketService {
     this.socket.emit(event, data);
   }
 
-  getMessages = () => {
+  getMessages: Function = () => {
     return Observable.create((observer) => {
-      this.socket.on('gameCreated', (message) => {
+      this.socket.on('gameCreated', (message: GameConfig) => {
         observer.next(message);
       });
     });
   }
 
-  getMoveMessages = () => {
+  getMoveMessages: Function = () => {
     return Observable.create((observer) => {
-      this.socket.on('moveMade', (message) => {
-        observer.next(message);
+      this.socket.on('moveMade', (move: MoveConfig) => {
+        observer.next(move);
       });
     });
   }
