@@ -15,7 +15,12 @@ import { Color } from 'chessground/types';
 import { Api } from 'chessground/api';
 import * as Chess from 'chess.js';
 
-import { toColor, toDests, playOtherSide, aiPlay, opPlay, defConfig } from '@core/utils/chess.utils';
+import {
+  toColor,
+  toDests,
+  opPlay,
+  defConfig
+} from '@core/utils/chess.utils';
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 
@@ -27,11 +32,11 @@ import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 })
 export class ChessgroundComponent implements OnInit, OnDestroy {
 
-  movesSubscription: Subscription;
-  gameSubscription: Subscription;
+  private movesSubscription: Subscription;
+  private gameSubscription: Subscription;
 
-  chess: Chess = new Chess();
-  cg: Api = null;
+  private chess: Chess = new Chess();
+  private cg: Api = null;
 
   orientation: Color;
   gameId: string = null;
@@ -42,46 +47,54 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
   @Output()
   cgMove = new EventEmitter<ChessMove>();
 
+  private initChessground() {
+    this.cg = Chessground(this.chessBoard.nativeElement, defConfig(this.chess, this.orientation));
+    this.cg.set({
+      movable: {
+        events: {
+          // after: playOtherSide(cg, chess, this.cgMove)
+          // after: aiPlay(cg, chess, 1000, false)
+          after: opPlay(this.cg, this.chess, this.cgMove)
+        }
+      }
+    });
+  }
+
   constructor(private chessService: ChessGameService) { }
 
   ngOnInit() {
-    this.chessService.initGame();
+    this.chessService.initSocket();
 
     this.movesSubscription = this.chessService.moves.subscribe(move => {
       console.log('move from server ', move);
-      this.chess.move({ from: move.from, to: move.to });
-      this.cg.move(move.from, move.to);
-      this.cg.set({
-        turnColor: toColor(this.chess),
-        movable: {
-          color: toColor(this.chess),
-          dests: toDests(this.chess)
-        }
-      });
+      this.makeMove(move);
     });
 
     this.gameSubscription = this.chessService.messages.subscribe(message => {
+      console.log('create game ', message);
       this.chessService.gameID = message.gameId;
-
       this.gameId = message.gameId;
       this.orientation = message.color;
 
-      this.cg = Chessground(this.chessBoard.nativeElement, defConfig(this.chess, this.orientation));
-      this.cg.set({
-        movable: {
-          events: {
-            // after: playOtherSide(cg, chess, this.cgMove)
-            // after: aiPlay(cg, chess, 1000, false)
-            after: opPlay(this.cg, this.chess, this.cgMove)
-          }
-        }
-      });
+      this.initChessground();
     });
   }
 
   ngOnDestroy() {
-    this.chessService.destroyGame();
+    this.chessService.destroySocket();
     this.movesSubscription.unsubscribe();
     this.gameSubscription.unsubscribe();
+  }
+
+  makeMove({ from, to }) {
+    this.chess.move({ from, to });
+    this.cg.move(from, to);
+    this.cg.set({
+      turnColor: toColor(this.chess),
+      movable: {
+        color: toColor(this.chess),
+        dests: toDests(this.chess)
+      }
+    });
   }
 }

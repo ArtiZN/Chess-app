@@ -13,14 +13,10 @@ export class ChessGameService {
     private wsService: WebsocketService,
     private userService: UserService) { }
 
-  initGame() {
+  initSocket() {
     this.wsService.openConnection();
 
     this.wsService.emitEvent('createGame', this.userService.getUser());
-    /* this.wsService.getMessages().subscribe(m => {
-      console.log('from server', m);
-      this.gameId = m.gameId;
-    }); */
   }
 
   get moves() {
@@ -39,7 +35,7 @@ export class ChessGameService {
     this.wsService.emitEvent(event, Object.assign(data, { room: this.gameId }));
   }
 
-  destroyGame() {
+  destroySocket() {
     this.wsService.closeConnection();
   }
 }
