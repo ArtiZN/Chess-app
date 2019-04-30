@@ -60,13 +60,13 @@ export function opPlay(cg: Api, chess: Chess, cgMove = null) {
     chess.move({from: orig, to: dest});
     // chess.move(move.san);
     // cg.move(move.from, move.to);
-    cg.set({
+    /* cg.set({
       turnColor: toColor(chess),
       movable: {
         color: toColor(chess),
         dests: toDests(chess)
       }
-    });
+    }); */
 
     if (cgMove) {
       cgMove.emit({from: orig, to: dest, turn: chess.turn() });
