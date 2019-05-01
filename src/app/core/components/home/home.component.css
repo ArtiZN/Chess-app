@@ -36,3 +36,12 @@
   padding: 0 24px;
   width: 40%
 }
+
+.mat-chip {
+  margin: 0 auto 16px auto !important;
+  cursor: pointer;
+}
+
+.mat-standard-chip {
+  border-radius: 4px;
+}
