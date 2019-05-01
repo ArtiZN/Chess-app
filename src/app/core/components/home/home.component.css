@@ -3,7 +3,7 @@
 }
 
 .profile-card {
-  width: 30%;
+  width: 420px;
 }
 
 .profile-card-header {
@@ -25,4 +25,8 @@
 .div-profile-status {
   font-size: 12px;
   color: #0fb222;
+}
+
+.div-profile-card-content {
+  margin-top: 16px;
 }
