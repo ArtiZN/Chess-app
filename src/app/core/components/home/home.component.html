@@ -2,29 +2,31 @@
 
 <app-find-game></app-find-game>
 
-<div class="ui-container">
-  <mat-card class="profile-card">
-    <div class="d-flex profile-card-header">
-      <app-avatar-icon
-        src="https://avatars0.githubusercontent.com/u/26419897?s=460&v=4"></app-avatar-icon>
-      <div class="div-profile-header">
-        <div class="div-profile-username">
-          Chiki bambuki
-        </div>
-        <div class="div-profile-status">
-          Chilling
+<div class="d-flex ui-container">
+  <div class="div-profile-card-wrapper">
+    <mat-card class="profile-card">
+      <div class="d-flex profile-card-header">
+        <app-avatar-icon
+          src="https://avatars0.githubusercontent.com/u/26419897?s=460&v=4"></app-avatar-icon>
+        <div class="div-profile-header">
+          <div class="div-profile-username">
+            Chiki bambuki
+          </div>
+          <div class="div-profile-status">
+            Chilling
+          </div>
         </div>
       </div>
-    </div>
-    <div class="div-profile-card-content">
-      <div class="div-content-header">
-        Most successfull openings:
+      <div class="div-profile-card-content">
+        <div class="div-content-header">
+          Most successfull openings:
+        </div>
+        <app-most-successfull-games></app-most-successfull-games>
       </div>
-      <app-most-successfull-games></app-most-successfull-games>
-    </div>
-    <app-account-info></app-account-info>
-  </mat-card>
+      <app-account-info></app-account-info>
+    </mat-card>
+  </div>
+  <div class="div-leaderboard-card-wrapper">
+    <app-fide-leaderboard></app-fide-leaderboard>
+  </div>
 </div>
-
-<app-fide-leaderboard></app-fide-leaderboard>
-

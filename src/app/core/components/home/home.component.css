@@ -31,3 +31,8 @@
   font-size: 12px;
   margin: 8px 0;
 }
+
+.div-leaderboard-card-wrapper {
+  padding: 0 24px;
+  width: 40%
+}
