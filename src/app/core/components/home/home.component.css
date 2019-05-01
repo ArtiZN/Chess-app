@@ -27,6 +27,7 @@
   color: #0fb222;
 }
 
-.div-profile-card-content {
-  margin-top: 16px;
+.div-content-header {
+  font-size: 12px;
+  margin: 8px 0;
 }
