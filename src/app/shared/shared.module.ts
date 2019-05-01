@@ -12,6 +12,7 @@ import { CheakerKingComponent } from '@shared/components/cheaker-king/cheaker-ki
 import { SpaceComponent } from '@shared/components/space/space.component';
 import { CheakersGameBoardComponent } from '@shared/components/cheakers-game-board/cheakers-game-board.component';
 import { AvatarIconComponent } from '@shared/components/avatar-icon/avatar-icon.component';
+import { MostSuccessfullGamesComponent } from './components/most-successfull-games/most-successfull-games.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { AvatarIconComponent } from '@shared/components/avatar-icon/avatar-icon.
     MovesTableComponent,
     ChatAreaComponent,
     AvatarIconComponent,
+    MostSuccessfullGamesComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
@@ -35,12 +37,14 @@ import { AvatarIconComponent } from '@shared/components/avatar-icon/avatar-icon.
     MovesTableComponent,
     ChatAreaComponent,
     AvatarIconComponent,
+    MostSuccessfullGamesComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
     SpaceComponent,
     CheakersGameBoardComponent,
-    AvatarIconComponent
+    AvatarIconComponent,
+    MostSuccessfullGamesComponent
   ]
 })
 export class SharedModule { }
