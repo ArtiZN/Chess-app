@@ -12,8 +12,9 @@ import { CheakerKingComponent } from '@shared/components/cheaker-king/cheaker-ki
 import { SpaceComponent } from '@shared/components/space/space.component';
 import { CheakersGameBoardComponent } from '@shared/components/cheakers-game-board/cheakers-game-board.component';
 import { AvatarIconComponent } from '@shared/components/avatar-icon/avatar-icon.component';
-import { MostSuccessfullGamesComponent } from './components/most-successfull-games/most-successfull-games.component';
-import { AccountInfoComponent } from './components/account-info/account-info.component';
+import { MostSuccessfullGamesComponent } from '@shared/components/most-successfull-games/most-successfull-games.component';
+import { AccountInfoComponent } from '@shared/components/account-info/account-info.component';
+import { FideLeaderboardComponent } from '@shared/components/fide-leaderboard/fide-leaderboard.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { AccountInfoComponent } from './components/account-info/account-info.com
     AvatarIconComponent,
     MostSuccessfullGamesComponent,
     AccountInfoComponent,
+    FideLeaderboardComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
@@ -41,6 +43,7 @@ import { AccountInfoComponent } from './components/account-info/account-info.com
     AvatarIconComponent,
     MostSuccessfullGamesComponent,
     AccountInfoComponent,
+    FideLeaderboardComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
