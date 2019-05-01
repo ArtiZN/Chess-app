@@ -1,0 +1,18 @@
+.info-container {
+  padding: 0 24px;
+}
+
+.div-account-info {
+  margin-top: 16px;
+  border: 6px solid #eee;
+}
+
+.div-info-title {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.div-info-content {
+  text-align: center;
+  font-size: 14px;
+}
