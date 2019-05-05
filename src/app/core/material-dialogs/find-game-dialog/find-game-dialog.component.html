@@ -13,5 +13,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="playHandler()">Play</button>
-  <button mat-button (click)="calcelHandler()">Cancel</button>
+  <button mat-button (click)="calcelHandler()" [mat-dialog-close]="modeSelected">Cancel</button>
 </div>
