@@ -13,6 +13,15 @@ export interface DialogData {
 })
 export class FindGameDialogComponent implements OnInit {
 
+  modeSelected: string;
+  modes = [{
+    title: 'Play with the machine',
+    mode: 'bot'
+  }, {
+    title: 'Play with people',
+    mode: 'live'
+  }];
+
   constructor(
     public dialogRef: MatDialogRef<FindGameDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
@@ -21,6 +30,7 @@ export class FindGameDialogComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    console.log(this.modeSelected);
+    // this.dialogRef.close();
   }
 }

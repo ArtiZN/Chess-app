@@ -1,11 +1,12 @@
-<h1 mat-dialog-title>Hi {{data.name}}</h1>
+<h1 mat-dialog-title>Find Game</h1>
 <div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field>
+    <mat-radio-group [(ngModel)]="modeSelected">
+      <mat-radio-button *ngFor="let mode of modes" [value]="mode.mode">
+        {{ mode.title }}
+      </mat-radio-button>
+    </mat-radio-group>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.animal">Play</button>
 </div>
