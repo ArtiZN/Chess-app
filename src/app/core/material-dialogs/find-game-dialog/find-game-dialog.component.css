@@ -1,7 +1,16 @@
 .mat-dialog-title {
-  margin-bottom: 8px;
+  margin-bottom: 0;
+}
+
+.mat-dialog-content {
+  padding-top: 8px;
 }
 
 .mat-button {
   text-transform: uppercase;
 }
+
+.mat-spinner {
+  margin: 8px auto;
+}
+

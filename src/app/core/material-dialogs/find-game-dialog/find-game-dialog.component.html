@@ -1,12 +1,17 @@
 <h1 mat-dialog-title>Find Game</h1>
 <div mat-dialog-content>
-    <mat-radio-group [(ngModel)]="modeSelected">
-      <mat-radio-button *ngFor="let mode of modes" [value]="mode.mode">
-        {{ mode.title }}
-      </mat-radio-button>
-    </mat-radio-group>
+  <mat-progress-spinner
+    class="mat-spinner"
+    color="warn"
+    mode="indeterminate">
+  </mat-progress-spinner>
+  <mat-radio-group [(ngModel)]="modeSelected">
+    <mat-radio-button *ngFor="let mode of modes" [value]="mode.mode">
+      {{ mode.title }}
+    </mat-radio-button>
+  </mat-radio-group>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.animal">Play</button>
+  <button mat-button (click)="playHandler()">Play</button>
+  <button mat-button [mat-dialog-close]="modeSelected">Cancel</button>
 </div>

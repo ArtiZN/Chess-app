@@ -29,7 +29,7 @@ export class FindGameDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  onNoClick(): void {
+  playHandler(): void {
     console.log(this.modeSelected);
     // this.dialogRef.close();
   }
