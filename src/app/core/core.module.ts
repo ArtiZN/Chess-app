@@ -25,6 +25,7 @@ import { CheakersGameComponent } from '@core/components/cheakers-game/cheakers-g
 import { ChessGameComponent } from '@core/components/chess-game/chess-game.component';
 import { SharedModule } from '@shared/shared.module';
 import { FindGameComponent } from './components/find-game/find-game.component';
+import { FindGameDialogComponent } from './material-dialogs/find-game-dialog/find-game-dialog.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,11 @@ import { FindGameComponent } from './components/find-game/find-game.component';
     NotFoundComponent,
     CheakersGameComponent,
     ChessGameComponent,
-    FindGameComponent
+    FindGameComponent,
+    FindGameDialogComponent
+  ],
+  entryComponents: [
+    FindGameDialogComponent
   ],
   providers: [
     ChatService,
