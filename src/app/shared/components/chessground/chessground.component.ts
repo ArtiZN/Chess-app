@@ -19,6 +19,7 @@ import {
   toColor,
   toDests,
   opPlay,
+  aiPlay,
   defConfig
 } from '@core/utils/chess.utils';
 import { MoveConfig, GameConfig } from '@core/interfaces/socketIO.interfaces';
@@ -54,8 +55,8 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       movable: {
         events: {
           // after: playOtherSide(cg, chess, this.cgMove)
-          // after: aiPlay(cg, chess, 1000, false)
-          after: opPlay(this.cg, this.chess, this.cgMove)
+          after: aiPlay(this.cg, this.chess, 1000, false)
+          // after: opPlay(this.cg, this.chess, this.cgMove)
         }
       }
     });
@@ -65,23 +66,24 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
     private chessService: ChessGameService) { }
 
   ngOnInit() {
-    this.chessService.initSocket();
+    // this.chessService.initSocket();
 
-    this.movesSubscription = this.chessService.moves.subscribe((move: MoveConfig) => {
-      this.makeMove(move);
-    });
-    this.gameSubscription = this.chessService.messages.subscribe((message: GameConfig) => {
-      this.chessService.gameId = message.gameId;
-      this.gameId = message.gameId;
-      this.orientation = message.color;
-      this.initChessground();
-    });
+    // this.movesSubscription = this.chessService.moves.subscribe((move: MoveConfig) => {
+    //   this.makeMove(move);
+    // });
+    // this.gameSubscription = this.chessService.messages.subscribe((message: GameConfig) => {
+    //   this.chessService.gameId = message.gameId;
+    //   this.gameId = message.gameId;
+    //   this.orientation = message.color;
+    //   this.initChessground();
+    // });
+    this.initChessground();
   }
 
   ngOnDestroy() {
-    this.chessService.destroySocket();
-    this.movesSubscription.unsubscribe();
-    this.gameSubscription.unsubscribe();
+    // this.chessService.destroySocket();
+    // this.movesSubscription.unsubscribe();
+    // this.gameSubscription.unsubscribe();
   }
 
   makeMove({ from, to }: { from: Key, to: Key }) {

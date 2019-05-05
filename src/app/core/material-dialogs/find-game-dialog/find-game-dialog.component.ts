@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { Router } from '@angular/router';
 
 export interface DialogData {
   animal: string;
@@ -24,7 +25,8 @@ export class FindGameDialogComponent implements OnInit {
   }];
 
   constructor(
-    public dialogRef: MatDialogRef<FindGameDialogComponent>
+    private router: Router,
+    private dialogRef: MatDialogRef<FindGameDialogComponent>
   ) {}
 
   ngOnInit() {
@@ -32,6 +34,8 @@ export class FindGameDialogComponent implements OnInit {
 
   playHandler(): void {
     this.showSpinner = true;
+    this.dialogRef.close();
+    this.router.navigate(['/chess']);
   }
 
   calcelHandler(): void {
