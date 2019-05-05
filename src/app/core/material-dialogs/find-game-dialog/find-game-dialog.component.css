@@ -4,6 +4,7 @@
 
 .mat-dialog-content {
   padding-top: 8px;
+  overflow: hidden;
 }
 
 .mat-button {

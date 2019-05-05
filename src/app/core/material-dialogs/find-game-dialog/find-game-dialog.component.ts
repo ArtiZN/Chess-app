@@ -13,7 +13,8 @@ export interface DialogData {
 })
 export class FindGameDialogComponent implements OnInit {
 
-  modeSelected: string;
+  showSpinner = false;
+  modeSelected = 'bot';
   modes = [{
     title: 'Play with the machine',
     mode: 'bot'
@@ -30,7 +31,11 @@ export class FindGameDialogComponent implements OnInit {
   }
 
   playHandler(): void {
-    console.log(this.modeSelected);
-    // this.dialogRef.close();
+    this.showSpinner = true;
+  }
+
+  calcelHandler(): void {
+    this.showSpinner = false;
+    this.dialogRef.close();
   }
 }
