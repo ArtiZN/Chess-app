@@ -13,18 +13,21 @@ import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 })
 export class ChessGameComponent implements OnInit {
 
+  gameMode: string = null;
   data: ChessMove[] = [{ N: 1 }];
 
   constructor(
     private chessService: ChessGameService) { }
 
   ngOnInit() {
-    console.log(this.chessService.gameMode);
+    this.gameMode = this.chessService.gameMode;
   }
 
   cgMove($event: MoveConfig) {
     this.updateData($event);
-    // this.chessService.emitEvent('makeMove', Object.assign($event, { room: this.chessService.gameId }));
+    if (this.gameMode === 'live') {
+      this.chessService.emitEvent('makeMove', Object.assign($event, { room: this.chessService.gameId }));
+    }
   }
 
   updateData({ to, turn }: { to: Key, turn: string }) {

@@ -6,7 +6,8 @@ import {
   ViewEncapsulation,
   Output,
   EventEmitter,
-  OnDestroy
+  OnDestroy,
+  Input
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -49,41 +50,50 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
   @Output()
   cgMove = new EventEmitter<ChessMove>();
 
+  @Input()
+  gameMode: string;
+
   private initChessground() {
-    this.cg = Chessground(this.chessBoard.nativeElement, defConfig(this.chess, this.orientation));
-    this.cg.set({
-      movable: {
-        events: {
-          // after: playOtherSide(cg, chess, this.cgMove)
-          after: aiPlay(this.cg, this.chess, 1000, false)
-          // after: opPlay(this.cg, this.chess, this.cgMove)
+    if (!this.cg) {
+      this.cg = Chessground(this.chessBoard.nativeElement, defConfig(this.chess, this.orientation));
+      this.cg.set({
+        movable: {
+          events: {
+            // after: playOtherSide(cg, chess, this.cgMove)
+            after: (this.gameMode === 'live') ? opPlay(this.cg, this.chess, this.cgMove) : aiPlay(this.cg, this.chess, 1000, false)
+            // after: opPlay(this.cg, this.chess, this.cgMove)
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   constructor(
     private chessService: ChessGameService) { }
 
   ngOnInit() {
-    // this.chessService.initSocket();
+    if (this.gameMode === 'live') {
+      this.chessService.initSocket();
 
-    // this.movesSubscription = this.chessService.moves.subscribe((move: MoveConfig) => {
-    //   this.makeMove(move);
-    // });
-    // this.gameSubscription = this.chessService.messages.subscribe((message: GameConfig) => {
-    //   this.chessService.gameId = message.gameId;
-    //   this.gameId = message.gameId;
-    //   this.orientation = message.color;
-    //   this.initChessground();
-    // });
+      this.movesSubscription = this.chessService.moves.subscribe((move: MoveConfig) => {
+        this.makeMove(move);
+      });
+      this.gameSubscription = this.chessService.messages.subscribe((message: GameConfig) => {
+        this.chessService.gameId = message.gameId;
+        this.gameId = message.gameId;
+        this.orientation = message.color;
+        this.initChessground();
+      });
+    }
     this.initChessground();
   }
 
   ngOnDestroy() {
-    // this.chessService.destroySocket();
-    // this.movesSubscription.unsubscribe();
-    // this.gameSubscription.unsubscribe();
+    if (this.gameMode === 'live') {
+      this.chessService.destroySocket();
+      this.movesSubscription.unsubscribe();
+      this.gameSubscription.unsubscribe();
+    }
   }
 
   makeMove({ from, to }: { from: Key, to: Key }) {
