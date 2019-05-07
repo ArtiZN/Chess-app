@@ -34,7 +34,12 @@ export class FindGameDialogComponent implements OnInit {
     this.showSpinner = true;
     this.dialogRef.close();
     this.chessService.gameMode = this.modeSelected;
-    this.router.navigate(['/chess']);
+    if (this.modeSelected === 'bot') {
+      this.router.navigate(['/chess']);
+    } else {
+      this.router.navigate(['/chess']);
+
+    }
   }
 
   calcelHandler(): void {
