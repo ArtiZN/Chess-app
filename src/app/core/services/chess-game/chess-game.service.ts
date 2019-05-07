@@ -40,5 +40,6 @@ export class ChessGameService {
 
   destroySocket() {
     this.wsService.closeConnection();
+    this._gameId = null;
   }
 }
