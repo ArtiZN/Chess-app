@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Color } from 'chessground/types';
 
 import { MoveConfig, GameConfig } from '@core/interfaces/socketIO.interfaces';
 import { WebsocketService } from '@core/services/websocket/websocket.service';
@@ -10,26 +11,19 @@ export class ChessGameService {
 
   private _gameId: string = null;
   private _gameMode: string = null;
+  private _oir: Color = null;
 
-  get moves(): Observable<MoveConfig> {
-    return this.wsService.getMoveMessages();
-  }
+  get moves(): Observable<MoveConfig> { return this.wsService.getMoveMessages(); }
+  get messages(): Observable<GameConfig> { return this.wsService.getMessages(); }
 
-  get messages(): Observable<GameConfig> {
-    return this.wsService.getMessages();
-  }
+  get gameId(): string { return this._gameId; }
+  set gameId(id) { this._gameId = id; }
 
-  set gameId(id) {
-    this._gameId = id;
-  }
+  get gameMode(): string { return this._gameMode; }
+  set gameMode(mode: string) { this._gameMode = mode; }
 
-  get gameMode(): string {
-    return this._gameMode;
-  }
-
-  set gameMode(mode: string) {
-    this._gameMode = mode;
-  }
+  get ori(): Color { return this._oir; }
+  set ori(or: Color) { this._oir = or; }
 
   constructor(
     private wsService: WebsocketService,
