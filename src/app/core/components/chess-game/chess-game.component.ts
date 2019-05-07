@@ -18,7 +18,9 @@ export class ChessGameComponent implements OnInit {
   constructor(
     private chessService: ChessGameService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.chessService.gameMode);
+  }
 
   cgMove($event: MoveConfig) {
     this.updateData($event);

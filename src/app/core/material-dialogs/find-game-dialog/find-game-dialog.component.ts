@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import { ChessGameService } from '@core/services/chess-game/chess-game.service'
 
 @Component({
   selector: 'app-find-game-dialog',
@@ -26,6 +23,7 @@ export class FindGameDialogComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private chessService: ChessGameService,
     private dialogRef: MatDialogRef<FindGameDialogComponent>
   ) {}
 
@@ -35,6 +33,7 @@ export class FindGameDialogComponent implements OnInit {
   playHandler(): void {
     this.showSpinner = true;
     this.dialogRef.close();
+    this.chessService.gameMode = this.modeSelected;
     this.router.navigate(['/chess']);
   }
 

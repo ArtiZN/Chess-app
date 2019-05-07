@@ -9,6 +9,7 @@ import { UserService } from '@core/mock-backend/services/user.service';
 export class ChessGameService {
 
   private _gameId: string = null;
+  private _gameMode: string = null;
 
   get moves(): Observable<MoveConfig> {
     return this.wsService.getMoveMessages();
@@ -20,6 +21,14 @@ export class ChessGameService {
 
   set gameId(id) {
     this._gameId = id;
+  }
+
+  get gameMode(): string {
+    return this._gameMode;
+  }
+
+  set gameMode(mode: string) {
+    this._gameMode = mode;
   }
 
   constructor(
