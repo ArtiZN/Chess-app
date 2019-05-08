@@ -23,7 +23,7 @@ import {
   aiPlay,
   defConfig
 } from '@core/utils/chess.utils';
-import { MoveConfig, GameConfig } from '@core/interfaces/socketIO.interfaces';
+import { MoveConfig } from '@core/interfaces/socketIO.interfaces';
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 

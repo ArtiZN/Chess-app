@@ -3,27 +3,28 @@ import { Observable } from 'rxjs';
 import { Color } from 'chessground/types';
 
 import { MoveConfig, GameConfig } from '@core/interfaces/socketIO.interfaces';
+import { GameID, Mode } from '@core/interfaces/game.interafces';
 import { WebsocketService } from '@core/services/websocket/websocket.service';
 import { UserService } from '@core/mock-backend/services/user.service';
 
 @Injectable()
 export class ChessGameService {
 
-  private _gameId: string = null;
-  private _gameMode: string = null;
-  private _oir: Color = null;
+  private _gameID: GameID = null;
+  private _mode: Mode = null;
+  private _orientation: Color = null;
 
-  get moves(): Observable<MoveConfig> { return this.wsService.getMoveMessages(); }
-  get messages(): Observable<GameConfig> { return this.wsService.getMessages(); }
+  get $moves(): Observable<MoveConfig> { return this.wsService.getMoveMessages(); }
+  get $messages(): Observable<GameConfig> { return this.wsService.getMessages(); }
 
-  get gameId(): string { return this._gameId; }
-  set gameId(id) { this._gameId = id; }
+  get gameID(): GameID { return this._gameID; }
+  set gameID(id: GameID) { this._gameID = id; }
 
-  get gameMode(): string { return this._gameMode; }
-  set gameMode(mode: string) { this._gameMode = mode; }
+  get mode(): Mode { return this._mode; }
+  set mode(mode: Mode) { this._mode = mode; }
 
-  get ori(): Color { return this._oir; }
-  set ori(or: Color) { this._oir = or; }
+  get orientation(): Color { return this._orientation; }
+  set orientation(orien: Color) { this._orientation = orien; }
 
   constructor(
     private wsService: WebsocketService,
@@ -35,11 +36,13 @@ export class ChessGameService {
   }
 
   emitEvent(event: string, data: any) {
-    this.wsService.emitEvent(event, Object.assign(data, { room: this._gameId }));
+    this.wsService.emitEvent(event, Object.assign(data, { room: this._gameID }));
   }
 
   destroySocket() {
+    this._gameID = null;
+    this._mode = null;
+    this._orientation = null;
     this.wsService.closeConnection();
-    this._gameId = null;
   }
 }
