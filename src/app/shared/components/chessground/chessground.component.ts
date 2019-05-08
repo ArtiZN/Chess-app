@@ -67,10 +67,8 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
         console.log('Move', move);
         this.makeMove(move);
       });
-      this.initChessground();
-    } else {
-      this.initChessground();
     }
+    this.initChessground();
   }
 
   ngOnDestroy() {
