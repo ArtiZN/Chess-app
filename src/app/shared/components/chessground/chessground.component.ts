@@ -6,13 +6,12 @@ import {
   ViewEncapsulation,
   Output,
   EventEmitter,
-  OnDestroy,
-  Input
+  OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Chessground } from 'chessground';
-import { Color, Key } from 'chessground/types';
+import { Key } from 'chessground/types';
 import { Api } from 'chessground/api';
 import * as Chess from 'chess.js';
 
@@ -25,6 +24,7 @@ import {
 } from '@core/utils/chess.utils';
 import { MoveConfig } from '@core/interfaces/socketIO.interfaces';
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
+import { GameModes } from '@core/interfaces/game.interafces';
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 
 @Component({
@@ -40,37 +40,29 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
   private chess: Chess = new Chess();
   private cg: Api = null;
 
-  orientation: Color;
-  gameId: string = null;
-
   @ViewChild('chessBoard')
   chessBoard: ElementRef;
 
   @Output()
   cgMove = new EventEmitter<ChessMove>();
 
-  @Input()
-  gameMode: string;
-
-  private initChessground() {
-    if (!this.cg) {
-      this.cg = Chessground(this.chessBoard.nativeElement, defConfig(this.chess, this.orientation));
-      this.cg.set({
-        movable: {
-          events: {
-            after: (this.gameMode === 'live') ? opPlay(this.cg, this.chess, this.cgMove) : aiPlay(this.cg, this.chess, 1000, false)
-          }
+  private initChessground(): void {
+    this.cg = Chessground(this.chessBoard.nativeElement, defConfig(this.chess, this.chessService.orientation));
+    this.cg.set({
+      movable: {
+        events: {
+          after: (this.chessService.mode === GameModes.LIVE) ?
+            opPlay(this.cg, this.chess, this.cgMove) : aiPlay(this.cg, this.chess, 1000, false)
         }
-      });
-    }
+      }
+    });
   }
 
   constructor(
     private chessService: ChessGameService) { }
 
   ngOnInit() {
-    if (this.gameMode === 'live') {
-      this.orientation = this.chessService.orientation;
+    if (this.chessService.mode === GameModes.LIVE) {
       this.movesSubscription = this.chessService.$moves.subscribe((move: MoveConfig) => {
         console.log('Move', move);
         this.makeMove(move);
@@ -82,13 +74,13 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.gameMode === 'live') {
+    if (this.chessService.mode === GameModes.LIVE) {
       this.chessService.destroySocket();
       this.movesSubscription.unsubscribe();
     }
   }
 
-  makeMove({ from, to }: { from: Key, to: Key }) {
+  makeMove({ from, to }: { from: Key, to: Key }): void {
     this.chess.move({ from, to });
     this.cg.move(from, to);
     this.cg.set({

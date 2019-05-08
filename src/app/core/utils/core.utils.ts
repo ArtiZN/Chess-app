@@ -29,3 +29,5 @@ export const appendToObj = (obj: object, prop: string, value: any) => {
   }
   return obj;
 };
+
+export const partial = (fn, ...args) => (...rest) => fn(...args.concat(rest));

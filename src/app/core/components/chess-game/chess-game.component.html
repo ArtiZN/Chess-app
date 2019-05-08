@@ -3,7 +3,6 @@
 <div class="chess-ui">
   <div class="chess-container">
     <app-chessground
-      [gameMode]="gameMode"
       (cgMove)="cgMove($event)"></app-chessground>
     <app-moves-table
       [data]="data"></app-moves-table>
