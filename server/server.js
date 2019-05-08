@@ -52,13 +52,13 @@ server.listen(port, () => {
       const user1 = users.getUser(pair[0]);
       const user2 = users.getUser(pair[1]);
       if (!user1.inGame && !user2.inGame) {
-        const gameId = uuidv4();
-        pair.forEach((socketId, index) => {
-          io.sockets.connected[socketId].join(gameId);
-          users.updateUser(socketId, { inGame: true, gameId });
+        const gameID = uuidv4();
+        pair.forEach((socketID) => {
+          io.sockets.connected[socketID].join(gameID);
+          users.updateUser(socketID, { inGame: true, gameID });
         });
-        pair.forEach((socketId, index) => {
-          io.to(socketId).emit(socketEvents.socketEvents_O.gameCreated, { gameId, color: index == 0 ? 'white' : 'black' });
+        pair.forEach((socketID, index) => {
+          io.to(socketID).emit(socketEvents.socketEvents_O.gameCreated, { gameID, orientation: index == 0 ? 'white' : 'black' });
         });
       }
     }

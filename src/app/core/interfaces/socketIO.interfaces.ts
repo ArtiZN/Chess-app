@@ -1,8 +1,10 @@
 import { Color, Key } from 'chessground/types';
 
+import { GameID } from './game.interafces';
+
 export interface GameConfig {
-  gameId: string;
-  color: Color;
+  gameID: GameID;
+  orientation: Color;
 }
 
 export interface MoveConfig {

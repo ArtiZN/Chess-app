@@ -20,13 +20,13 @@ export class ChessGameComponent implements OnInit {
     private chessService: ChessGameService) { }
 
   ngOnInit() {
-    this.gameMode = this.chessService.gameMode;
+    this.gameMode = this.chessService.mode;
   }
 
   cgMove($event: MoveConfig) {
     this.updateData($event);
     if (this.gameMode === 'live') {
-      this.chessService.emitEvent('makeMove', Object.assign($event, { room: this.chessService.gameId }));
+      this.chessService.emitEvent('makeMove', Object.assign($event, { room: this.chessService.gameID }));
     }
   }
 

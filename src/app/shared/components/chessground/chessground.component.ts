@@ -36,7 +36,6 @@ import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 export class ChessgroundComponent implements OnInit, OnDestroy {
 
   private movesSubscription: Subscription;
-  // private gameSubscription: Subscription;
 
   private chess: Chess = new Chess();
   private cg: Api = null;
@@ -59,9 +58,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       this.cg.set({
         movable: {
           events: {
-            // after: playOtherSide(cg, chess, this.cgMove)
             after: (this.gameMode === 'live') ? opPlay(this.cg, this.chess, this.cgMove) : aiPlay(this.cg, this.chess, 1000, false)
-            // after: opPlay(this.cg, this.chess, this.cgMove)
           }
         }
       });
@@ -73,21 +70,11 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.gameMode === 'live') {
-      // this.chessService.initSocket();
-
-      this.orientation = this.chessService.ori;
-
-      this.movesSubscription = this.chessService.moves.subscribe((move: MoveConfig) => {
+      this.orientation = this.chessService.orientation;
+      this.movesSubscription = this.chessService.$moves.subscribe((move: MoveConfig) => {
         console.log('Move', move);
         this.makeMove(move);
       });
-      // this.gameSubscription = this.chessService.messages.subscribe((message: GameConfig) => {
-      //   console.log('Create game', message);
-      //   this.chessService.gameId = message.gameId;
-      //   this.gameId = message.gameId;
-      //   this.orientation = message.color;
-      //   this.initChessground();
-      // });
       this.initChessground();
     } else {
       this.initChessground();
@@ -98,7 +85,6 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
     if (this.gameMode === 'live') {
       this.chessService.destroySocket();
       this.movesSubscription.unsubscribe();
-      // this.gameSubscription.unsubscribe();
     }
   }
 
