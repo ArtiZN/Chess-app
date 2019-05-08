@@ -5,3 +5,8 @@ export interface ModeListItem {
   title: string;
   mode: Mode;
 }
+
+export enum GameModes {
+  BOT = 'bot',
+  LIVE = 'live'
+}

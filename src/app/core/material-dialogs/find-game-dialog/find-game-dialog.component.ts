@@ -3,10 +3,9 @@ import { MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-// import { Color } from 'chessground/types';
-
-import { Mode, ModeListItem } from '@core/interfaces/game.interafces';
+import { Mode, ModeListItem, GameModes } from '@core/interfaces/game.interafces';
 import { GameConfig } from '@core/interfaces/socketIO.interfaces';
+import { findGameTimeout } from '@core/constants/timeout.constants';
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 
 @Component({
@@ -34,30 +33,37 @@ export class FindGameDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<FindGameDialogComponent>
   ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   playHandler(): void {
     this.showSpinner = true;
     this.chessService.mode = this.modeSelected;
-    if (this.modeSelected === 'bot') {
-      this.dialogRef.close();
-      this.router.navigate(['/chess']);
-    } else {
-      this.chessService.initSocket();
-      this.gameSubscription = this.chessService.$messages.subscribe((config: GameConfig) => {
-        console.log('Create game', config);
-        this.chessService.orientation = config.orientation;
-        this.chessService.gameID = config.gameID;
-      });
-      const interval = setInterval(() => {
-        if (this.chessService.gameID) {
-          clearInterval(interval);
-          this.gameSubscription.unsubscribe();
-          this.dialogRef.close();
-          this.router.navigate(['/chess']);
-        }
-      }, 1000);
+
+    switch (this.modeSelected) {
+      case GameModes.BOT: {
+        this.dialogRef.close();
+        this.router.navigate(['/chess']);
+        break;
+      }
+      case GameModes.LIVE: {
+        this.chessService.initSocket();
+        this.gameSubscription = this.chessService.$messages.subscribe((config: GameConfig) => {
+          console.log('Create game', config);
+          this.chessService.orientation = config.orientation;
+          this.chessService.gameID = config.gameID;
+        });
+        const interval = setInterval(() => {
+          if (this.chessService.gameID) {
+            clearInterval(interval);
+            this.gameSubscription.unsubscribe();
+            this.dialogRef.close();
+            this.router.navigate(['/chess']);
+          }
+        }, findGameTimeout);
+        break;
+      }
+      default:
+        throw new Error('Error while setting game mode.');
     }
   }
 
