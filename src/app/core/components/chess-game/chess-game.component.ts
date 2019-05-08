@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import * as _ from 'lodash';
 import { Key } from 'chessground/types';
 
