@@ -16,13 +16,17 @@ export class WebsocketService {
   }
 
   private disconnect() {
-    this.socket.close();
+    if (this.socket) {
+      this.socket.close();
+    }
   }
 
   constructor() {}
 
   emitEvent(event: string, data: any) {
-    this.socket.emit(event, data);
+    if (this.socket) {
+      this.socket.emit(event, data);
+    }
   }
 
   getMessages: Function = () => {

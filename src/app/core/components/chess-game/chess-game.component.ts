@@ -5,7 +5,6 @@ import { Key } from 'chessground/types';
 
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 import { MoveConfig } from '@core/interfaces/socketIO.interfaces';
-import { GameModes } from '@core/interfaces/game.interafces';
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 
 @Component({
@@ -24,9 +23,7 @@ export class ChessGameComponent implements OnInit {
 
   cgMove($event: MoveConfig) {
     this.updateData($event);
-    if (this.chessService.mode === GameModes.LIVE) {
-      this.chessService.emitEvent('makeMove', Object.assign($event, { room: this.chessService.gameID }));
-    }
+    this.chessService.emitEvent('makeMove', Object.assign($event, { room: this.chessService.gameID }));
   }
 
   updateData({ to, turn }: { to: Key, turn: string }) {
