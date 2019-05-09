@@ -12,7 +12,7 @@ export class ChessGameService {
 
   private _gameID: GameID = null;
   private _mode: Mode = null;
-  private _orientation: Color = null;
+  private _orientation: Color = 'white';
 
   get $moves(): Observable<MoveConfig> { return this.wsService.getMoveMessages(); }
   get $messages(): Observable<GameConfig> { return this.wsService.getMessages(); }
@@ -42,7 +42,7 @@ export class ChessGameService {
   destroySocket() {
     this._gameID = null;
     this._mode = null;
-    this._orientation = null;
+    this._orientation = 'white';
     this.wsService.closeConnection();
   }
 }

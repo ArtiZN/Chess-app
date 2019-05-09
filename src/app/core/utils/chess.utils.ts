@@ -27,6 +27,11 @@ export function defConfig(chess: Chess, orien: Color): Config {
   };
 }
 
+export function isPromotion(chess: Chess) {
+  const moves = chess.moves({ verbode: true });
+  return moves.some(m => m.includes('='));
+}
+
 export function toDests(chess: Chess) {
   const dests = {};
   chess.SQUARES.forEach(s => {
@@ -62,6 +67,8 @@ export function playOtherSide(cg: Api, chess: Chess, cgMove = null) {
 export function aiPlay(cg: Api, chess: Chess, delay: number, firstMove: boolean) {
   return (orig, dest) => {
     chess.move({from: orig, to: dest});
+    console.log(cg, isPromotion(chess));
+    // cg.newPiece({ role: 'queen', color: 'white', promoted: true}, 'd5');
     setTimeout(() => {
       const moves = chess.moves({ verbose: true });
       const move = firstMove ? moves[0] : moves[Math.floor(Math.random() * moves.length)];

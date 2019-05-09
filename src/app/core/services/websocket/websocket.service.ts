@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { EMPTY } from 'rxjs';
 import { environment } from '@environment';
 
 import * as io from 'socket.io-client';
@@ -30,19 +31,27 @@ export class WebsocketService {
   }
 
   getMessages: Function = () => {
-    return Observable.create((observer) => {
-      this.socket.on('gameCreated', (message: GameConfig) => {
-        observer.next(message);
+    if (this.socket) {
+      return Observable.create((observer) => {
+        this.socket.on('gameCreated', (message: GameConfig) => {
+          observer.next(message);
+        });
       });
-    });
+    } else {
+      return EMPTY;
+    }
   }
 
   getMoveMessages: Function = () => {
-    return Observable.create((observer) => {
-      this.socket.on('moveMade', (move: MoveConfig) => {
-        observer.next(move);
+    if (this.socket) {
+      return Observable.create((observer) => {
+        this.socket.on('moveMade', (move: MoveConfig) => {
+          observer.next(move);
+        });
       });
-    });
+    } else {
+      return EMPTY;
+    }
   }
 
   closeConnection() { this.disconnect(); }
