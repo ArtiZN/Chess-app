@@ -12,6 +12,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 import { Chessground } from 'chessground';
 import { Key } from 'chessground/types';
@@ -100,10 +101,11 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
     const factory = this.resolver.resolveComponentFactory(PromotionChoiceComponent);
     this.promotinRef = this.entry.createComponent(factory);
     this.promotinRef.instance.top = top + 'px';
-    this.promotinRef.instance.promotion.subscribe(p => {
-      console.log(p);
-      this.destroyComponent();
-    });
+    this.promotinRef.instance.promotion
+      .pipe(take(1))
+      .subscribe((p: string) => {
+        this.destroyComponent();
+      });
   }
 
   destroyComponent() {
