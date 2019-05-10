@@ -1,4 +1,3 @@
-import { PromotionChoiceComponent } from './../promotion-choice/promotion-choice.component';
 import {
   Component,
   OnInit,
@@ -7,7 +6,6 @@ import {
   ViewContainerRef,
   ComponentFactoryResolver,
   ComponentRef,
-  ComponentFactory,
   ViewEncapsulation,
   Output,
   EventEmitter,
@@ -31,6 +29,7 @@ import { MoveConfig } from '@core/interfaces/socketIO.interfaces';
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 import { GameModes } from '@core/interfaces/game.interafces';
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
+import { PromotionChoiceComponent } from '@shared/components/promotion-choice/promotion-choice.component';
 
 @Component({
   selector: 'app-chessground',
@@ -40,8 +39,8 @@ import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 })
 export class ChessgroundComponent implements OnInit, OnDestroy {
 
+  private promotinRef: ComponentRef<PromotionChoiceComponent>;
   private movesSubscription: Subscription;
-
   private chess: Chess = new Chess();
   private cg: Api = null;
 
@@ -99,11 +98,15 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
   createComponent(top: number) {
     this.entry.clear();
     const factory = this.resolver.resolveComponentFactory(PromotionChoiceComponent);
-    const componentRef = this.entry.createComponent(factory);
-    componentRef.instance.top = top + 'px';
+    this.promotinRef = this.entry.createComponent(factory);
+    this.promotinRef.instance.top = top + 'px';
+    this.promotinRef.instance.promotion.subscribe(p => {
+      console.log(p);
+      this.destroyComponent();
+    });
   }
 
-  // destroyComponent() {
-  //   this.componentRef.destroy();
-  // }
+  destroyComponent() {
+    this.promotinRef.destroy();
+  }
 }

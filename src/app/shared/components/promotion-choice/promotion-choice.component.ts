@@ -1,4 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
 
 @Component({
   selector: 'app-promotion-choice',
@@ -10,9 +16,16 @@ export class PromotionChoiceComponent implements OnInit {
   @Input()
   top: string;
 
+  @Output()
+  promotion = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  promotionHandler(type) {
+    this.promotion.emit(type);
   }
 
 }
