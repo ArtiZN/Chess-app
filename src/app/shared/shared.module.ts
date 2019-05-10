@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NgxAutoScrollModule } from 'ngx-auto-scroll';
-
 import { MaterialModule } from './../material/material.module';
 import { ChessgroundComponent } from '@shared/components/chessground/chessground.component';
 import { MovesTableComponent } from '@shared/components/moves-table/moves-table.component';
@@ -15,11 +13,11 @@ import { AvatarIconComponent } from '@shared/components/avatar-icon/avatar-icon.
 import { MostSuccessfullGamesComponent } from '@shared/components/most-successfull-games/most-successfull-games.component';
 import { AccountInfoComponent } from '@shared/components/account-info/account-info.component';
 import { FideLeaderboardComponent } from '@shared/components/fide-leaderboard/fide-leaderboard.component';
+import { PromotionChoiceComponent } from './components/promotion-choice/promotion-choice.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    NgxAutoScrollModule,
     MaterialModule
   ],
   exports: [
@@ -30,6 +28,7 @@ import { FideLeaderboardComponent } from '@shared/components/fide-leaderboard/fi
     MostSuccessfullGamesComponent,
     AccountInfoComponent,
     FideLeaderboardComponent,
+    PromotionChoiceComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
@@ -44,6 +43,7 @@ import { FideLeaderboardComponent } from '@shared/components/fide-leaderboard/fi
     MostSuccessfullGamesComponent,
     AccountInfoComponent,
     FideLeaderboardComponent,
+    PromotionChoiceComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
