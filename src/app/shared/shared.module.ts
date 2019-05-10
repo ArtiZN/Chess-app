@@ -49,6 +49,9 @@ import { PromotionChoiceComponent } from './components/promotion-choice/promotio
     CheakerKingComponent,
     SpaceComponent,
     CheakersGameBoardComponent
+  ],
+  entryComponents: [
+    PromotionChoiceComponent
   ]
 })
 export class SharedModule { }

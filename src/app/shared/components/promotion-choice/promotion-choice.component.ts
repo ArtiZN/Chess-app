@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-promotion-choice',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./promotion-choice.component.css']
 })
 export class PromotionChoiceComponent implements OnInit {
+
+  @Input()
+  top: string;
 
   constructor() { }
 

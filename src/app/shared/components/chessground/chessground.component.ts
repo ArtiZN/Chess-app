@@ -1,8 +1,13 @@
+import { PromotionChoiceComponent } from './../promotion-choice/promotion-choice.component';
 import {
   Component,
   OnInit,
   ElementRef,
   ViewChild,
+  ViewContainerRef,
+  ComponentFactoryResolver,
+  ComponentRef,
+  ComponentFactory,
   ViewEncapsulation,
   Output,
   EventEmitter,
@@ -43,6 +48,9 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
   @ViewChild('chessBoard')
   chessBoard: ElementRef;
 
+  @ViewChild('promotionContainer', { read: ViewContainerRef })
+  entry: ViewContainerRef;
+
   @Output()
   cgMove = new EventEmitter<ChessMove>();
 
@@ -59,6 +67,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
   }
 
   constructor(
+    private resolver: ComponentFactoryResolver,
     private chessService: ChessGameService) { }
 
   ngOnInit() {
@@ -67,6 +76,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       this.makeMove(move);
     });
     this.initChessground();
+    this.createComponent(91);
   }
 
   ngOnDestroy() {
@@ -85,4 +95,15 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  createComponent(top: number) {
+    this.entry.clear();
+    const factory = this.resolver.resolveComponentFactory(PromotionChoiceComponent);
+    const componentRef = this.entry.createComponent(factory);
+    componentRef.instance.top = top + 'px';
+  }
+
+  // destroyComponent() {
+  //   this.componentRef.destroy();
+  // }
 }
