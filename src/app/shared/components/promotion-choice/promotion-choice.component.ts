@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
+import { Role } from 'chessground/types';
 
 @Component({
   selector: 'app-promotion-choice',
@@ -17,15 +18,15 @@ export class PromotionChoiceComponent implements OnInit {
   top: string;
 
   @Output()
-  promotion = new EventEmitter();
+  promotion = new EventEmitter<Role>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  promotionHandler(type) {
-    this.promotion.emit(type);
+  promotionHandler(role: Role) {
+    this.promotion.emit(role);
   }
 
 }

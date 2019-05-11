@@ -13,9 +13,10 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 import { Chessground } from 'chessground';
-import { Key } from 'chessground/types';
+import { Key, Role, MoveMetadata } from 'chessground/types';
 import { Api } from 'chessground/api';
 import * as Chess from 'chess.js';
 
@@ -42,6 +43,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
 
   private promotinRef: ComponentRef<PromotionChoiceComponent>;
   private movesSubscription: Subscription;
+  private promotionSubject: Subject<string> = new Subject();
   private chess: Chess = new Chess();
   private cg: Api = null;
 
@@ -60,7 +62,10 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       movable: {
         events: {
           after: (this.chessService.mode === GameModes.LIVE) ?
-            opPlay(this.cg, this.chess, this.cgMove) : aiPlay(this.cg, this.chess, 1000, false)
+            opPlay(this.cg, this.chess, this.cgMove) : aiPlay(this.cg, this.chess, 1000, false, this.promotionSubject),
+            afterNewPiece: (role: Role, key: Key, metadata: MoveMetadata) => {
+              console.log(role, key, metadata);
+            }
         }
       }
     });
@@ -76,7 +81,10 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       this.makeMove(move);
     });
     this.initChessground();
-    this.createComponent(91);
+    // this.createComponent(91);
+    this.promotionSubject.subscribe(m => {
+      this.createComponent(91);
+    });
   }
 
   ngOnDestroy() {
@@ -103,7 +111,8 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
     this.promotinRef.instance.top = top + 'px';
     this.promotinRef.instance.promotion
       .pipe(take(1))
-      .subscribe((p: string) => {
+      .subscribe((role: Role) => {
+        this.promotionSubject.next(role);
         this.destroyComponent();
       });
   }
