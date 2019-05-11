@@ -5,10 +5,10 @@ import { Color, Role } from 'chessground/types';
 import { take } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-function randomPlay(cg: Api, chess: Chess, delay: number, firstMove: boolean) {
+function randomPlay(cg: Api, chess: Chess) {
   setTimeout(() => {
     const moves = chess.moves({ verbose: true });
-    const move = firstMove ? moves[0] : moves[Math.floor(Math.random() * moves.length)];
+    const move = moves[Math.floor(Math.random() * moves.length)];
 
     chess.move(move.san);
     cg.move(move.from, move.to);
@@ -20,7 +20,7 @@ function randomPlay(cg: Api, chess: Chess, delay: number, firstMove: boolean) {
       }
     });
     cg.playPremove();
-  }, delay);
+  }, 1000);
 }
 
 export function defConfig(chess: Chess, orien: Color): Config {
@@ -90,18 +90,18 @@ export function playOtherSide(cg: Api, chess: Chess, cgMove = null) {
   };
 }
 
-export function aiPlay(cg: Api, chess: Chess, delay: number, firstMove: boolean, promotionSubject: Subject<string>) {
+export function aiPlay(cg: Api, chess: Chess, promotionSubject: Subject<string>) {
   return (orig, dest) => {
     if (isPromotion(chess)) {
       promotionSubject.next('message');
       promotionSubject.pipe(take(1)).subscribe((role: Role) => {
         cg.setPieces({ [dest]: { role , color: toColor(chess), promoted: true} });
         chess.move({ from: orig, to: dest, promotion: toPromotion(role) });
-        randomPlay(cg, chess, delay, firstMove);
+        randomPlay(cg, chess);
       });
     } else {
       chess.move({ from: orig, to: dest });
-      randomPlay(cg, chess, delay, firstMove);
+      randomPlay(cg, chess);
     }
   };
 }
