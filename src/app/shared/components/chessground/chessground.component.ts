@@ -81,10 +81,10 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       this.makeMove(move);
     });
     this.initChessground();
-    // this.createComponent(91);
     this.promotionSubject.subscribe(m => {
       this.createComponent(91);
     });
+    this.createComponent(91);
   }
 
   ngOnDestroy() {
@@ -109,6 +109,8 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
     const factory = this.resolver.resolveComponentFactory(PromotionChoiceComponent);
     this.promotinRef = this.entry.createComponent(factory);
     this.promotinRef.instance.top = top + 'px';
+    this.promotinRef.instance.color = 'w';
+    this.promotinRef.instance.column = 5;
     this.promotinRef.instance.promotion
       .pipe(take(1))
       .subscribe((role: Role) => {

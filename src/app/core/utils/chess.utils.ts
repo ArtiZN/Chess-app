@@ -5,7 +5,7 @@ import { Color, Role } from 'chessground/types';
 import { take } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-function randomPlay(cg: Api, chess: Chess) {
+const randomPlay = (cg: Api, chess: Chess) => {
   setTimeout(() => {
     const moves = chess.moves({ verbose: true });
     const move = moves[Math.floor(Math.random() * moves.length)];
@@ -21,9 +21,9 @@ function randomPlay(cg: Api, chess: Chess) {
     });
     cg.playPremove();
   }, 1000);
-}
+};
 
-export function defConfig(chess: Chess, orien: Color): Config {
+export const defConfig = (chess: Chess, orien: Color): Config => {
   return {
     orientation: orien,
     highlight: {
@@ -48,14 +48,14 @@ export function defConfig(chess: Chess, orien: Color): Config {
       change: () => {}
     }
   };
-}
+};
 
-export function isPromotion(chess: Chess) {
+export const isPromotion = (chess: Chess) => {
   const moves = chess.moves({ verbode: true });
   return moves.some(m => m.includes('='));
-}
+};
 
-export function toDests(chess: Chess) {
+export const toDests = (chess: Chess) => {
   const dests = {};
   chess.SQUARES.forEach(s => {
     const ms = chess.moves({square: s, verbose: true});
@@ -64,17 +64,12 @@ export function toDests(chess: Chess) {
     }
   });
   return dests;
-}
+};
 
-export function toColor(chess: Chess) {
-  return (chess.turn() === 'w')  ? 'white' : 'black';
-}
+export const toColor = (chess: Chess) => (chess.turn() === 'w')  ? 'white' : 'black';
+export const toPromotion = (role: Role) => role.substring(0, 1);
 
-export function toPromotion(role: Role) {
-  return role.substring(0, 1);
-}
-
-export function playOtherSide(cg: Api, chess: Chess, cgMove = null) {
+export const playOtherSide = (cg: Api, chess: Chess, cgMove = null) => {
   return (orig, dest) => {
     chess.move({from: orig, to: dest});
     cg.set({
@@ -88,12 +83,12 @@ export function playOtherSide(cg: Api, chess: Chess, cgMove = null) {
       cgMove.emit({from: orig, to: dest, turn: chess.turn() });
     }
   };
-}
+};
 
-export function aiPlay(cg: Api, chess: Chess, promotionSubject: Subject<string>) {
+export const aiPlay = (cg: Api, chess: Chess, promotionSubject: Subject<string>) => {
   return (orig, dest) => {
     if (isPromotion(chess)) {
-      promotionSubject.next('message');
+      promotionSubject.next(null);
       promotionSubject.pipe(take(1)).subscribe((role: Role) => {
         cg.setPieces({ [dest]: { role , color: toColor(chess), promoted: true} });
         chess.move({ from: orig, to: dest, promotion: toPromotion(role) });
@@ -104,13 +99,13 @@ export function aiPlay(cg: Api, chess: Chess, promotionSubject: Subject<string>)
       randomPlay(cg, chess);
     }
   };
-}
+};
 
-export function opPlay(cg: Api, chess: Chess, cgMove = null) {
+export const opPlay = (cg: Api, chess: Chess, cgMove = null) => {
   return (orig, dest) => {
     chess.move({from: orig, to: dest});
     if (cgMove) {
       cgMove.emit({from: orig, to: dest, turn: chess.turn() });
     }
   };
-}
+};

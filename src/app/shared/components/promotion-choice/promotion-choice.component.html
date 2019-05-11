@@ -1,6 +1,8 @@
 <div id="promotion-choice" class="top" [ngStyle]="{'top': top}">
-  <div style="top:0%;left:12.5%" class="promotion-choice promotion-choice-knight" (click)="promotionHandler('knight')"></div>
-  <div style="top:12.5%;left:12.5%" class="promotion-choice promotion-choice-bishop" (click)="promotionHandler('bishop')"></div>
-  <div style="top:25%;left:12.5%" class="promotion-choice promotion-choice-rook" (click)="promotionHandler('rook')"></div>
-  <div style="top:37.5%;left:12.5%" class="promotion-choice promotion-choice-queen" (click)="promotionHandler('queen')"></div>
+  <div *ngFor="let promotion of promotions; let i = index;"
+    class="promotion-choice"
+    [ngClass]="[color === 'w' ? promotion.whiteClass : promotion.blackClass]"
+    [ngStyle]="{'top': i * 12.5 + '%', 'left': column * 12.5 + '%'}"
+    (click)="promotionHandler(promotion.role)"><
+  </div>
 </div>

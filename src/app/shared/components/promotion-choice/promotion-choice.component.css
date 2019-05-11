@@ -23,18 +23,34 @@
   cursor: pointer;
 }
 
-.promotion-choice-rook {
+.promotion-choice-bR {
   background-image: url('../../../../assets/images/pieces/merida/bR.svg');
 }
 
-.promotion-choice-knight {
+.promotion-choice-bN {
   background-image: url('../../../../assets/images/pieces/merida/bN.svg');
 }
 
-.promotion-choice-bishop {
+.promotion-choice-bB {
   background-image: url('../../../../assets/images/pieces/merida/bB.svg');
 }
 
-.promotion-choice-queen {
+.promotion-choice-bQ {
   background-image: url('../../../../assets/images/pieces/merida/bQ.svg');
+}
+
+.promotion-choice-wR {
+  background-image: url('../../../../assets/images/pieces/merida/wR.svg');
+}
+
+.promotion-choice-wN {
+  background-image: url('../../../../assets/images/pieces/merida/wN.svg');
+}
+
+.promotion-choice-wB {
+  background-image: url('../../../../assets/images/pieces/merida/wB.svg');
+}
+
+.promotion-choice-wQ {
+  background-image: url('../../../../assets/images/pieces/merida/wQ.svg');
 }
