@@ -1,9 +1,27 @@
-import { take } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import * as Chess from 'chess.js';
 import { Api } from 'chessground/api';
 import { Config } from 'chessground/config';
 import { Color, Role } from 'chessground/types';
+import { take } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
+function randomPlay(cg: Api, chess: Chess, delay: number, firstMove: boolean) {
+  setTimeout(() => {
+    const moves = chess.moves({ verbose: true });
+    const move = firstMove ? moves[0] : moves[Math.floor(Math.random() * moves.length)];
+
+    chess.move(move.san);
+    cg.move(move.from, move.to);
+    cg.set({
+      turnColor: toColor(chess),
+      movable: {
+        color: toColor(chess),
+        dests: toDests(chess)
+      }
+    });
+    cg.playPremove();
+  }, delay);
+}
 
 export function defConfig(chess: Chess, orien: Color): Config {
   return {
@@ -45,12 +63,15 @@ export function toDests(chess: Chess) {
       dests[s] = ms.map(m => m.to);
     }
   });
-
   return dests;
 }
 
 export function toColor(chess: Chess) {
   return (chess.turn() === 'w')  ? 'white' : 'black';
+}
+
+export function toPromotion(role: Role) {
+  return role.substring(0, 1);
 }
 
 export function playOtherSide(cg: Api, chess: Chess, cgMove = null) {
@@ -71,29 +92,17 @@ export function playOtherSide(cg: Api, chess: Chess, cgMove = null) {
 
 export function aiPlay(cg: Api, chess: Chess, delay: number, firstMove: boolean, promotionSubject: Subject<string>) {
   return (orig, dest) => {
-    chess.move({from: orig, to: dest});
     if (isPromotion(chess)) {
       promotionSubject.next('message');
       promotionSubject.pipe(take(1)).subscribe((role: Role) => {
-        console.log(role);
-        cg.newPiece({ role, color: toColor(chess), promoted: true}, 'd5');
+        cg.setPieces({ [dest]: { role , color: toColor(chess), promoted: true} });
+        chess.move({ from: orig, to: dest, promotion: toPromotion(role) });
+        randomPlay(cg, chess, delay, firstMove);
       });
+    } else {
+      chess.move({ from: orig, to: dest });
+      randomPlay(cg, chess, delay, firstMove);
     }
-    setTimeout(() => {
-      const moves = chess.moves({ verbose: true });
-      const move = firstMove ? moves[0] : moves[Math.floor(Math.random() * moves.length)];
-
-      chess.move(move.san);
-      cg.move(move.from, move.to);
-      cg.set({
-        turnColor: toColor(chess),
-        movable: {
-          color: toColor(chess),
-          dests: toDests(chess)
-        }
-      });
-      cg.playPremove();
-    }, delay);
   };
 }
 
