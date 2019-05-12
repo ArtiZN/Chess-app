@@ -16,20 +16,16 @@ export class PromotionChoiceComponent implements OnInit {
 
   promotions = [{
     role: 'knight',
-    whiteClass: 'promotion-choice-wN',
-    blackClass: 'promotion-choice-bN'
+    mark: 'N'
   }, {
     role: 'bishop',
-    whiteClass: 'promotion-choice-wB',
-    blackClass: 'promotion-choice-bB'
+    mark: 'B'
   }, {
     role: 'rook',
-    whiteClass: 'promotion-choice-wR',
-    blackClass: 'promotion-choice-bR'
+    mark: 'R'
   }, {
     role: 'queen',
-    whiteClass: 'promotion-choice-wQ',
-    blackClass: 'promotion-choice-bQ'
+    mark: 'Q'
   }];
 
   @Input()
