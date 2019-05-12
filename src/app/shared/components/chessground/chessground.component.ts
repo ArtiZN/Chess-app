@@ -89,6 +89,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.chessService.destroySocket();
     this.movesSubscription.unsubscribe();
+    this.promotionSubject.unsubscribe();
   }
 
   makeMove({ from, to }: { from: Key, to: Key }): void {

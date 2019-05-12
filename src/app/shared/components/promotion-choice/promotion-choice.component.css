@@ -17,7 +17,7 @@
 
 .promotion-choice:hover {
   box-shadow: 0 0 48px 8px #d64f00;
-  background-color: #d64f00;
+  background-color: rgba(214, 79, 0, 0.75);
   border-radius: 0%;
   transition: all 150ms;
   background-size: 90%;
