@@ -1,7 +1,7 @@
 import * as Chess from 'chess.js';
 import { Api } from 'chessground/api';
 import { Config } from 'chessground/config';
-import { Color, Role } from 'chessground/types';
+import { Color, Role, Key } from 'chessground/types';
 import { take } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -66,6 +66,11 @@ export const toDests = (chess: Chess) => {
   return dests;
 };
 
+const toVertical = (move: Key) => {
+  const vericals = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+  return vericals.indexOf(move.substring(0, 1)) + 1;
+};
+
 export const toColor = (chess: Chess) => (chess.turn() === 'w')  ? 'white' : 'black';
 export const toPromotion = (role: Role) => role.substring(0, 1);
 
@@ -85,10 +90,10 @@ export const playOtherSide = (cg: Api, chess: Chess, cgMove = null) => {
   };
 };
 
-export const aiPlay = (cg: Api, chess: Chess, promotionSubject: Subject<string>) => {
+export const aiPlay = (cg: Api, chess: Chess, promotionSubject: Subject<any>) => {
   return (orig, dest) => {
     if (isPromotion(chess)) {
-      promotionSubject.next(null);
+      promotionSubject.next(toVertical(dest));
       promotionSubject.pipe(take(1)).subscribe((role: Role) => {
         cg.setPieces({ [dest]: { role , color: toColor(chess), promoted: true} });
         chess.move({ from: orig, to: dest, promotion: toPromotion(role) });

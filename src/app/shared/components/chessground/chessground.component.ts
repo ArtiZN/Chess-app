@@ -43,7 +43,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
 
   private promotinRef: ComponentRef<PromotionChoiceComponent>;
   private movesSubscription: Subscription;
-  private promotionSubject: Subject<string> = new Subject();
+  private promotionSubject: Subject<any> = new Subject();
   private chess: Chess = new Chess();
   private cg: Api = null;
 
@@ -81,10 +81,9 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       this.makeMove(move);
     });
     this.initChessground();
-    this.promotionSubject.subscribe(m => {
-      this.createComponent(91);
+    this.promotionSubject.subscribe((col: number) => {
+      this.createComponent(91, col - 1);
     });
-    this.createComponent(91);
   }
 
   ngOnDestroy() {
@@ -104,13 +103,13 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
     });
   }
 
-  createComponent(top: number) {
+  createComponent(top: number, column: number) {
     this.entry.clear();
     const factory = this.resolver.resolveComponentFactory(PromotionChoiceComponent);
     this.promotinRef = this.entry.createComponent(factory);
     this.promotinRef.instance.top = top + 'px';
     this.promotinRef.instance.color = 'w';
-    this.promotinRef.instance.column = 5;
+    this.promotinRef.instance.column = column;
     this.promotinRef.instance.promotion
       .pipe(take(1))
       .subscribe((role: Role) => {
