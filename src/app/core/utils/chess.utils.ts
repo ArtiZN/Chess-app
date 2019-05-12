@@ -93,7 +93,7 @@ export const playOtherSide = (cg: Api, chess: Chess, cgMove = null) => {
 export const aiPlay = (cg: Api, chess: Chess, promotionSubject: Subject<any>) => {
   return (orig, dest) => {
     if (isPromotion(chess)) {
-      promotionSubject.next(toVertical(dest));
+      promotionSubject.next({ column: toVertical(dest), color: chess.turn() });
       promotionSubject.pipe(take(1)).subscribe((role: Role) => {
         cg.setPieces({ [dest]: { role , color: toColor(chess), promoted: true} });
         chess.move({ from: orig, to: dest, promotion: toPromotion(role) });

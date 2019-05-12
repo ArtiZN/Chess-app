@@ -81,8 +81,8 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       this.makeMove(move);
     });
     this.initChessground();
-    this.promotionSubject.subscribe((col: number) => {
-      this.createComponent(91, col - 1);
+    this.promotionSubject.subscribe((col: any) => {
+      this.createComponent(91, col.column - 1, col.color);
     });
   }
 
@@ -104,12 +104,12 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
     });
   }
 
-  createComponent(top: number, column: number) {
+  createComponent(top: number, column: number, color: string) {
     this.entry.clear();
     const factory = this.resolver.resolveComponentFactory(PromotionChoiceComponent);
     this.promotinRef = this.entry.createComponent(factory);
     this.promotinRef.instance.top = top + 'px';
-    this.promotinRef.instance.color = 'w';
+    this.promotinRef.instance.color = color;
     this.promotinRef.instance.column = column;
     this.promotinRef.instance.promotion
       .pipe(take(1))
