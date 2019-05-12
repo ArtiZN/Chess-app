@@ -62,7 +62,7 @@ export class ChessgroundComponent implements OnInit, OnDestroy {
       movable: {
         events: {
           after: (this.chessService.mode === GameModes.LIVE) ?
-            opPlay(this.cg, this.chess, this.cgMove) : aiPlay(this.cg, this.chess, this.promotionSubject),
+            opPlay(this.cg, this.chess, this.cgMove) : aiPlay(this.cg, this.chess, this.promotionSubject, this.cgMove),
             afterNewPiece: (role: Role, key: Key, metadata: MoveMetadata) => {
               console.log(role, key, metadata);
             }
