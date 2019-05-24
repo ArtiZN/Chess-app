@@ -1,0 +1,45 @@
+.friend-list-container {
+  min-height: 240px;
+  max-height: 440px;
+  overflow-y: auto;
+}
+
+.online-list {
+
+}
+
+.list-block {
+  padding: 12px 24px;
+  border: 2px solid #e6e8eb;
+}
+
+.circle-marker {
+  display: inline-block;
+  height: 9px;
+  width: 9px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.online-marker {
+  background-color: rgb(15, 178, 34);
+}
+
+.offline-marker {
+  background-color: rgb(255, 28, 28);
+}
+
+.icon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+}
+
+.right-icon {
+  background: url('../../../../assets/images/icons/right.svg') center no-repeat;
+  margin-right: 8px;
+}
+
+.list-header {
+  font-size: 14px;
+}
