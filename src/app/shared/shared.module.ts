@@ -14,6 +14,7 @@ import { MostSuccessfullGamesComponent } from '@shared/components/most-successfu
 import { AccountInfoComponent } from '@shared/components/account-info/account-info.component';
 import { FideLeaderboardComponent } from '@shared/components/fide-leaderboard/fide-leaderboard.component';
 import { PromotionChoiceComponent } from './components/promotion-choice/promotion-choice.component';
+import { FriendListComponent } from './components/friend-list/friend-list.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { PromotionChoiceComponent } from './components/promotion-choice/promotio
     AccountInfoComponent,
     FideLeaderboardComponent,
     PromotionChoiceComponent,
+    FriendListComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
@@ -44,6 +46,7 @@ import { PromotionChoiceComponent } from './components/promotion-choice/promotio
     AccountInfoComponent,
     FideLeaderboardComponent,
     PromotionChoiceComponent,
+    FriendListComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
