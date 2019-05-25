@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FriendListComponent implements OnInit {
 
+  friends = [{
+    status: 'online',
+    name: 'friend 1'
+  }, {
+    status: 'online',
+    name: 'friend 2'
+  }, {
+    status: 'offline',
+    name: 'friend 3'
+  }, {
+    status: 'offline',
+    name: 'friend 4'
+  }];
+
   constructor() { }
 
   ngOnInit() {
   }
-
 }

@@ -5,12 +5,17 @@
 }
 
 .online-list {
-
+  border-bottom: none !important;
 }
 
 .list-block {
   padding: 12px 24px;
   border: 2px solid #e6e8eb;
+}
+
+.list-block:hover {
+  background-color: #ededf0;
+  cursor: pointer;
 }
 
 .circle-marker {
