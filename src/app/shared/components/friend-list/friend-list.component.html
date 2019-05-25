@@ -22,7 +22,9 @@
   <div *ngIf="offlineCollapsed">
     <div *ngFor="let friend of friends; let first = first; let last = last">
       <ng-container *ngIf="friend.status === 'offline'">
-        <div class="list-item" [ngStyle]="{ 'border-bottom': friend === last ? '2px solid #e6e8eb' : 'none'}">
+        <div
+          class="list-item"
+          [ngStyle]="{ 'border-bottom': last ? '2px solid #e6e8eb' : 'none', 'border-top': first ? 'none' : '2px solid #e6e8eb'}">
           <span class="circle-marker offline-marker"></span>
           <a>{{ friend.name }}</a>
         </div>

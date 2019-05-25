@@ -53,3 +53,8 @@
   border: 2px solid #e6e8eb;
   padding: 12px 12px 12px 84px;
 }
+
+.list-item:hover {
+  background-color: #ededf0;
+  cursor: pointer;
+}

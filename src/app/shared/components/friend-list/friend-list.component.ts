@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class FriendListComponent implements OnInit {
 
   friends = [{
+    status: 'offline',
+    name: 'friend 4'
+  }, {
     status: 'online',
     name: 'friend 1'
   }, {
@@ -16,9 +19,6 @@ export class FriendListComponent implements OnInit {
   }, {
     status: 'online',
     name: 'friend 3'
-  }, {
-    status: 'offline',
-    name: 'friend 4'
   }, {
     status: 'online',
     name: 'friend 5'
@@ -30,7 +30,7 @@ export class FriendListComponent implements OnInit {
     name: 'friend 7'
   }];
 
-  onlineCollapsed = false;
+  onlineCollapsed = true;
   offlineCollapsed = false;
 
   constructor() { }
