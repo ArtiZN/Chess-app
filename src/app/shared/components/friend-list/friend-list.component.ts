@@ -31,6 +31,7 @@ export class FriendListComponent implements OnInit {
   }];
 
   onlineCollapsed = false;
+  offlineCollapsed = false;
 
   constructor() { }
 
@@ -40,5 +41,9 @@ export class FriendListComponent implements OnInit {
   onlineClick() {
     console.log('online click');
     this.onlineCollapsed = !this.onlineCollapsed;
+  }
+
+  offlineClick() {
+    this.offlineCollapsed = !this.offlineCollapsed;
   }
 }

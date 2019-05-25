@@ -14,9 +14,19 @@
       </ng-container>
     </div>
   </div>
-  <div class="list-block offline-list">
+  <div class="list-block offline-list" (click)="offlineClick()">
     <span class="circle-marker offline-marker"></span>
     <span class="icon right-icon"></span>
     <span class="list-header">Offline friends</span>
+  </div>
+  <div *ngIf="offlineCollapsed">
+    <div *ngFor="let friend of friends; let first = first; let last = last">
+      <ng-container *ngIf="friend.status === 'offline'">
+        <div class="list-item" [ngStyle]="{ 'border-bottom': friend === last ? '2px solid #e6e8eb' : 'none'}">
+          <span class="circle-marker offline-marker"></span>
+          <a>{{ friend.name }}</a>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>
