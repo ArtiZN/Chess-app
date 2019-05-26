@@ -1,6 +1,8 @@
 .mat-elevation-z8 {
   max-height: 700px;
   overflow-y: auto;
+  transition: none !important;
+  box-shadow: none !important;
 }
 
 table {
