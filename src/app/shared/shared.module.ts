@@ -16,6 +16,7 @@ import { FideLeaderboardComponent } from '@shared/components/fide-leaderboard/fi
 import { PromotionChoiceComponent } from './components/promotion-choice/promotion-choice.component';
 import { FriendListComponent } from './components/friend-list/friend-list.component';
 import { LastGameComponent } from './components/last-game/last-game.component';
+import { ForumComponent } from './components/forum/forum.component';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { LastGameComponent } from './components/last-game/last-game.component';
     PromotionChoiceComponent,
     FriendListComponent,
     LastGameComponent,
+    ForumComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
@@ -50,11 +52,12 @@ import { LastGameComponent } from './components/last-game/last-game.component';
     PromotionChoiceComponent,
     FriendListComponent,
     LastGameComponent,
+    ForumComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
     SpaceComponent,
-    CheakersGameBoardComponent,
+    CheakersGameBoardComponent
   ],
   entryComponents: [
     PromotionChoiceComponent
