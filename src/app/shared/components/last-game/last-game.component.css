@@ -2,9 +2,17 @@
   display: flex;
 }
 
-.img-game {
-  height: 112px;
-  width: 112px;
+.header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.header span {
+  text-transform: uppercase;
+}
+
+.game-row__info {
+  margin-left: 8px;
 }
 
 .div-text-wrapper {
@@ -14,4 +22,44 @@
 
 .div-img-wrapper {
   border: 6px solid #eee;
+}
+
+.game-type {
+  font-size: 14px;
+}
+
+.time-ago {
+  margin-top: -4px;
+  font-size: 10px;
+}
+
+.div-results {
+  color: rgb(255, 28, 28);
+  text-align: center;
+}
+
+.blitz-icon {
+  margin-top: -16px;
+  height: 32px;
+  width: 32px;
+}
+
+.time-type {
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.oponent {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.oponent div {
+  margin: 0 4px;
+}
+
+.opening {
+  margin-top: 16%;
 }
