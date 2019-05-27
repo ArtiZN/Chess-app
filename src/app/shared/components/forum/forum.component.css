@@ -1,0 +1,11 @@
+.chat-image {
+  width: 24px;
+  height: 24px;
+  margin: auto 0;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+}
