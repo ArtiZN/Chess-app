@@ -9,3 +9,18 @@
   justify-content: space-between;
   padding: 0 40px;
 }
+
+.table thead th {
+  border-bottom: none;
+}
+
+.table th,
+.table td {
+  border-top: none;
+}
+
+.table th {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
