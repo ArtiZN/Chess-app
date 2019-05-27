@@ -30,12 +30,16 @@
     </mat-card>
   </div>
   <div class="div-leaderboard-card-wrapper">
-    <div class="div-table-title">
+    <!-- <div class="div-table-title">
       <mat-chip-list>
         <mat-chip color="accent" selected>Leaderboard</mat-chip>
       </mat-chip-list>
-    </div>
+    </div> -->
     <mat-card>
+      <mat-button-toggle-group value="FIDE">
+        <mat-button-toggle value="FIDE">FIDE</mat-button-toggle>
+        <mat-button-toggle value="APP">APP</mat-button-toggle>
+      </mat-button-toggle-group>
       <app-fide-leaderboard></app-fide-leaderboard>
     </mat-card>
   </div>

@@ -50,3 +50,11 @@
 .friends-list-card {
   margin-top: 24px;
 }
+
+mat-button-toggle-group {
+  margin-bottom: 8px;
+}
+
+mat-button-toggle {
+  min-width: 75px;
+}

@@ -8,3 +8,8 @@
 table {
   width: 100%;
 }
+
+.mat-table tr:hover {
+  background-color: #ededf0;
+  cursor: pointer;
+}
