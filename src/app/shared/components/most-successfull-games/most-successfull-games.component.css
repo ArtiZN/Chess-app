@@ -3,11 +3,11 @@
   width: 112px;
 }
 
-.div-text-wrapper {
+.games__info__text-wrapper {
   font-size: 10px;
   max-width: 112px;
 }
 
-.div-img-wrapper {
+.games__info__img-wrapper {
   border: 6px solid #eee;
 }
