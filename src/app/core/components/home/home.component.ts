@@ -21,6 +21,20 @@ export class HomeComponent implements OnInit {
     title: 'friend 5'
   }];
 
+  offlineFriends = [{
+    status: 'offline',
+    title: 'friend 7'
+  }, {
+    status: 'offline',
+    title: 'friend 8'
+  }, {
+    status: 'offline',
+    title: 'friend 9'
+  }, {
+    status: 'offline',
+    title: 'friend 15'
+  }];
+
   constructor() { }
 
   ngOnInit() {

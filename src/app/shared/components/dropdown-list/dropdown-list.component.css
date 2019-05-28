@@ -1,6 +1,4 @@
 .dropdown-list {
-  min-height: 240px;
-  max-height: 440px;
   overflow-y: auto;
 }
 

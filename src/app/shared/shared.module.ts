@@ -14,7 +14,7 @@ import { MostSuccessfullGamesComponent } from '@shared/components/most-successfu
 import { AccountInfoComponent } from '@shared/components/account-info/account-info.component';
 import { FideLeaderboardComponent } from '@shared/components/fide-leaderboard/fide-leaderboard.component';
 import { PromotionChoiceComponent } from './components/promotion-choice/promotion-choice.component';
-import { DropdownListComponent } from './components/friend-list/friend-list.component';
+import { DropdownListComponent } from './components/dropdown-list/dropdown-list.component';
 import { LastGameComponent } from './components/last-game/last-game.component';
 import { ForumComponent } from './components/forum/forum.component';
 

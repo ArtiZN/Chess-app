@@ -1,8 +1,8 @@
 <div class="dropdown-list">
-  <div class="dropdown-list__header" (click)="toggle()">
+  <div class="dropdown-list__header" (click)="toggle()" [ngStyle]="{'border-bottom': !isCollapsed ? '1px solid #eee' : 'none'}">
     <span class="circle-marker" [ngStyle]="{'background-color': markerColor}"></span>
     <span class="header__icon" [ngClass]="!isCollapsed ? 'right-icon' : 'down-icon'"></span>
-    <span class="header__list-title">Online friends</span>
+    <span class="header__list-title">{{ menuTitle }}</span>
   </div>
   <div *ngIf="isCollapsed" class="dropdown-list__content">
     <div *ngFor="let item of items; let i = index;"

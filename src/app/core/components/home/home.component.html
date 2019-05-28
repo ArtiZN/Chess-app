@@ -25,7 +25,12 @@
     <mat-card class="friends-list-card">
       <app-dropdown-list
         markerColor="rgb(105, 240, 174)"
+        menuTitle="Online"
         [items]="onlineFriends"></app-dropdown-list>
+      <app-dropdown-list
+        markerColor="rgb(244, 67, 54)"
+        menuTitle="Offline"
+        [items]="offlineFriends"></app-dropdown-list>
     </mat-card>
   </div>
   <div class="col-xl-5 ui-container__center">
