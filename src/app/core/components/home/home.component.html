@@ -2,40 +2,32 @@
 
 <app-find-game></app-find-game>
 
-<div class="d-flex ui-container">
-  <div class="div-profile-card-wrapper">
+<div class="d-flex flex-row ui-container">
+  <div class="col-xl-3 ui-container__left">
     <mat-card class="profile-card">
-      <div class="d-flex profile-card-header">
-        <app-avatar-icon
-          src="https://avatars0.githubusercontent.com/u/26419897?s=460&v=4"></app-avatar-icon>
-        <div class="div-profile-header">
-          <div class="div-profile-username">
-            Chiki bambuki
-          </div>
-          <div class="div-profile-status">
-            Chilling
-          </div>
+      <div class="d-flex profile-card__header">
+        <app-avatar-icon src="https://avatars0.githubusercontent.com/u/26419897?s=460&v=4"></app-avatar-icon>
+        <div class="profile-card__header-title">
+          <div class="profile-card__header-title__username">Chiki bambuki</div>
+          <div class="profile-card__header-title__status">Chilling</div>
         </div>
       </div>
-      <div class="div-profile-card-content">
-        <div class="div-content-header">
-          Most successfull openings:
+      <div class="profile-card__content">
+        <div class="profile-card__content-header">Most successfull openings:</div>
+        <div class="profile-card__content-games">
+          <app-most-successfull-games></app-most-successfull-games>
         </div>
-        <app-most-successfull-games></app-most-successfull-games>
       </div>
-      <app-account-info></app-account-info>
+      <div class="profile-card__footer">
+        <app-account-info></app-account-info>
+      </div>
     </mat-card>
     <mat-card class="friends-list-card">
       <app-friend-list></app-friend-list>
     </mat-card>
   </div>
-  <div class="div-leaderboard-card-wrapper">
-    <!-- <div class="div-table-title">
-      <mat-chip-list>
-        <mat-chip color="accent" selected>Leaderboard</mat-chip>
-      </mat-chip-list>
-    </div> -->
-    <mat-card>
+  <div class="col-xl-5 ui-container__center">
+    <mat-card class="leaderboard-card">
       <mat-button-toggle-group value="FIDE">
         <mat-button-toggle value="FIDE">FIDE</mat-button-toggle>
         <mat-button-toggle value="APP">APP</mat-button-toggle>
@@ -43,11 +35,11 @@
       <app-fide-leaderboard></app-fide-leaderboard>
     </mat-card>
   </div>
-  <div class="last-game-card-wrapper">
-    <mat-card>
+  <div class="col-xl-4 ui-container__right">
+    <mat-card class="last-game-card">
       <app-last-game></app-last-game>
     </mat-card>
-    <mat-card style="margin-top: 24px;">
+    <mat-card class="forum-card">
       <app-forum></app-forum>
     </mat-card>
   </div>

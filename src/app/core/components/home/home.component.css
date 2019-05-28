@@ -2,52 +2,37 @@
   padding: 24px;
 }
 
-.profile-card {
-  width: 420px;
-}
-
-.profile-card-header {
+.profile-card-header__header {
   background-color: #eee;
 }
 
-.mat-card-header-text {
-  padding: 0;
-}
-
-.div-profile-header {
+.profile-card__header-title {
   padding: 0 16px;
 }
 
-.div-profile-username {
+.profile-card__header-title__username {
   font-size: 18px;
 }
 
-.div-profile-status {
+.profile-card__header-title__status {
   font-size: 12px;
   color: #0fb222;
 }
 
-.div-content-header {
+.profile-card__content {
   font-size: 12px;
   margin: 8px 0;
 }
 
-.div-leaderboard-card-wrapper {
-  padding: 0 24px;
-  width: 40%
-}
-
-.mat-chip {
-  margin: 0 auto 16px auto !important;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-.mat-standard-chip {
-  border-radius: 4px;
-}
-
 .friends-list-card {
+  margin-top: 24px;
+}
+
+.ui-container__center {
+  padding: 0 24px;
+}
+
+.forum-card {
   margin-top: 24px;
 }
 
