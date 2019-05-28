@@ -23,7 +23,8 @@
       </div>
     </mat-card>
     <mat-card class="friends-list-card">
-      <app-friend-list></app-friend-list>
+      <app-dropdown-list
+        [items]="onlineFriends"></app-dropdown-list>
     </mat-card>
   </div>
   <div class="col-xl-5 ui-container__center">

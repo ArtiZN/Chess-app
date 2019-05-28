@@ -1,24 +1,20 @@
-.friend-list-container {
+.dropdown-list {
   min-height: 240px;
   max-height: 440px;
   overflow-y: auto;
 }
 
-.online-list {
-  border-bottom: none !important;
-}
-
-.list-block {
+.dropdown-list__header {
   padding: 8px 24px;
   border: 1px solid #e6e8eb;
 }
 
-.list-block:hover {
+.dropdown-list__header:hover {
   background-color: #ededf0;
   cursor: pointer;
 }
 
-.circle-marker {
+.header__circle-marker {
   display: inline-block;
   height: 9px;
   width: 9px;
@@ -26,15 +22,7 @@
   margin-right: 8px;
 }
 
-.online-marker {
-  background-color: rgb(15, 178, 34);
-}
-
-.offline-marker {
-  background-color: rgb(255, 28, 28);
-}
-
-.icon {
+.header__icon {
   display: inline-block;
   width: 10px;
   height: 10px;
@@ -50,16 +38,16 @@
   margin-right: 8px;
 }
 
-.list-header {
+.header__list-title {
   font-size: 14px;
 }
 
-.list-item {
+.content__item{
   border: 1px solid #e6e8eb;
   padding: 8px 12px 8px 84px;
 }
 
-.list-item:hover {
+.content__item:hover {
   background-color: #ededf0;
   cursor: pointer;
 }

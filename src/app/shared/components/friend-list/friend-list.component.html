@@ -1,34 +1,13 @@
-<div class="friend-list-container">
-  <div class="list-block online-list" (click)="onlineClick()">
-    <span class="circle-marker online-marker"></span>
-    <span class="icon" [ngClass]="!onlineCollapsed ? 'right-icon' : 'down-icon'"></span>
-    <span class="list-header">Online friends</span>
+<div class="dropdown-list">
+  <div class="dropdown-list__header" (click)="toggle()">
+    <span class="header__circle-marker"></span>
+    <span class="header__icon" [ngClass]="!isCollapsed ? 'right-icon' : 'down-icon'"></span>
+    <span class="header__list-title">Online friends</span>
   </div>
-  <div *ngIf="onlineCollapsed">
-    <div *ngFor="let friend of friends">
-      <ng-container *ngIf="friend.status === 'online'">
-        <div class="list-item" [ngStyle]="{ 'border-bottom': 'none'}">
-          <span class="circle-marker online-marker"></span>
-          <a>{{ friend.name }}</a>
-        </div>
-      </ng-container>
-    </div>
-  </div>
-  <div class="list-block offline-list" (click)="offlineClick()">
-    <span class="circle-marker offline-marker"></span>
-    <span class="icon" [ngClass]="!offlineCollapsed ? 'right-icon' : 'down-icon'"></span>
-    <span class="list-header">Offline friends</span>
-  </div>
-  <div *ngIf="offlineCollapsed">
-    <div *ngFor="let friend of friends; let first = first; let last = last">
-      <ng-container *ngIf="friend.status === 'offline'">
-        <div
-          class="list-item"
-          [ngStyle]="{ 'border-bottom': last ? '1px solid #e6e8eb' : 'none', 'border-top': first ? 'none' : '1px solid #e6e8eb'}">
-          <span class="circle-marker offline-marker"></span>
-          <a>{{ friend.name }}</a>
-        </div>
-      </ng-container>
+  <div *ngIf="isCollapsed" class="dropdown-list__content">
+    <div *ngFor="let item of items" class="content__item" [ngStyle]="{ 'border-bottom': 'none'}">
+      <span class="circle-marker online-marker"></span>
+      <a>{{ item.title }}</a>
     </div>
   </div>
 </div>

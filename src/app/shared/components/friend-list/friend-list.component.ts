@@ -1,49 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-friend-list',
+  selector: 'app-dropdown-list',
   templateUrl: './friend-list.component.html',
   styleUrls: ['./friend-list.component.css']
 })
-export class FriendListComponent implements OnInit {
+export class DropdownListComponent implements OnInit {
 
-  friends = [{
-    status: 'offline',
-    name: 'friend 4'
-  }, {
-    status: 'online',
-    name: 'friend 1'
-  }, {
-    status: 'online',
-    name: 'friend 2'
-  }, {
-    status: 'online',
-    name: 'friend 3'
-  }, {
-    status: 'online',
-    name: 'friend 5'
-  }, {
-    status: 'offline',
-    name: 'friend 6'
-  }, {
-    status: 'offline',
-    name: 'friend 7'
-  }];
+  // friends = [{
+  //   status: 'offline',
+  //   name: 'friend 4'
+  // }, {
+  //   status: 'online',
+  //   name: 'friend 1'
+  // }, {
+  //   status: 'online',
+  //   name: 'friend 2'
+  // }, {
+  //   status: 'online',
+  //   name: 'friend 3'
+  // }, {
+  //   status: 'online',
+  //   name: 'friend 5'
+  // }, {
+  //   status: 'offline',
+  //   name: 'friend 6'
+  // }, {
+  //   status: 'offline',
+  //   name: 'friend 7'
+  // }];
+  @Input()
+  items: any;
 
-  onlineCollapsed = true;
-  offlineCollapsed = false;
+  @Input()
+  markerColor: any;
+
+  isCollapsed = true;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onlineClick() {
-    console.log('online click');
-    this.onlineCollapsed = !this.onlineCollapsed;
-  }
-
-  offlineClick() {
-    this.offlineCollapsed = !this.offlineCollapsed;
+  toggle() {
+    this.isCollapsed = !this.isCollapsed;
   }
 }
