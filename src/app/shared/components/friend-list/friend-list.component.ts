@@ -7,28 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DropdownListComponent implements OnInit {
 
-  // friends = [{
-  //   status: 'offline',
-  //   name: 'friend 4'
-  // }, {
-  //   status: 'online',
-  //   name: 'friend 1'
-  // }, {
-  //   status: 'online',
-  //   name: 'friend 2'
-  // }, {
-  //   status: 'online',
-  //   name: 'friend 3'
-  // }, {
-  //   status: 'online',
-  //   name: 'friend 5'
-  // }, {
-  //   status: 'offline',
-  //   name: 'friend 6'
-  // }, {
-  //   status: 'offline',
-  //   name: 'friend 7'
-  // }];
   @Input()
   items: any;
 

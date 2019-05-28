@@ -1,12 +1,14 @@
 <div class="dropdown-list">
   <div class="dropdown-list__header" (click)="toggle()">
-    <span class="header__circle-marker"></span>
+    <span class="circle-marker" [ngStyle]="{'background-color': markerColor}"></span>
     <span class="header__icon" [ngClass]="!isCollapsed ? 'right-icon' : 'down-icon'"></span>
     <span class="header__list-title">Online friends</span>
   </div>
   <div *ngIf="isCollapsed" class="dropdown-list__content">
-    <div *ngFor="let item of items" class="content__item" [ngStyle]="{ 'border-bottom': 'none'}">
-      <span class="circle-marker online-marker"></span>
+    <div *ngFor="let item of items; let i = index;"
+      class="content__item"
+      [ngStyle]="{'border-bottom': i == items.length - 1 ? '1px solid #eee' : 'none'}">
+      <span class="circle-marker" [ngStyle]="{'background-color': markerColor}"></span>
       <a>{{ item.title }}</a>
     </div>
   </div>

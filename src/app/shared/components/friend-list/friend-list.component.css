@@ -6,7 +6,9 @@
 
 .dropdown-list__header {
   padding: 8px 24px;
-  border: 1px solid #e6e8eb;
+  border-top: 1px solid #e6e8eb;
+  border-right: 1px solid #e6e8eb;
+  border-left: 1px solid #e6e8eb;
 }
 
 .dropdown-list__header:hover {
@@ -14,7 +16,7 @@
   cursor: pointer;
 }
 
-.header__circle-marker {
+.circle-marker {
   display: inline-block;
   height: 9px;
   width: 9px;
@@ -24,18 +26,17 @@
 
 .header__icon {
   display: inline-block;
+  margin-right: 8px;
   width: 10px;
   height: 10px;
 }
 
 .right-icon {
   background: url('../../../../assets/images/icons/right.svg') center no-repeat;
-  margin-right: 8px;
 }
 
 .down-icon {
   background: url('../../../../assets/images/icons/down.svg') center no-repeat;
-  margin-right: 8px;
 }
 
 .header__list-title {
@@ -45,6 +46,7 @@
 .content__item{
   border: 1px solid #e6e8eb;
   padding: 8px 12px 8px 84px;
+  font-size: 14px;
 }
 
 .content__item:hover {
