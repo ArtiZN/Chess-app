@@ -9,8 +9,8 @@
 }
 
 .list-block {
-  padding: 12px 24px;
-  border: 2px solid #e6e8eb;
+  padding: 8px 24px;
+  border: 1px solid #e6e8eb;
 }
 
 .list-block:hover {
@@ -45,13 +45,18 @@
   margin-right: 8px;
 }
 
+.down-icon {
+  background: url('../../../../assets/images/icons/down.svg') center no-repeat;
+  margin-right: 8px;
+}
+
 .list-header {
   font-size: 14px;
 }
 
 .list-item {
-  border: 2px solid #e6e8eb;
-  padding: 12px 12px 12px 84px;
+  border: 1px solid #e6e8eb;
+  padding: 8px 12px 8px 84px;
 }
 
 .list-item:hover {

@@ -1,7 +1,7 @@
 <div class="friend-list-container">
   <div class="list-block online-list" (click)="onlineClick()">
     <span class="circle-marker online-marker"></span>
-    <span class="icon right-icon"></span>
+    <span class="icon" [ngClass]="!onlineCollapsed ? 'right-icon' : 'down-icon'"></span>
     <span class="list-header">Online friends</span>
   </div>
   <div *ngIf="onlineCollapsed">
@@ -16,7 +16,7 @@
   </div>
   <div class="list-block offline-list" (click)="offlineClick()">
     <span class="circle-marker offline-marker"></span>
-    <span class="icon right-icon"></span>
+    <span class="icon" [ngClass]="!offlineCollapsed ? 'right-icon' : 'down-icon'"></span>
     <span class="list-header">Offline friends</span>
   </div>
   <div *ngIf="offlineCollapsed">
@@ -24,7 +24,7 @@
       <ng-container *ngIf="friend.status === 'offline'">
         <div
           class="list-item"
-          [ngStyle]="{ 'border-bottom': last ? '2px solid #e6e8eb' : 'none', 'border-top': first ? 'none' : '2px solid #e6e8eb'}">
+          [ngStyle]="{ 'border-bottom': last ? '1px solid #e6e8eb' : 'none', 'border-top': first ? 'none' : '1px solid #e6e8eb'}">
           <span class="circle-marker offline-marker"></span>
           <a>{{ friend.name }}</a>
         </div>
