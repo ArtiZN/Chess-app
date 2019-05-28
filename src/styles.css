@@ -27,3 +27,16 @@
 body {
   background-color: #eee !important;
 }
+
+.mat-button-toggle-label-content {
+  font-size: 12px;
+  line-height: 1 !important;
+}
+
+button.mat-button-toggle-button {
+  outline: none !important;
+}
+
+tr.mat-row {
+  height: 46px !important;
+}
