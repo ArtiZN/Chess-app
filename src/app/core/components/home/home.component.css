@@ -29,6 +29,7 @@
 }
 
 .ui-container__center {
+  height: 100%;
   padding: 0 24px;
 }
 

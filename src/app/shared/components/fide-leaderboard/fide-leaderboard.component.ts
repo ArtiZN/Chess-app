@@ -20,6 +20,11 @@ const ELEMENT_DATA: TableElement[] = [
   { position: 8,	 name: 'Vachier-Lagrave, Maxime', country: 'FRA', rating: 2773, year: 1990 },
   { position: 9,	 name: 'Grischuk, Alexander', country: 'RUS', rating: 2771, year: 1983 },
   { position: 10,	 name: 'Aronian, Levon', country: 'ARM', rating: 2763, year: 1982 },
+  { position: 11,	 name: 'Aronian, Levon', country: 'ARM', rating: 2763, year: 1982 },
+  { position: 12,	 name: 'Aronian, Levon', country: 'ARM', rating: 2763, year: 1982 },
+  { position: 13,	 name: 'Aronian, Levon', country: 'ARM', rating: 2763, year: 1982 },
+  { position: 14,	 name: 'Aronian, Levon', country: 'ARM', rating: 2763, year: 1982 },
+  { position: 15,	 name: 'Aronian, Levon', country: 'ARM', rating: 2763, year: 1982 },
 ];
 
 @Component({
