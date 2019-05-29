@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import "../node_modules/angular-notifier/styles/core.css";
 @import "../node_modules/angular-notifier/styles/themes/theme-material.css";
 @import "../node_modules/angular-notifier/styles/types/type-default.css";
@@ -7,36 +5,4 @@
 @import "../node_modules/angular-notifier/styles/types/type-info.css";
 @import "../node_modules/angular-notifier/styles/types/type-success.css";
 @import "../node_modules/angular-notifier/styles/types/type-warning.css";
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-body {
-  background-color: #eee !important;
-}
-
-.mat-button-toggle-label-content {
-  font-size: 12px;
-  line-height: 1 !important;
-}
-
-button.mat-button-toggle-button {
-  outline: none !important;
-}
-
-tr.mat-row {
-  height: 46px !important;
-}
+@import '../src/assets/styles/main';
