@@ -7,7 +7,7 @@ import { GameSelectionService } from '@core/services/game-selection/game-selecti
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
 

@@ -4,7 +4,7 @@ import { King } from '@shared/classes/piece';
 @Component({
   selector: 'app-cheaker-king',
   templateUrl: './cheaker-king.component.html',
-  styleUrls: ['./cheaker-king.component.css']
+  styleUrls: ['./cheaker-king.component.scss']
 })
 export class CheakerKingComponent implements OnInit {
 

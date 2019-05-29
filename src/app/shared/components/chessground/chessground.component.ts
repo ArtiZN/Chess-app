@@ -36,7 +36,7 @@ import { PromotionChoiceComponent } from '@shared/components/promotion-choice/pr
 @Component({
   selector: 'app-chessground',
   templateUrl: './chessground.component.html',
-  styleUrls: ['./chessground.component.css'],
+  styleUrls: ['./chessground.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class ChessgroundComponent implements OnInit, OnDestroy {

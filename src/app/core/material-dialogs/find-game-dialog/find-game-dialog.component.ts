@@ -11,7 +11,7 @@ import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 @Component({
   selector: 'app-find-game-dialog',
   templateUrl: './find-game-dialog.component.html',
-  styleUrls: ['./find-game-dialog.component.css']
+  styleUrls: ['./find-game-dialog.component.scss']
 })
 export class FindGameDialogComponent implements OnInit {
 

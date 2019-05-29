@@ -10,7 +10,7 @@ import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 @Component({
   selector: 'app-chess-game',
   templateUrl: './chess-game.component.html',
-  styleUrls: ['./chess-game.component.css']
+  styleUrls: ['./chess-game.component.scss']
 })
 export class ChessGameComponent implements OnInit {
 

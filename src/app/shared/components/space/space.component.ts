@@ -6,7 +6,7 @@ import { Space } from '@shared/classes/space';
 @Component({
   selector: 'app-space',
   templateUrl: './space.component.html',
-  styleUrls: ['./space.component.css']
+  styleUrls: ['./space.component.scss']
 })
 export class SpaceComponent implements OnInit {
 

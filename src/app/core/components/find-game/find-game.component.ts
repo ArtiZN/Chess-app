@@ -11,7 +11,7 @@ export interface DialogData {
 @Component({
   selector: 'app-find-game',
   templateUrl: './find-game.component.html',
-  styleUrls: ['./find-game.component.css']
+  styleUrls: ['./find-game.component.scss']
 })
 export class FindGameComponent implements OnInit {
 

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-most-successfull-games',
   templateUrl: './most-successfull-games.component.html',
-  styleUrls: ['./most-successfull-games.component.css']
+  styleUrls: ['./most-successfull-games.component.scss']
 })
 export class MostSuccessfullGamesComponent implements OnInit {
 

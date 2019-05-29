@@ -5,7 +5,7 @@ import { ChessMove } from '@core/interfaces/chess-move.interfaces';
 @Component({
   selector: 'app-moves-table',
   templateUrl: './moves-table.component.html',
-  styleUrls: ['./moves-table.component.css']
+  styleUrls: ['./moves-table.component.scss']
 })
 export class MovesTableComponent implements OnInit, OnChanges {
   displayedColumns = ['N', 'white', 'black'];

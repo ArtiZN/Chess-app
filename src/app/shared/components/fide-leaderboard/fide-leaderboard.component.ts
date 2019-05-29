@@ -30,7 +30,7 @@ const ELEMENT_DATA: TableElement[] = [
 @Component({
   selector: 'app-fide-leaderboard',
   templateUrl: './fide-leaderboard.component.html',
-  styleUrls: ['./fide-leaderboard.component.css']
+  styleUrls: ['./fide-leaderboard.component.scss']
 })
 export class FideLeaderboardComponent implements OnInit {
 

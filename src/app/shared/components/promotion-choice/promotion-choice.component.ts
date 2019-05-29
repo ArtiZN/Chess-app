@@ -10,7 +10,7 @@ import { Role } from 'chessground/types';
 @Component({
   selector: 'app-promotion-choice',
   templateUrl: './promotion-choice.component.html',
-  styleUrls: ['./promotion-choice.component.css']
+  styleUrls: ['./promotion-choice.component.scss']
 })
 export class PromotionChoiceComponent implements OnInit {
 
