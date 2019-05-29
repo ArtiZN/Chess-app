@@ -16,9 +16,6 @@ export class DropdownListComponent implements OnInit {
   @Input()
   menuTitle: string;
 
-  @Input()
-  toggleBottomBorder: boolean;
-
   isCollapsed = true;
 
   constructor() { }

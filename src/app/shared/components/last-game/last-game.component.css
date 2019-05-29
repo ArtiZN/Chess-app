@@ -1,7 +1,3 @@
-#last-game-container {
-  display: flex;
-}
-
 .header {
   text-align: center;
   margin-bottom: 8px;
@@ -11,31 +7,16 @@
   text-transform: uppercase;
 }
 
-.game-row__info {
-  margin-left: 8px;
-}
-
-.div-text-wrapper {
-  font-size: 10px;
-  max-width: 112px;
-}
-
-.div-img-wrapper {
+.last-game__img {
   border: 6px solid #eee;
 }
 
-.game-type {
+.last-game__info {
+  margin-left: 8px;
+}
+
+.info__game-type {
   font-size: 14px;
-}
-
-.time-ago {
-  margin-top: -4px;
-  font-size: 10px;
-}
-
-.div-results {
-  color: rgb(255, 28, 28);
-  text-align: center;
 }
 
 .blitz-icon {
@@ -50,16 +31,26 @@
   font-size: 18px;
 }
 
-.oponent {
+.time-ago {
+  margin-top: -4px;
+  font-size: 10px;
+}
+
+.info__oponent {
   display: flex;
   justify-content: center;
   margin: 16px 0;
 }
 
-.oponent div {
+.info__oponent div {
   margin: 0 4px;
 }
 
-.opening {
+.info__results {
+  color: rgb(255, 28, 28);
+  text-align: center;
+}
+
+.info__opening {
   margin-top: 16%;
 }
