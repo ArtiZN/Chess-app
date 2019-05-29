@@ -1,13 +1,15 @@
+@import 'variables';
+
 .img-game {
   height: 112px;
   width: 112px;
 }
 
-.games__info__text-wrapper {
+.text-wrapper {
   font-size: 10px;
   max-width: 112px;
 }
 
-.games__info__img-wrapper {
-  border: 6px solid #eee;
+.img-wrapper {
+  border: 2px solid $accent-color;
 }

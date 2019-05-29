@@ -1,16 +1,19 @@
+@import 'variables';
+
 .dropdown-list {
   overflow-y: auto;
+  color: $primary-text-color;
 }
 
 .dropdown-list__header {
   padding: 8px 24px;
-  border-top: 1px solid #e6e8eb;
-  border-right: 1px solid #e6e8eb;
-  border-left: 1px solid #e6e8eb;
+  border-top: 1px solid $accent-color;
+  border-right: 1px solid $accent-color;
+  border-left: 1px solid $accent-color;
 }
 
 .dropdown-list__header:hover {
-  background-color: #ededf0;
+  background-color: $primary-hover-color;
   cursor: pointer;
 }
 
@@ -37,17 +40,21 @@
   background: url('../../../../assets/images/icons/down.svg') center no-repeat;
 }
 
+.b-bottom {
+  border-bottom: 1px solid $accent-color;
+}
+
 .header__list-title {
   font-size: 14px;
 }
 
 .content__item{
-  border: 1px solid #e6e8eb;
+  border: 1px solid $accent-color;
   padding: 8px 12px 8px 84px;
   font-size: 14px;
 }
 
 .content__item:hover {
-  background-color: #ededf0;
+  background-color: $primary-hover-color;
   cursor: pointer;
 }

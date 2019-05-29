@@ -1,10 +1,12 @@
+@import 'variables';
+
 .info-container {
-  padding: 0 24px;
+  padding: 8px 24px;
 }
 
 .div-account-info {
   margin-top: 16px;
-  border: 6px solid #eee;
+  border: 2px solid $accent-color;
 }
 
 .div-info-title {
