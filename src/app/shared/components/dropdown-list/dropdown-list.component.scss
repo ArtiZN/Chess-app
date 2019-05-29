@@ -13,7 +13,7 @@
 }
 
 .dropdown-list__header:hover {
-  background-color: $primary-hover-color;
+  background-color: $primary-color-middle;
   cursor: pointer;
 }
 
@@ -48,13 +48,13 @@
   font-size: 14px;
 }
 
-.content__item{
+.content__item {
   border: 1px solid $accent-color;
   padding: 8px 12px 8px 84px;
   font-size: 14px;
 }
 
 .content__item:hover {
-  background-color: $primary-hover-color;
+  background-color: $primary-color-middle;
   cursor: pointer;
 }

@@ -1,3 +1,9 @@
+@import '../variables.scss';
+
+.mat-button-toggle-checked {
+  background-color: #FFC107;
+}
+
 mat-button-toggle-group {
   margin-bottom: 8px;
 }
@@ -17,4 +23,8 @@ button.mat-button-toggle-button {
 
 tr.mat-row {
   height: 46px !important;
+}
+
+.mat-card {
+  border-radius: 2px !important;
 }

@@ -49,8 +49,9 @@
 }
 
 .info__results {
-  color: rgb(255, 28, 28);
+  color: $danger-color;
   text-align: center;
+  font-weight: 500;
 }
 
 .info__opening {

@@ -1,8 +1,12 @@
 @import 'variables';
 
-.profile-card {
-  background-color: $primary-color;
+.profile-card,
+.friends-list-card,
+.last-game-card,
+.forum-card {
+  background: linear-gradient(45deg, $primary-color-minor, $primary-color-major);
   color: $primary-text-color;
+  margin-bottom: 24px;
 }
 
 .ui-container {
@@ -38,23 +42,10 @@
 }
 
 .friends-list-card {
-  background-color: $primary-color;
-  margin-top: 24px;
   min-height: 486px;
 }
 
 .ui-container__center {
   height: 100%;
   padding: 0 9px;
-}
-
-.last-game-card {
-  background-color: $primary-color;
-  color: $primary-text-color;
-}
-
-.forum-card {
-  margin-top: 24px;
-  background-color: $primary-color;
-  color: $primary-text-color;
 }
