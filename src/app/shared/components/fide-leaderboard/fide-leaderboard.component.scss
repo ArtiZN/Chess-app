@@ -1,13 +1,26 @@
-.mat-elevation-z8 {
+@import 'variables';
+
+div.mat-elevation-z8 {
   transition: none !important;
   box-shadow: none !important;
-}
-
-table {
-  width: 100%;
-}
-
-.mat-table tr:hover {
-  background-color: #ededf0;
-  cursor: pointer;
+  table {
+    width: 100%;
+    background-color: inherit;
+    color: inherit;
+    td, th {
+      color: inherit;
+      border-bottom-color: #ededf0;
+    }
+    tr:hover {
+      background-color: $primary-color-minor;
+      cursor: pointer;
+    }
+  }
+  mat-paginator {
+    background-color: inherit;
+    color: inherit;
+    .mat-icon-button[disabled][disabled]{
+      color: red !important;
+    }
+  }
 }

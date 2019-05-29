@@ -28,3 +28,14 @@ tr.mat-row {
 .mat-card {
   border-radius: 2px !important;
 }
+
+.mat-select-arrow,
+.mat-select-value,
+.mat-icon-button[disabled][disabled]{
+  color: $primary-text-color !important;
+}
+
+.mat-form-field-underline,
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $primary-text-color !important;
+}

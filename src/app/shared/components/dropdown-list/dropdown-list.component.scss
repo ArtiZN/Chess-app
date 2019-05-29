@@ -7,13 +7,13 @@
 
 .dropdown-list__header {
   padding: 8px 24px;
-  border-top: 1px solid $accent-color;
-  border-right: 1px solid $accent-color;
-  border-left: 1px solid $accent-color;
+  border-top: 1px solid $accent-color-major;
+  border-right: 1px solid $accent-color-major;
+  border-left: 1px solid $accent-color-major;
 }
 
 .dropdown-list__header:hover {
-  background-color: $primary-color-middle;
+  background-color: $primary-color-minor;
   cursor: pointer;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .b-bottom {
-  border-bottom: 1px solid $accent-color;
+  border-bottom: 1px solid $accent-color-major;
 }
 
 .header__list-title {
@@ -49,12 +49,16 @@
 }
 
 .content__item {
-  border: 1px solid $accent-color;
+  border-top: 1px solid $accent-color-major;
+  border-right: 1px solid $accent-color-major;
+  border-left: 1px solid $accent-color-major;
   padding: 8px 12px 8px 84px;
   font-size: 14px;
 }
 
 .content__item:hover {
-  background-color: $primary-color-middle;
+  background-color: $primary-color-minor;
+  border-left: 2px solid $accent-color-major;
+  border-top: 2px solid $accent-color-major;
   cursor: pointer;
 }

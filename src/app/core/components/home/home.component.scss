@@ -3,9 +3,14 @@
 .profile-card,
 .friends-list-card,
 .last-game-card,
-.forum-card {
-  background: linear-gradient(45deg, $primary-color-minor, $primary-color-major);
+.forum-card,
+.leaderboard-card {
+  background: linear-gradient(to right, $primary-color-minor, $primary-color-major);
   color: $primary-text-color;
+}
+
+.profile-card,
+.last-game-card {
   margin-bottom: 24px;
 }
 
@@ -28,7 +33,7 @@
 
 .profile-card__header-title__status {
   font-size: 12px;
-  color: $accent-color;
+  color: $accent-color-major;
 }
 
 .profile-card__content {
