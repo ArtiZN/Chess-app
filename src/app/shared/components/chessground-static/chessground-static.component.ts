@@ -26,7 +26,13 @@ export class ChessgroundStaticComponent implements OnInit {
   private cg: Api = null;
 
   private initChessground(): void {
-    this.cg = Chessground(this.chessBoard.nativeElement);
+    this.cg = Chessground(this.chessBoard.nativeElement, {
+      coordinates: false,
+      movable: {
+        color: null,
+        dests: {}
+      },
+    });
   }
 
   constructor() { }
