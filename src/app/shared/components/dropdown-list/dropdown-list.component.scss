@@ -1,64 +1,66 @@
 @import 'variables';
 
-.dropdown-list {
+div.dropdown-list {
   overflow-y: auto;
   color: $primary-text-color;
-}
 
-.dropdown-list__header {
-  padding: 8px 24px;
-  border-top: 1px solid $accent-color-major;
-  border-right: 1px solid $accent-color-major;
-  border-left: 1px solid $accent-color-major;
-}
+  .dropdown-list__header {
+    padding: 8px 24px;
+    border-top: 1px solid $accent-color-major;
+    border-right: 1px solid $accent-color-major;
+    border-left: 1px solid $accent-color-major;
 
-.dropdown-list__header:hover {
-  background-color: $primary-color-minor;
-  cursor: pointer;
-}
+    .header__icon {
+      display: inline-block;
+      margin-right: 8px;
+      width: 10px;
+      height: 10px;
+    }
 
-.circle-marker {
-  display: inline-block;
-  height: 9px;
-  width: 9px;
-  border-radius: 50%;
-  margin-right: 8px;
-}
+    .header__list-title {
+      font-size: 14px;
+    }
+  }
 
-.header__icon {
-  display: inline-block;
-  margin-right: 8px;
-  width: 10px;
-  height: 10px;
-}
+  .dropdown-list__content {
+    .content__item {
+      border-top: 1px solid $accent-color-major;
+      border-right: 1px solid $accent-color-major;
+      border-left: 1px solid $accent-color-major;
+      padding: 8px 12px 8px 84px;
+      font-size: 14px;
+    }
 
-.right-icon {
-  background: url('../../../../assets/images/icons/right.svg') center no-repeat;
-}
+    .content__item:hover {
+      background-color: $primary-color-minor;
+      border-left: 2px solid $accent-color-major;
+      border-top: 2px solid $accent-color-major;
+      cursor: pointer;
+    }
+  }
 
-.down-icon {
-  background: url('../../../../assets/images/icons/down.svg') center no-repeat;
-}
+  .dropdown-list__header:hover {
+    background-color: $primary-color-minor;
+    cursor: pointer;
+  }
 
-.b-bottom {
-  border-bottom: 1px solid $accent-color-major;
-}
+  .circle-marker {
+    display: inline-block;
+    height: 9px;
+    width: 9px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
 
-.header__list-title {
-  font-size: 14px;
-}
+  .right-icon {
+    background: url('../../../../assets/images/icons/right.svg') center no-repeat;
+  }
 
-.content__item {
-  border-top: 1px solid $accent-color-major;
-  border-right: 1px solid $accent-color-major;
-  border-left: 1px solid $accent-color-major;
-  padding: 8px 12px 8px 84px;
-  font-size: 14px;
-}
+  .down-icon {
+    background: url('../../../../assets/images/icons/down.svg') center no-repeat;
+  }
 
-.content__item:hover {
-  background-color: $primary-color-minor;
-  border-left: 2px solid $accent-color-major;
-  border-top: 2px solid $accent-color-major;
-  cursor: pointer;
+  .b-bottom {
+    border-bottom: 1px solid $accent-color-major;
+  }
 }
