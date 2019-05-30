@@ -30,9 +30,11 @@
 }
 
 .blitz-icon {
-  margin-top: -16px;
+  display: inline-block;
+  margin: -16px 8px 0 0;
   height: 32px;
   width: 32px;
+  background: url('/src/assets/images/games/types/blitz.svg') center no-repeat;
 }
 
 .time-type {
@@ -57,7 +59,7 @@
 }
 
 .info__results {
-  color: $danger-color;
+  color: $success-color;
   text-align: center;
   font-weight: 500;
 }

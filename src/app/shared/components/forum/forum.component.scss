@@ -1,7 +1,9 @@
 .chat-image {
+  display: block;
   width: 24px;
   height: 24px;
   margin: auto 0;
+  background: url('/src/assets/images/icons/chat.svg') center no-repeat;
 }
 
 .title {

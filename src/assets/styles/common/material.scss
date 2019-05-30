@@ -31,11 +31,16 @@ tr.mat-row {
 
 .mat-select-arrow,
 .mat-select-value,
-.mat-icon-button[disabled][disabled]{
+.mat-icon-button[disabled][disabled],
+.mat-form-field-appearance-legacy .mat-form-field-label {
   color: $primary-text-color !important;
 }
 
 .mat-form-field-underline,
 .mat-form-field.mat-focused .mat-form-field-ripple {
   background-color: $primary-text-color !important;
+}
+
+.mat-input-element {
+  caret-color: $primary-text-color !important;
 }
