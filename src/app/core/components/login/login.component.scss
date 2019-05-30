@@ -1,6 +1,10 @@
+@import 'variables';
+
 .login-card {
   max-width: 400px;
   margin: 0 auto;
+  background: linear-gradient(to right, $primary-color-minor, $primary-color-major);
+  color: $primary-text-color;
 }
 
 .login-container {
