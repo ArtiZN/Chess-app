@@ -1,7 +1,11 @@
 <div class="d-flex justify-content-between games">
   <div *ngFor="let game of games" class="games__info">
     <div class="img-wrapper">
-      <img class="img-game" [src]="game.src" alt="">
+      <!-- <img class="img-game" [src]="game.src" alt=""> -->
+      <app-chessground-static
+        width="112px"
+        height="112px">
+      </app-chessground-static>
     </div>
     <div class="text-wrapper">{{ game.title }}</div>
   </div>

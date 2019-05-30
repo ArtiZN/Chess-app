@@ -17,6 +17,7 @@ import { PromotionChoiceComponent } from './components/promotion-choice/promotio
 import { DropdownListComponent } from './components/dropdown-list/dropdown-list.component';
 import { LastGameComponent } from './components/last-game/last-game.component';
 import { ForumComponent } from './components/forum/forum.component';
+import { ChessgroundStaticComponent } from './components/chessground-static/chessground-static.component';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { ForumComponent } from './components/forum/forum.component';
     DropdownListComponent,
     LastGameComponent,
     ForumComponent,
+    ChessgroundStaticComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
@@ -53,11 +55,12 @@ import { ForumComponent } from './components/forum/forum.component';
     DropdownListComponent,
     LastGameComponent,
     ForumComponent,
+    ChessgroundStaticComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
     SpaceComponent,
-    CheakersGameBoardComponent
+    CheakersGameBoardComponent,
   ],
   entryComponents: [
     PromotionChoiceComponent
