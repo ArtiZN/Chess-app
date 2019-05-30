@@ -16,7 +16,8 @@ export class DropdownListComponent implements OnInit {
   @Input()
   menuTitle: string;
 
-  isCollapsed = true;
+  @Input()
+  isCollapsed: boolean;
 
   constructor() { }
 

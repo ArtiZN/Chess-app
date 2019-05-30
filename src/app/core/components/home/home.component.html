@@ -26,10 +26,12 @@
       <app-dropdown-list
         markerColor="rgb(105, 240, 174)"
         menuTitle="Online"
+        [isCollapsed]="true"
         [items]="onlineFriends"></app-dropdown-list>
       <app-dropdown-list
         markerColor="#FF5252"
         menuTitle="Offline"
+        [isCollapsed]="false"
         [items]="offlineFriends"></app-dropdown-list>
     </mat-card>
   </div>
