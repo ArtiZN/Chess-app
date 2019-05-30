@@ -3,7 +3,12 @@
 </div>
 <div class="d-flex last-game">
   <div class="last-game__img">
-    <img src="./assets/images/games/ruy-lopez.png" alt="">
+    <app-chessground-static
+      [width]="212"
+      [height]="212"
+      fen="rnbqkb1r/pppppppp/5n2/8/4P3/3P4/PPP2PPP/RNBQKBNR b KQkq - 0 2"
+      orientation="black">
+    </app-chessground-static>
   </div>
   <div class="last-game__info">
     <div class="info__game-type">

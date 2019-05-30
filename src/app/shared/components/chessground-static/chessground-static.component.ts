@@ -16,10 +16,10 @@ import { Api } from 'chessground/api';
 export class ChessgroundStaticComponent implements OnInit {
 
   @Input()
-  width: string;
+  width: number;
 
   @Input()
-  height: string;
+  height: number;
 
   @Input()
   orientation: Color;
@@ -33,15 +33,17 @@ export class ChessgroundStaticComponent implements OnInit {
   private cg: Api = null;
 
   private initChessground(): void {
-    this.cg = Chessground(this.chessBoard.nativeElement, {
-      orientation: this.orientation,
-      coordinates: false,
-      movable: {
-        color: null,
-        dests: {}
-      },
-    });
-    this.cg.set({ fen: this.fen });
+    setTimeout(() => {
+      this.cg = Chessground(this.chessBoard.nativeElement, {
+        orientation: this.orientation,
+        coordinates: false,
+        movable: {
+          color: null,
+          dests: {}
+        },
+      });
+      this.cg.set({ fen: this.fen });
+    }, 50);
   }
 
   constructor() { }

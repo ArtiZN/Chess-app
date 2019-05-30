@@ -2,8 +2,8 @@
   <div *ngFor="let game of games" class="games__info">
     <div class="cg-wrapper">
       <app-chessground-static
-        width="112px"
-        height="112px"
+        [width]="112"
+        [height]="112"
         [fen]="game.fen"
         [orientation]="game.orientation">
       </app-chessground-static>
