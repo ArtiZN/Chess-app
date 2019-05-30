@@ -1,3 +1,4 @@
+import { Color } from 'chessground/types';
 import {
   Component,
   OnInit,
@@ -20,6 +21,12 @@ export class ChessgroundStaticComponent implements OnInit {
   @Input()
   height: string;
 
+  @Input()
+  orientation: Color;
+
+  @Input()
+  fen: string;
+
   @ViewChild('chessBoard')
   chessBoard: ElementRef;
 
@@ -27,12 +34,14 @@ export class ChessgroundStaticComponent implements OnInit {
 
   private initChessground(): void {
     this.cg = Chessground(this.chessBoard.nativeElement, {
+      orientation: this.orientation,
       coordinates: false,
       movable: {
         color: null,
         dests: {}
       },
     });
+    this.cg.set({ fen: this.fen });
   }
 
   constructor() { }

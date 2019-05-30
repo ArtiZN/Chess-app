@@ -1,15 +1,12 @@
 @import 'variables';
 
-.img-game {
-  height: 112px;
-  width: 112px;
-}
+.games__info {
+  .games__info-title {
+    font-size: 10px;
+    max-width: 112px;
+  }
 
-.text-wrapper {
-  font-size: 10px;
-  max-width: 112px;
-}
-
-.img-wrapper {
-  border: 1px solid $accent-color-major;
+  .cg-wrapper {
+    border: 1px solid $accent-color-major;
+  }
 }
