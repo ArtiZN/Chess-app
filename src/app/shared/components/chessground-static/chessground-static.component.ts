@@ -43,6 +43,7 @@ export class ChessgroundStaticComponent implements OnInit {
         },
       });
       this.cg.set({ fen: this.fen });
+      console.log(this.cg);
     }, 50);
   }
 

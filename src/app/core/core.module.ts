@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { NotifierModule } from 'angular-notifier';
 
 import { NavigationComponent } from '@core/components/navigation/navigation.component';
@@ -32,6 +33,7 @@ import { SharedModule } from '@shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule,
     NotifierModule.withConfig(notifierConfig),
     MaterialModule,
     SharedModule
