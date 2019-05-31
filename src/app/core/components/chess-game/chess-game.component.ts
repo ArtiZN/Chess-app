@@ -1,50 +1,41 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import * as _ from 'lodash';
+import { Key } from 'chessground/types';
 
 import { ChessMove } from '@core/interfaces/chess-move.interfaces';
+import { MoveConfig } from '@core/interfaces/socketIO.interfaces';
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
-import { UserService } from '@core/mock-backend/services/user.service';
-import { User } from '@core/interfaces/user.interfaces';
 
 @Component({
   selector: 'app-chess-game',
   templateUrl: './chess-game.component.html',
-  styleUrls: ['./chess-game.component.css']
+  styleUrls: ['./chess-game.component.scss']
 })
-export class ChessGameComponent implements OnInit, OnDestroy {
+export class ChessGameComponent implements OnInit {
 
   data: ChessMove[] = [{ N: 1 }];
 
   constructor(
-    private chessService: ChessGameService,
-    private userService: UserService) { }
+    private chessService: ChessGameService) { }
 
-  ngOnInit() {
-    const user: User = this.userService.getUser();
-    // this.chessService.initGame(user);
+  ngOnInit() {}
+
+  cgMove($event: MoveConfig) {
+    this.updateData($event);
+    this.chessService.emitEvent('makeMove', Object.assign($event, { room: this.chessService.gameID }));
   }
 
-  ngOnDestroy() {
-    // this.chessService.destroyGame();
-  }
-
-  cgMove($event) {
-    const move = _.last($event.history());
-    const color = ($event.turn() === 'w') ? 'black' : 'white';
-    this.updateData(move, color);
-
-    // this.chessService.emitEvent('makeMove', { color, move });
-  }
-
-  updateData(move, color) {
+  updateData({ to, turn }: { to: Key, turn: string }) {
     const last: ChessMove = _.last(this.data);
+    const color = turn === 'w' ? 'black' : 'white';
     if (last[color] !== undefined) {
       const row = {} as ChessMove;
       row.N = last.N + 1;
-      row[color] = move;
+      row[color] = to;
       this.data = [...this.data, row];
     } else {
-      last[color] = move;
+      last[color] = to;
     }
   }
 }

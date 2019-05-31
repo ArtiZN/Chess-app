@@ -24,6 +24,9 @@
       "@core/*" : [
         "src/app/core/*"
       ],
+      "@material/*": [
+        "src/app/material/*"
+      ],
       "@environment": [
         "src/environments/environment"
       ]

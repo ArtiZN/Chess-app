@@ -1,0 +1,15 @@
+<div class="dropdown-list">
+  <div class="dropdown-list__header" (click)="toggle()" [ngClass]="{'b-bottom': !isCollapsed }">
+    <span class="circle-marker" [ngStyle]="{'background-color': markerColor}"></span>
+    <span class="header__icon" [ngClass]="!isCollapsed ? 'right-icon' : 'down-icon'"></span>
+    <span class="header__list-title">{{ menuTitle }}</span>
+  </div>
+  <div *ngIf="isCollapsed" class="dropdown-list__content">
+    <div *ngFor="let item of items; let i = index;"
+      class="content__item"
+      [ngClass]="{'b-bottom': i == items.length - 1 }">
+      <span class="circle-marker" [ngStyle]="{'background-color': markerColor}"></span>
+      <a>{{ item.title }}</a>
+    </div>
+  </div>
+</div>

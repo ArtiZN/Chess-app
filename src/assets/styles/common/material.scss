@@ -1,0 +1,46 @@
+@import '../variables.scss';
+
+.mat-button-toggle-checked {
+  background-color: #FFC107;
+}
+
+mat-button-toggle-group {
+  margin-bottom: 8px;
+}
+
+mat-button-toggle {
+  min-width: 75px;
+}
+
+.mat-button-toggle-label-content {
+  font-size: 12px;
+  line-height: 1 !important;
+}
+
+button.mat-button-toggle-button {
+  outline: none !important;
+}
+
+tr.mat-row {
+  height: 46px !important;
+}
+
+.mat-card {
+  border-radius: 2px !important;
+}
+
+.mat-select-arrow,
+.mat-select-value,
+.mat-icon-button[disabled][disabled],
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: $primary-text-color !important;
+}
+
+.mat-form-field-underline,
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $primary-text-color !important;
+}
+
+.mat-input-element {
+  caret-color: $primary-text-color !important;
+}

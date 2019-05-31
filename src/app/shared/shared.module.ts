@@ -1,27 +1,42 @@
-import { MaterialModule } from './../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NgxAutoScrollModule } from 'ngx-auto-scroll';
-
-import { ChessgroundComponent } from './components/chessground/chessground.component';
-import { MovesTableComponent } from './components/moves-table/moves-table.component';
-import { ChatAreaComponent } from './components/chat-area/chat-area.component';
-import { CheakerPawnComponent } from './components/cheaker-pawn/cheaker-pawn.component';
-import { CheakerKingComponent } from './components/cheaker-king/cheaker-king.component';
-import { SpaceComponent } from './components/space/space.component';
-import { CheakersGameBoardComponent } from './components/cheakers-game-board/cheakers-game-board.component';
+import { MaterialModule } from './../material/material.module';
+import { ChessgroundComponent } from '@shared/components/chessground/chessground.component';
+import { MovesTableComponent } from '@shared/components/moves-table/moves-table.component';
+import { ChatAreaComponent } from '@shared/components/chat-area/chat-area.component';
+import { CheakerPawnComponent } from '@shared/components/cheaker-pawn/cheaker-pawn.component';
+import { CheakerKingComponent } from '@shared/components/cheaker-king/cheaker-king.component';
+import { SpaceComponent } from '@shared/components/space/space.component';
+import { CheakersGameBoardComponent } from '@shared/components/cheakers-game-board/cheakers-game-board.component';
+import { AvatarIconComponent } from '@shared/components/avatar-icon/avatar-icon.component';
+import { MostSuccessfullGamesComponent } from '@shared/components/most-successfull-games/most-successfull-games.component';
+import { AccountInfoComponent } from '@shared/components/account-info/account-info.component';
+import { FideLeaderboardComponent } from '@shared/components/fide-leaderboard/fide-leaderboard.component';
+import { PromotionChoiceComponent } from './components/promotion-choice/promotion-choice.component';
+import { DropdownListComponent } from './components/dropdown-list/dropdown-list.component';
+import { LastGameComponent } from './components/last-game/last-game.component';
+import { ForumComponent } from './components/forum/forum.component';
+import { ChessgroundStaticComponent } from './components/chessground-static/chessground-static.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    NgxAutoScrollModule,
     MaterialModule
   ],
   exports: [
     ChessgroundComponent,
     MovesTableComponent,
     ChatAreaComponent,
+    AvatarIconComponent,
+    MostSuccessfullGamesComponent,
+    AccountInfoComponent,
+    FideLeaderboardComponent,
+    PromotionChoiceComponent,
+    DropdownListComponent,
+    LastGameComponent,
+    ForumComponent,
+    ChessgroundStaticComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
@@ -32,11 +47,23 @@ import { CheakersGameBoardComponent } from './components/cheakers-game-board/che
     ChessgroundComponent,
     MovesTableComponent,
     ChatAreaComponent,
+    AvatarIconComponent,
+    MostSuccessfullGamesComponent,
+    AccountInfoComponent,
+    FideLeaderboardComponent,
+    PromotionChoiceComponent,
+    DropdownListComponent,
+    LastGameComponent,
+    ForumComponent,
+    ChessgroundStaticComponent,
 
     CheakerPawnComponent,
     CheakerKingComponent,
     SpaceComponent,
-    CheakersGameBoardComponent
+    CheakersGameBoardComponent,
+  ],
+  entryComponents: [
+    PromotionChoiceComponent
   ]
 })
 export class SharedModule { }

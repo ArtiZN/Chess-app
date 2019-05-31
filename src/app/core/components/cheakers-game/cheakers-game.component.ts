@@ -6,7 +6,7 @@ import { CheakersGameService } from '@core/services/cheakers-game/cheakers-game.
 @Component({
   selector: 'app-cheakers-game',
   templateUrl: './cheakers-game.component.html',
-  styleUrls: ['./cheakers-game.component.css']
+  styleUrls: ['./cheakers-game.component.scss']
 })
 export class CheakersGameComponent implements OnInit {
 

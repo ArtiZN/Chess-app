@@ -1,0 +1,8 @@
+<div id="promotion-choice" class="top" [ngStyle]="{'top': top}">
+  <div *ngFor="let promotion of promotions; let i = index;"
+    class="promotion-choice"
+    [ngClass]="['promotion-choice-' + color + promotion.mark]"
+    [ngStyle]="{'top': i * 12.5 + '%', 'left': column * 12.5 + '%'}"
+    (click)="promotionHandler(promotion.role)">
+  </div>
+</div>

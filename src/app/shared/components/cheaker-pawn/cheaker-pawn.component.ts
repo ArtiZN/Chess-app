@@ -4,7 +4,7 @@ import { Pawn } from '@shared/classes/piece';
 @Component({
   selector: 'app-cheaker-pawn',
   templateUrl: './cheaker-pawn.component.html',
-  styleUrls: ['./cheaker-pawn.component.css']
+  styleUrls: ['./cheaker-pawn.component.scss']
 })
 export class CheakerPawnComponent implements OnInit {
 

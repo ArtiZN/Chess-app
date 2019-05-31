@@ -1,0 +1,37 @@
+<div class="header">
+  <span>Last game</span>
+</div>
+<div class="d-flex last-game">
+  <div class="last-game__img">
+    <app-chessground-static
+      [width]="212"
+      [height]="212"
+      fen="rnbqkb1r/pppppppp/5n2/8/4P3/3P4/PPP2PPP/RNBQKBNR b KQkq - 0 2"
+      orientation="black">
+    </app-chessground-static>
+  </div>
+  <div class="last-game__info">
+    <div class="info__game-type">
+      <span class="blitz-icon"></span>
+      <div class="d-inline-block">
+        <div>
+          <span class="time-type">3 + 2</span>
+          <span>Blitz Rated</span>
+        </div>
+        <div class="time-ago"><span>1 hour ago</span></div>
+      </div>
+    </div>
+    <div class="info__oponent">
+      <div>Oponent 1</div>
+      <div>vs</div>
+      <div>Oponent 2</div>
+    </div>
+    <div class="info__results">
+      <span>White resigned, Black is victorious</span>
+    </div>
+    <div class="info__opening">
+      <strong>B03 Alekhine Defense: Four Pawns Attack</strong>
+      <div class="pgn">1. e4 Nf6 2. e5 Nd5 3. c4 Nb6 ... 23 moves </div>
+    </div>
+  </div>
+</div>

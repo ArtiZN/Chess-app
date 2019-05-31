@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { RouterModule } from '@angular/router';
 import { NotifierModule } from 'angular-notifier';
 
-import { MaterialModule } from './../material/material.module';
 import { NavigationComponent } from '@core/components/navigation/navigation.component';
 import { HomeComponent } from '@core/components/home/home.component';
 import { LoginComponent } from '@core/components/login/login.component';
@@ -23,6 +22,9 @@ import { GameSelectionService } from '@core/services/game-selection/game-selecti
 import { ChessGameService } from '@core/services/chess-game/chess-game.service';
 import { CheakersGameComponent } from '@core/components/cheakers-game/cheakers-game.component';
 import { ChessGameComponent } from '@core/components/chess-game/chess-game.component';
+import { FindGameComponent } from '@core/components/find-game/find-game.component';
+import { FindGameDialogComponent } from '@core/material-dialogs/find-game-dialog/find-game-dialog.component';
+import { MaterialModule } from '@material/material.module';
 import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
@@ -31,6 +33,7 @@ import { SharedModule } from '@shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule,
     NotifierModule.withConfig(notifierConfig),
     MaterialModule,
     SharedModule
@@ -48,7 +51,12 @@ import { SharedModule } from '@shared/shared.module';
     LoginComponent,
     NotFoundComponent,
     CheakersGameComponent,
-    ChessGameComponent
+    ChessGameComponent,
+    FindGameComponent,
+    FindGameDialogComponent
+  ],
+  entryComponents: [
+    FindGameDialogComponent
   ],
   providers: [
     ChatService,
