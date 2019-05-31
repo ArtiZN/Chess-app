@@ -6,9 +6,9 @@ div.dropdown-list {
 
   .dropdown-list__header {
     padding: 8px 24px;
-    border-top: 1px solid $accent-color-major;
-    border-right: 1px solid $accent-color-major;
-    border-left: 1px solid $accent-color-major;
+    border-top: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+    border-left: 1px solid $border-color;
 
     .header__icon {
       display: inline-block;
@@ -24,17 +24,17 @@ div.dropdown-list {
 
   .dropdown-list__content {
     .content__item {
-      border-top: 1px solid $accent-color-major;
-      border-right: 1px solid $accent-color-major;
-      border-left: 1px solid $accent-color-major;
+      border-top: 1px solid $border-color;
+      border-right: 1px solid $border-color;
+      border-left: 1px solid $border-color;
       padding: 8px 12px 8px 84px;
       font-size: 14px;
     }
 
     .content__item:hover {
-      background-color: $primary-color-minor;
-      border-left: 2px solid $accent-color-major;
-      border-top: 2px solid $accent-color-major;
+      background-color: $border-color;
+      border-left: 2px solid $border-color;
+      border-top: 2px solid $border-color;
       cursor: pointer;
     }
   }
@@ -61,6 +61,6 @@ div.dropdown-list {
   }
 
   .b-bottom {
-    border-bottom: 1px solid $accent-color-major;
+    border-bottom: 1px solid $border-color;
   }
 }
